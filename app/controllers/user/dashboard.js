@@ -19,7 +19,7 @@ module.exports = {
         da1 = new Date(da1);
      console.log(da);
      console.log(da1);
-       let today_registered = await getCount(Participants,{created_date: { $gte: da,$lt:  da1}});
+       let today_registered = await getCount(Participants,{$and:[{created_date: { $gte: da,$lt:  da1}},{createby:user._id}]});
         let today_payment = user.today_payment;
         let events = await getManyDataWithPopulate(Departments,{},'events','name linked_department','name',{available_entries:{ $ne: 0 }});
         return res.json({status:true, today_registered: today_registered,today_payment: today_payment,eventsdata:events});
