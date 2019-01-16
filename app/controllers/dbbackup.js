@@ -17,12 +17,12 @@ autoBackupPath: '~spectrum/dailybackups/' // i.e. /var/database-backup/
 };
  
     /* return date object */
-exports.stringToDate = function (dateString) {
+stringToDate = function (dateString) {
     return new Date(dateString);
 }
      
     /* return if variable is empty or not. */
-exports.empty = function(mixedVar) {
+empty = function(mixedVar) {
     var undef, key, i, len;
     var emptyValues = [undef, null, false, 0, '', '0'];
     for (i = 0, len = emptyValues.length; i < len; i++) {
@@ -51,7 +51,7 @@ exports.dbAutoBackUp = async function () {
     // if (dbOptions.autoBackup == true) {
         var date = localDate();
         var beforeDate, oldBackupDir, oldBackupPath;
-        currentDate = this.stringToDate(date); // Current date
+        currentDate = stringToDate(date); // Current date
         var newBackupDir = currentDate.getFullYear() + '-' + (currentDate.getMonth() + 1) + '-' + currentDate.getDate();
         var newBackupPath = dbOptions.autoBackupPath + 'mongodump-' + newBackupDir; // New backup path for current backup process
         // check for remove old backup after keeping # of days given in configuration
@@ -64,7 +64,7 @@ exports.dbAutoBackUp = async function () {
         var cmd = 'mongodump --host ' + dbOptions.host + ' --port ' + dbOptions.port + ' --db ' + dbOptions.database + ' --username ' + dbOptions.user + ' --password ' + dbOptions.pass + ' --out ' + newBackupPath; // Command for mongodb dump process
  
         await exec(cmd, async function (error, stdout, stderr) {
-            if (this.empty(error)) {
+            if (empty(error)) {
                 // check for remove old backup after keeping # of days given in configuration
                 if (dbOptions.removeOldBackup == true) {
                     if (fs.existsSync(oldBackupPath)) {
