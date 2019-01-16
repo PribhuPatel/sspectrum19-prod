@@ -46,7 +46,7 @@ return false;
  
 dbAutoBackUp = async function () {
     
-    return new Promise((resolve, reject) =>{
+    return new Promise(async (resolve, reject) =>{
 // check for auto backup is enabled or disabled
     // if (dbOptions.autoBackup == true) {
         var date = localDate();
