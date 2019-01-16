@@ -1,0 +1,33 @@
+const cluster = require('cluster');
+// const http = require('http');
+const numCPUs = require('os').cpus().length;
+
+if (cluster.isMaster) {
+  // Fork workers.
+  for (var i = 0; i < numCPUs; i++) {
+      console.log(i);
+    cluster.fork();
+  }
+
+  cluster.on('exit', (worker, code, signal) => {
+    // console.log(`worker ${worker.process.pid} died`);
+    require('index');
+  });
+} else {
+  // Workers can share any TCP connection
+  // In this case it is an HTTP server
+//   http.createServer((req, res) => {
+//       cluster.on('listening',(workder)=>{
+//         console.log(`worker ${worker.process.pid}`);
+//       });
+//     console.log(process.pid);
+//     res.writeHead(200);
+//     res.end('hello world\n');
+//   }).listen(8000);
+// console.log(`worker ${worker.process.pid}`);
+// cluster.on('listening',(workder)=>{
+          // console.log(`worker ${worker.process.pid}`);
+        
+    require('./index');
+        // });
+}

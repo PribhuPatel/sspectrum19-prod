@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta name="google-signin-client_id" content="112899402732-vo80ju75levu8ku813c57i5mvcupomcu.apps.googleusercontent.com">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login</title>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="/jquery-3.2.1.js"></script>
+    <script>
+    
+    function loginRequest(){
+        let username = document.getElementById('username').value;
+        let password = document.getElementById('password').value;
+        console.log(username);
+        $.ajax({
+            url: '/auth/login',
+            type:'post',
+            data : 'phone='+username+'&password='+password,
+            success:(result)=>{
+                    console.log(result);
+                if(!(result.username)){ alert("Username Incorrect");}
+                else if(!(result.password)){ alert("Password Incorrect");}
+                else {alert("Successfully Logged in"); 
+                window.location.replace("/user");
+            }
+            }
+        });
+        return false;
+    }
+    </script>
+
+</head>
+<body>
+    
+<form action="" onsubmit="return loginRequest();">
+        <input type="tel" name="username" id="username">
+        <input type="password" name="password" id="password">
+        <button type="submit">Submit</button>
+        </form>
+
+</body>
+</html>
