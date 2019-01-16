@@ -69,13 +69,14 @@ exports.dbAutoBackUp = async function () {
                 if (dbOptions.removeOldBackup == true) {
                     if (fs.existsSync(oldBackupPath)) {
                        await exec("sudo rm -rf " + oldBackupPath, function (err) { });
-                       await exec("sudo rm -rf " + oldBackupPath+'.zip', function (err) { });
+                       await exec("sudo rm -r " + oldBackupPath+'.zip', function (err) { });
                     }
                 }
-            }
+                
             await exec("sudo zip -r "+newBackupPath+".zip "+ newBackupPath,function(err){
                 (error ? reject(error) : resolve(newBackupPath));
             })
+            }
         });
     })
     // }
