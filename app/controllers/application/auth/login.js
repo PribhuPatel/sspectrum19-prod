@@ -1,11 +1,9 @@
 
 var {Participants, NotificationTokens} = require('../../../middlewares/schemas/schema');
-var {getSingleData} = require('../../../utils/helpers/general_one_helper');
+var {getSingleData,sendmail,localDate} = require('../../../utils/helpers/general_one_helper');
 var {createToken} = require('../../../utils/tokenhelper.js');
-var {transporter,config}=require('../../../utils/sendmail');
 var {Expo} = require('expo-server-sdk');
 
-// Create a new Expo SDK client
 let expo = new Expo();
 
 function randomString(length, chars) {
@@ -15,11 +13,8 @@ function randomString(length, chars) {
 }
 module.exports = {
     getOTP:  async(req, res) => {
-  
         let userPhone = req.body.phone;
-        let loginuser = await getSingleData(Participants,{phone:userPhone},'name phone email password');
-       //console.log(olduser.length);
-      console.log(loginuser);
+        let loginuser = await getSingleData(Participants,{phone:userPhone},'firstname lastname phone email password');
         if(!loginuser){
           return res.json({status:true,otp:false,username: false,error:false});
         } else{
@@ -27,44 +22,40 @@ module.exports = {
             let rString = randomString(4, '0123456789');
             loginuser.password = rString;
             loginuser.save();
+            let replacements = {
+                name: loginuser.firstname +" "+ loginuser.lastname,
+                otp1:rString[0],
+                otp2:rString[1],
+                otp3:rString[2],
+                otp4:rString[3]
+            }
+            try{
+            let mail = await sendmail('/otpmail.html',loginuser.email,"Spectrum'19 App Login OTP",replacements);
+            console.log("OTP Email sended to "+ loginuser.email);
+            } catch(e) {
+            console.log("Mail send failed to " + login.email);
+            }
+    // var mailOptions = {
+    //     from: config.auth.user,
+    //     to: loginuser.email,
+    //     subject: "Spectrum App OTP",
+    //    text: 'Your OTP is ' + rString,
+    // };
 
-    var mailOptions = {
-        from: config.auth.user,
-        to: loginuser.email,
-        subject: "Spectrum App OTP",
-       text: 'Your OTP is ' + rString,
-        // html: 'H'
-    };
-
-    transporter.sendMail(mailOptions, function (error, info) {
-        if (error) {
-            console.log(error);
-            return res.json({status:true,otp:false,username: true,error:true});
-        } else {
-            console.log('Email sent: ' + info.response);
-        }
-    })
-    //       if(loginuser.password===req.body.password){
-    //         let token = await createToken({data: {user:{name:loginuser.name, phone: loginuser.phone, role: loginuser.role}}});
-    //         // const tokenData = await verifyToken(token);
-    //         // console.log(tokenData);
-    //        // res.cookie('access-token',token ,{ maxAge: 900000, httpOnly: true });
-    //        // res.send("sada");
-    //     //   console
-    //   //  res.append('Set-Cookie', 'access-token=' + token + ';');
-    //         //return res.cookie('accesstoken',token,{ maxAge: 365 * 24 * 60 * 60 * 1000}).json({status:true,login:true ,username:true,password:true,error:false});
-    //         return res.json({status:true,login:true ,username:true,password:true,error:false, token: token, name: loginuser.name,role: loginuser.role});
-    //       } else{
-            return res.json({status:true,otp:true,username: true,error:false});
-    //       }
-            } catch (e){
+    // transporter.sendMail(mailOptions, function (error, info) {
+    //     if (error) {
+    //         console.log(error);
+    //         return res.json({status:true,otp:false,username: true,error:true});
+    //     } else {
+    //         console.log('Email sent: ' + info.response);
+    //     }
+    // })
+    console.log("OTP sended to "+loginuser.phone + " : " + loginuser.name+" at "+ localDate());
+       return res.json({status:true,otp:true,username: true,error:false});
+           } catch (e){
                 return res.json({status:true,otp:false,username: true,error:true});
             }
         }
-      //  res.json(loginuser);
- // console.log(req.body.email);
- // console.log(req.body.password);
-     //res.json({ status: true });
     },
 
     login: async(req,res)=>{
@@ -72,8 +63,6 @@ module.exports = {
         let loginuser = await getSingleData(Participants,{phone:userPhone},'firstname lastname phone password');
         let notificationToken = req.body.notificationToken;
 
-       //console.log(olduser.length);
-      console.log(loginuser);
         if(!loginuser){
           return res.json({status:true,login:false,username: false,password:false,error:false});
         } else{
@@ -96,13 +85,8 @@ module.exports = {
                 newNotification.save();
             }
               }
-            // const tokenData = await verifyToken(token);
-            // console.log(tokenData);
-           // res.cookie('access-token',token ,{ maxAge: 900000, httpOnly: true });
-           // res.send("sada");
-        //   console
-      //  res.append('Set-Cookie', 'access-token=' + token + ';');
-            //return res.cookie('accesstoken',token,{ maxAge: 365 * 24 * 60 * 60 * 1000}).json({status:true,login:true ,username:true,password:true,error:false});
+              
+            console.log(loginuser.phone + " : " + loginuser.name+" is logged in at "+ localDate());
             return res.json({status:true,login:true ,username:true,password:true,error:false, token: token, name: loginuser.name,userid:loginuser._id});
           } else{
             return res.json({status:true,login:false,username: true,password:false,error:false});

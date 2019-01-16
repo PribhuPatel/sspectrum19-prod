@@ -5,14 +5,6 @@ const fs = require('fs');
 var {transporter} = require('../sendmail');
 
 module.exports = {
-    /*getSingleData : async (Collection, query) =>{
-        return new Promise((resolve, reject) =>{
-            Collection.findOne(query,(err,result)=>{
-                (err ? reject(err) : resolve(result))
-            })
-        })
-    },
-    */
     getSingleData : async (Collection, query,fields=null) =>{
         return new Promise((resolve, reject) =>{
             Collection.findOne(query,fields,(err,result)=>{
@@ -71,19 +63,6 @@ module.exports = {
         )})
     },
     localDate:()=>{
-        // var newDate = new Date(date.getTime()+date.getTimezoneOffset()*60*1000);
-    
-        // var offset = date.getTimezoneOffset() / 60;
-        // var hours = date.getHours();
-    
-        // newDate.setHours(hours - offset + 1);
-    
-        // return newDate;   
-        // let da  = new Date().toString();
-        //  let daa = da.split(' ');
-        // let date = new Date(daa[0]+' '+daa[1]+' '+daa[2]+' '+daa[3]+' '+daa[4]+' UTC');
-        
-
     let da = moment().tz("Asia/Kolkata").format();
     da  = da.split('+')[0]
     let date = new Date(da+'.000Z');
@@ -91,7 +70,6 @@ module.exports = {
     },
     sendmail:async (filepath,email,subject,replacements)=>{
         return new Promise(async (resolve, reject) =>{
-    // var readHTMLFile = function(path, callback) {
         await readHTMLFile(__dirname + filepath,async function(err, html) {
             var template = handlebars.compile(html);
             var htmlToSend = template(replacements);
@@ -104,9 +82,7 @@ module.exports = {
             await transporter.sendMail(mailOptions, function (error, response) {
                 if (error) {
                     console.log(error);
-                    // callback(error);
                 } else{
-                    // console.log(response);
                     transporter.close();
             (error? reject(error) : resolve(response));
                 }

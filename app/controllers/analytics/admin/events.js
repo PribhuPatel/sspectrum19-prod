@@ -1,6 +1,6 @@
-var {Users,Departments,Participants, Entries, Events, Colleges} = require('../../../middlewares/schemas/schema');
-var {getSingleDataWithPopulate, getSingleData,getManyData, getManyDataWithPopulate,getCount,getDateWiseCount} = require('../../../utils/helpers/general_one_helper');
-var {verifyToken}  = require('../../../middlewares/verifytoken');
+var {Events} = require('../../../middlewares/schemas/schema');
+var {getManyDataWithPopulate} = require('../../../utils/helpers/general_one_helper');
+
 module.exports = {
     events: async (req, res,next) => {
       

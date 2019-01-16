@@ -5,7 +5,6 @@ var {getSingleData} = require('../../../utils/helpers/general_one_helper');
 
 module.exports = {
     addEvent: async (req, res) => {
-        console.log(req.body);
         let name = req.body.event_name;
         let department = await getSingleData(Departments,{_id: req.body.department_id});
         let max_participants= req.body.max_participants;
@@ -20,11 +19,7 @@ module.exports = {
         let img = req.body.image;
         let description = req.body.event_description;
         let event = await getSingleData(Events,{name: name});
-       //console.log(olduser.length);
-       //console.log(olduser);
-       console.log(event);
-       console.log(department);
-       console.log(req.body.department_id);
+    
        
        if(department === null){
         return res.json({status: true, eventAdded:false,alreadyAdded:false,error:true});
@@ -52,22 +47,18 @@ module.exports = {
        await newEvent.save(async (err)=>{
             if(err) {
                console.log(err);
-            //   return res.json({status: true, eventAdded:false,alreadyAdded:false,error:false});
             }
             else{
                 department.events.push(newEvent._id);
                 await department.save();
-               // console.log("Saved");
-               return res.json({status: true, eventAdded:true,alreadyAdded:false,error:false});
+                console.log(req.user.phone + " Added Event: "+newEvent.name);
+                return res.json({status: true, eventAdded:true,alreadyAdded:false,error:false});
             }
         });
     }else{
         return res.json({status: true, eventAdded:false,alreadyAdded:true,error:false});
     }
 }
-//   console.log(req.body.email);
-//   console.log(req.body.password);
-     // res.json({ status: true });
     }
   };
   

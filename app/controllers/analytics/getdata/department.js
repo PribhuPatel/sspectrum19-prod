@@ -1,6 +1,6 @@
 
 
-var {Departments, Events} = require('../../../middlewares/schemas/schema');
+var {Departments} = require('../../../middlewares/schemas/schema');
 var {getSingleDataWithPopulate, getSingleData,getManyData, getManyDataWithPopulate} = require('../../../utils/helpers/general_one_helper');
 
 module.exports = {
@@ -29,16 +29,8 @@ module.exports = {
     }
     },
     getDepartments: async(req,res)=>{
-        
-        // let name = req.body.name;
-        // let id = req.body.eventid;
-
         let department = await getManyData(Departments,{},'linked_department');
-    // if(department===null){
-    //     res.send("No Department Found");
-    // }else{
-       return  res.json({status: true, departments: department});
-    // }
+     return  res.json({status: true, departments: department});
     },
     getDepartmentsWithEvents: async(req,res)=>{
         let name = req.body.name;

@@ -1,0 +1,653 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="date=no">
+    <meta name="format-detection" content="address=no">
+    <meta name="format-detection" content="email=no">
+    <title></title>
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
+    <style type="text/css">
+        body {
+            Margin: 0;
+            padding: 0;
+            min-width: 100%;
+        }
+        
+        a,
+        #outlook a {
+            display: inline-block;
+        }
+        
+        a,
+        a span {
+            text-decoration: none;
+        }
+        
+        img {
+            line-height: 1;
+            mso-line-height-rule: exactly;
+            outline: none;
+            border: 0;
+            text-decoration: none;
+            -ms-interpolation-mode: bicubic;
+        }
+        
+        table {
+            border-spacing: 0;
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }
+        
+        td {
+            padding: 0;
+        }
+        .email_summary {
+            display: none !important;
+            font-size: 0 !important;
+            max-height: 0 !important;
+            line-height: 0 !important;
+            mso-line-height-rule: exactly;
+            padding: 0 !important;
+            mso-hide: all;
+            overflow: hidden !important;
+            float: none !important;
+            width: 0 !important;
+            height: 0 !important;
+        }
+        .font_default,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p,
+        a {
+            font-family: Helvetica, Arial, sans-serif;
+        }
+        
+        small {
+            font-size: 100%;
+        }
+        
+        p {
+            font-size: 16px;
+            line-height: 23px;
+            Margin-top: 16px;
+            Margin-bottom: 24px;
+        }
+        
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            Margin-left: 0;
+            Margin-right: 0;
+            padding: 0;
+        }
+        
+        h1,
+        h2,
+        h4,
+        strong {
+            font-weight: bold;
+        }
+        
+        h1 {
+            font-size: 32px;
+            line-height: 40px;
+            Margin-top: 0;
+            Margin-bottom: 8px;
+        }
+        
+        h2 {
+            font-size: 22px;
+            line-height: 30px;
+            Margin-top: 8px;
+            Margin-bottom: 8px;
+        }
+        
+        h3 {
+            font-weight: normal;
+            font-size: 19px;
+            line-height: 28px;
+            Margin-top: 10px;
+            Margin-bottom: 10px;
+        }
+        
+        h4 {
+            font-weight: bold;
+            font-size: 19px;
+            line-height: 28px;
+            Margin-top: 16px;
+            Margin-bottom: 8px;
+        }
+        
+        h5 {
+            font-size: 16px;
+            line-height: 23px;
+            font-weight: 400;
+            Margin-top: 8px;
+            Margin-bottom: 8px;
+        }
+        
+        h6 {
+            font-weight: bold;
+            font-size: 42px;
+            line-height: 48px;
+            Margin-top: 0;
+            Margin-bottom: 16px;
+        }
+        
+        h6 small {
+            font-size: 19px;
+            font-weight: normal;
+            line-height: 1;
+        }
+        .email_body {
+            Margin: 0;
+            padding: 0;
+        }
+        
+        .email_body_cell {
+            padding: 16px 8px;
+            text-align: center;
+            vertical-align: top;
+            font-size: 0;
+        }
+        
+        .container_outer {
+            vertical-align: top;
+            max-width: 584px;
+            Margin: 0 auto;
+        }
+        
+        .container {
+            Margin: 0 auto;
+            vertical-align: top;
+            -webkit-border-radius: 4px;
+            border-radius: 4px;
+            overflow: hidden;
+            background-color: #ffffff;
+        }
+        
+        .header_cell,
+        .jumbotron_native_cell,
+        .jumbotron_small_cell,
+        .jumbotron_native_small_cell,
+        .jumbotron_button_cell,
+        .jumbotron_button_native_cell,
+        .content_cell,
+        .content_image,
+        .column {
+            vertical-align: top;
+        }
+        
+        .one_third,
+        .two_thirds,
+        .one_half {
+            display: inline-block;
+            width: 100%;
+            vertical-align: top;
+            text-align: left;
+        }
+        
+        .one_third {
+            max-width: 184px;
+        }
+        
+        .two_thirds {
+            max-width: 368px;
+        }
+        
+        .one_half {
+            max-width: 276px;
+        }
+        
+        .column_cell {
+            vertical-align: top;
+            text-align: center;
+            padding: 32px 16px;
+        }
+        
+        .column_cell-table {
+            vertical-align: top;
+            text-align: center;
+            padding: 0;
+        }
+        .column_cell,
+        .jumbotron_small_cell .column_cell,
+        .jumbotron_native_small_cell .column_cell,
+        .content_article .column_cell,
+        .content_article_alt .column_cell {
+            padding: 8px 16px;
+        }
+        
+        .header_cell,
+        .content_cell,
+        .content_image_cell {
+            font-size: 0;
+            text-align: center;
+            padding: 0 16px;
+        }
+        
+        .content_image_cell {
+            padding: 0;
+        }
+        
+        .jumbotron_small_cell,
+        .jumbotron_native_small_cell {
+            font-size: 0;
+            text-align: center;
+            padding: 24px 16px;
+        }
+        
+        .content_article .content_cell,
+        .content_article_alt .content_cell {
+            padding: 24px 16px;
+        }
+        .header_cell {
+            -webkit-border-radius: 4px 4px 0 0;
+            border-radius: 4px 4px 0 0;
+            text-align: left;
+            vertical-align: top;
+        }
+        
+        .logo_cell {
+            text-align: left;
+            vertical-align: top;
+        }
+        
+        .tagline_cell {
+            text-align: left;
+            vertical-align: top;
+            font-size: 16px;
+        }
+        .footer_cell {
+            padding: 16px 32px 8px;
+        }
+        .jumbotron_cell {
+            vertical-align: middle;
+            background-position: 0 0;
+            background-size: 100% auto;
+            background-repeat: no-repeat;
+            padding: 32px;
+            height: 224px
+        }
+        .jumbotron_native_cell {
+            text-align: center;
+            vertical-align: middle;
+            padding: 32px 32px 20px 32px;
+        }
+        .jumbotron_button_cell,
+        .jumbotron_button_native_cell {
+            padding: 16px 32px;
+        }
+        .content_cell {
+            padding: 0 16px;
+        }
+        
+        .content_cell img {
+            -webkit-border-radius: 4px;
+            border-radius: 4px;
+        }
+        .primary_btn,
+        .secondary_btn {
+            clear: both;
+            margin: 0 auto;
+        }
+        
+        .primary_btn td,
+        .secondary_btn td {
+            text-align: center;
+            padding: 9px 32px;
+            font-size: 18px;
+            line-height: 26px;
+            mso-line-height-rule: exactly;
+            -webkit-border-radius: 4px;
+            border-radius: 4px;
+        }
+        
+        .primary_btn a,
+        .primary_btn span,
+        .secondary_btn a,
+        .secondary_btn span {
+            font-weight: bold;
+            text-align: center;
+            display: block;
+        }
+        .hruler {
+            width: 80px;
+            margin-left: auto;
+            margin-right: auto;
+            clear: both;
+        }
+        
+        .hspace {
+            width: 100%;
+            font-size: 0;
+            line-height: 16px;
+            height: 16px;
+            overflow: hidden;
+        }
+        .one_column {
+            text-align: left;
+            padding: 32px;
+        }
+        
+        .order_subtotal {
+            text-align: right;
+            padding: 16px 32px 24px;
+        }
+        
+        .two_thirds .column_cell.font_default {
+            text-align: left;
+        }
+        .content_image_cell {
+            line-height: 1;
+        }
+        
+        .content_image_cell img {
+            display: block;
+            line-height: 1;
+            width: 100%;
+            max-width: 584px;
+            height: auto;
+        }
+        
+        .content_image_cell .one_half {
+            max-width: 292px;
+        }
+        
+        .content_image_cell .one_half img {
+            max-width: 100%;
+        }
+        .container {
+            background-color: #ffffff;
+        }
+        
+        .secondary_btn td {
+            background-color: #ffffff;
+        }
+        
+        .header_cell {
+            border-top: 8px solid #f8931e;
+        }
+        
+        .header_cell,
+        .content_cell {
+            border-bottom: 1px solid #ebebeb;
+        }
+        
+        body,
+        .email_body_cell {
+            background-color: #fff6e8;
+        }
+        
+        .jumbotron_cell,
+        .jumbotron_small_cell,
+        .jumbotron_button {
+            background-color: #353536;
+        }
+        
+        .jumbotron_native_cell,
+        .jumbotron_native_small_cell,
+        .jumbotron_button_native,
+        .primary_btn td {
+            background-color: #f8931e;
+        }
+        
+        .jumbotron_cell {
+            background-image: url(images/jumbotron.jpg);
+        }
+        
+        a,
+        .secondary_btn a,
+        .secondary_btn span,
+        h6,
+        h6 small,
+        .amount {
+            color: #f8931e;
+        }
+        
+        h1,
+        h3,
+        h5,
+        .primary_btn a,
+        .primary_btn span {
+            color: #ffffff;
+        }
+        
+        h2,
+        p,
+        h4 {
+            color: #4c4c4c;
+        }
+        
+        small,
+        .tagline_cell,
+        .footer_cell p {
+            color: #999999;
+        }
+
+        footer-area {
+            color: #959ba0 !important;
+        }
+        
+        @media screen {
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6,
+            p,
+            a,
+            .tagline_cell {
+                font-family: "Open Sans", Helvetica, Arial, sans-serif !important;
+            }
+            .primary_btn td,
+            .secondary_btn td {
+                padding: 0 !important;
+            }
+            .primary_btn a,
+            .secondary_btn a {
+                font-size: 18px !important;
+                line-height: 26px !important;
+                padding: 9px 32px !important;
+            }
+            .jumbotron_cell {
+                background-size: cover !important;
+            }
+        }
+        
+        @media screen and (min-width: 621px) and (max-width: 769px) {
+            .one_third,
+            .two_thirds,
+            .one_half {
+                float: left !important;
+            }
+        }
+        
+        @media screen and (max-width: 620px) {
+            .email_body {
+                min-width: 0 !important;
+            }
+            .one_third,
+            .two_thirds,
+            .one_half,
+            .content_image_cell img,
+            .content_image_cell .one_half img {
+                max-width: 100% !important;
+            }
+        }
+    </style>
+</head>
+
+<body margintop="0" marginleft="0" marginright="0" marginbottom="0" style="margin: 0;padding: 0;min-width: 100%;background-color: #fff6e8;">
+    <div class="email_summary" style="mso-line-height-rule: exactly;mso-hide: all;display: none !important;font-size: 0 !important;max-height: 0 !important;line-height: 0 !important;padding: 0 !important;overflow: hidden !important;float: none !important;width: 0 !important;height: 0 !important;">Greeting from Spectrum'19 - A. D. Patel Institute of Technology. You have successfully for Spectrum'19.</div>
+    <table class="email_body" width="100%" border="0" cellspacing="0" cellpadding="0" style="border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;margin: 0;padding: 0;">
+        <tbody>
+            <tr>
+                <td class="email_body_cell" style="padding: 40px 8px;text-align: center;vertical-align: top;font-size: 0;background-color: #fff6e8;">
+                    <center>
+                        <div class="container_outer" style="vertical-align: top;max-width: 584px;margin: 0 auto;">
+                            <table align="center" class="container" width="100%" border="0" cellspacing="0" cellpadding="0" style="border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;margin: 0 auto;vertical-align: top;-webkit-border-radius: 4px;border-radius: 4px;overflow: hidden;background-color: #ffffff;">
+                                <tbody>
+                                    <tr>
+                                        <td class="container_cell" align="center" valign="top" style="padding: 0;">
+
+                                            <table class="header" width="100%" border="0" cellspacing="0" cellpadding="0" style="border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="header_cell" style="vertical-align: top;font-size: 0;text-align: left;-webkit-border-radius: 4px 4px 0 0;border-radius: 4px 4px 0 0;border-top: 8px solid #f8931e;border-bottom: 1px solid #ebebeb;">
+                                                            
+                                                            <div class="one_thirds" style="display: inline-block;width: 100%;vertical-align: top;max-width: 30%">
+                                                                <table width="100%" class="column" border="0" cellspacing="0" cellpadding="0" style="border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top; float: right;">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="column_cell logo_cell font_default" style="font-family: Helvetica, Arial, sans-serif;vertical-align: top;text-align: center;">
+                                                                                <a href="http://spectrum.adit.ac.in/" style="display: inline-block;text-decoration: none;font-family: Helvetica, Arial, sans-serif;color: #f8931e;"><img src="http://images.spectrum19.xyz/mail/spectrum-logo.png" width="auto" height="70" alt="Google Play Badge" style="align: left;line-height: 1;mso-line-height-rule: exactly;outline: none;border: 0;text-decoration: none;-ms-interpolation-mode: bicubic;"></a>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <div class="two_third" style="display: inline-block;width: 100%;vertical-align: top;text-align: left;max-width: 70%;">
+                                                                <table width="100%" align="left" class="column" border="0" cellspacing="0" cellpadding="0" style="border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                                <td class="column_cell font_default tagline_cell" style="padding: 8px 16px;font-family: Open Sans, sans-serif !important;vertical-align: center;text-align: center;font-size: 40px;font-weight: bold;color: #333333;padding-top: 15px">Spectrum'19</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <table class="jumbotron_native" width="100%" border="0" cellspacing="0" cellpadding="0" style="border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="jumbotron_native_cell" style="padding: 4px 0;vertical-align: middle;text-align: center;background-color: #f8931e;">
+                                                            <table class="hruler" width="80" border="0" align="center" cellpadding="0" cellspacing="0" style="border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;width: 80px;margin-left: auto;margin-right: auto;clear: both;">
+                                                                <tbody>
+                                                                </tbody>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <table class="jumbotron_native" width="100%" border="0" cellspacing="0" cellpadding="0" style="border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+                                                    <tbody>
+                                                      <tr>
+                                                        <td class="jumbotron_native_cell" style="padding: 32px 32px 10px 32px;vertical-align: middle;text-align: center;background-color: #ffffff;">
+                                                        
+                                                          <h1 style="font-family: Helvetica, Arial, sans-serif;margin-left: 0;margin-right: 0;padding: 0;font-weight: bold;font-size: 24px;line-height: 40px;margin-top: 0;margin-bottom: 8px;color: #000;"><strong style="font-weight: bold;">Hey {{name}},</strong></h1>
+                                                          <h5 style="font-family: Helvetica, Arial, sans-serif;margin-left: 0;margin-right: 0;padding: 0;font-size: 16px;line-height: 23px;font-weight: 400;margin-top: 8px;margin-bottom: 8px;color: #959ba0;">Your OTP(One Time Password) for login is as below:</h5>
+                                
+                                                        </td>
+                                                      </tr>
+                                                    </tbody>
+                                                  </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="content_section" role="presentation" align="center" width="100%" cellspacing="0" cellpadding="0" border="0" style="max-width: 800px;margin: 0 auto;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+                                <tbody>
+                                    <tr>
+                                        <td class="content_cell bg_white px py" data-bgcolor="White" style="font-size: 0;text-align: center;background-color: #ffffff;padding-top: 16px;padding-bottom: 40px;padding-left: 16px;padding-right: 16px;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+                                            <div class="column_row" style="font-size: 0;text-align: center;max-width: 624px;margin: 0 auto;">
+                                                <div class="col_3" style="vertical-align: top;display: inline-block;width: 100%;max-width: 200px;">
+                                                    <table class="column" role="presentation" align="center" width="100%" cellspacing="0" cellpadding="0" border="0" style="vertical-align: top;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="column_cell bg_secondary brounded px py_xs text_dark text_left mobile_center" data-bgcolor="Secondary" style="vertical-align: top;background-color: #e5e9ee;color: #333333;border-radius: 4px;text-align: left;padding-top: 8px;padding-bottom: 8px;padding-left: 16px;padding-right: 16px;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+                                                                    <table class="column" role="presentation" align="center" width="100%" cellspacing="0" cellpadding="0" border="0" style="vertical-align: top;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td class="column_cell-table pl py bb_light text_dark text_left" data-border-bottom-color="Border Light" data-color="Dark" style="vertical-align: top;color: #333333;text-align: center;padding-top: 16px;padding-bottom: 16px;padding-left: 0px;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+                                                                                    <h5 class="mb_xs" style="color: inherit;font-family: Arial, Helvetica, sans-serif;margin-top: 0px;word-break: break-word;font-size: 30px;line-height: 21px;font-weight: bold;">{{otp1}}</h5>
+                                                                                </td>
+                                                                                
+                                                                                <td class="column_cell-table pl py bb_light text_dark text_left" data-border-bottom-color="Border Light" data-color="Dark" style="vertical-align: top;color: #333333;text-align: center;padding-top: 16px;padding-bottom: 16px;padding-left: 0px;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+                                                                                    <h5 class="mb_xs" style="color: inherit;font-family: Arial, Helvetica, sans-serif;margin-top: 0px;word-break: break-word;font-size: 30px;line-height: 21px;font-weight: bold;">{{otp2}}</h5>
+                                                                                </td>
+                                                                                
+                                                                                <td class="column_cell-table pl py bb_light text_dark text_left" data-border-bottom-color="Border Light" data-color="Dark" style="vertical-align: top;color: #333333;text-align: center;padding-top: 16px;padding-bottom: 16px;padding-left: 0px;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+                                                                                    <h5 class="mb_xs" style="color: inherit;font-family: Arial, Helvetica, sans-serif;margin-top: 0px;word-break: break-word;font-size: 30px;line-height: 21px;font-weight: bold;">{{otp3}}</h5>
+                                                                                </td>
+                                                                                
+                                                                                <td class="column_cell-table pl py bb_light text_dark text_left" data-border-bottom-color="Border Light" data-color="Dark" style="vertical-align: top;color: #333333;text-align: center;padding-top: 16px;padding-bottom: 16px;padding-left: 0px;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+                                                                                    <h5 class="mb_xs" style="color: inherit;font-family: Arial, Helvetica, sans-serif;margin-top: 0px;word-break: break-word;font-size: 30px;line-height: 21px;font-weight: bold;">{{otp4}}</h5>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                            <table class="jumbotron_native" width="100%" border="0" cellspacing="0" cellpadding="0" style="border-spacing: 0;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+                                <tbody>
+                                  <tr>
+                                    <td class="jumbotron_native_cell" style="padding: 10px 32px 10px 32px;vertical-align: middle;text-align: center;background-color: #ffffff;">
+                                      <h5 style="font-family: Helvetica, Arial, sans-serif;margin-left: 0;margin-right: 0;padding: 0;font-size: 16px;line-height: 23px;font-weight: 400;margin-top: 8px;margin-bottom: 8px;color: #000000;">Don't share OTP with any one even with Spectrum'19 - Team member.</h5>
+            
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            <table class="content_section footer-area" role="presentation" align="center" width="100%" cellspacing="0" cellpadding="0" border="0" style="max-width: 800px;margin: 0 auto;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+                                <tbody>
+                                    <tr>
+                                        <td class="content_cell bg_dark brounded_bottom px py" data-bgcolor="Dark" style="font-size: 0;text-align: center;background-color: #212121;border-radius: 0 0 4px 4px;padding-top: 16px;padding-bottom: 16px;padding-left: 16px;padding-right: 16px;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+                                            <div class="column_row" style="font-size: 0;text-align: center;max-width: 624px;margin: 0 auto;">
+                                                <table class="column" role="presentation" align="center" width="100%" cellspacing="0" cellpadding="0" border="0" style="vertical-align: top;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="column_cell px py_md text_secondary text_center" data-color="Secondary" style="vertical-align: top;color: #959ba0;text-align: center;padding-top: 32px;padding-bottom: 32px;padding-left: 16px;padding-right: 16px;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+                                                                <p class="img_inline mb_md" style="color: inherit;font-family: Arial, Helvetica, sans-serif;margin-top: 0px;margin-bottom: 32px;word-break: break-word;font-size: 16px;line-height: 100%;clear: both;">
+                                                                    <a href="https://www.facebook.com/" data-color="Secondary" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;text-decoration: none;color: #959ba0;font-family: Arial, Helvetica, sans-serif;margin-top: 0px;margin-bottom: 0px;word-break: break-word;"><img src="http://images.spectrum19.xyz/mail/facebook.png" width="24" height="24" alt="Facebook" style="max-width: 24px;border: 0px;height: auto;line-height: 100%;outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;"></a> &nbsp;&nbsp;
+                                                                    <a href="https://www.instagram.com/" data-color="Secondary" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;text-decoration: none;color: #959ba0;font-family: Arial, Helvetica, sans-serif;margin-top: 0px;margin-bottom: 0px;word-break: break-word;"><img src="http://images.spectrum19.xyz/mail/instagram.png" width="24" height="24" alt="Instagram" style="max-width: 24px;border: 0px;height: auto;line-height: 100%;outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;"></a>
+                                                                </p>
+                                                                <p class="mb" style="color: inherit;font-family: Arial, Helvetica, sans-serif;margin-top: 0px;margin-bottom: 16px;word-break: break-word;font-size: 16px;line-height: 26px;"> ©2019 Spectrum'19 - A. D. Patel Institute of Technology.
+                                                                    <br><a class="text_adr" href="http://www.adit.ac.in/" data-color="Secondary" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;text-decoration: none;color: #959ba0;font-family: Arial, Helvetica, sans-serif;margin-top: 0px;margin-bottom: 0px;word-break: break-word;"><span data-color="Secondary" style="color: #959ba0;text-decoration: none;"></span>A. D. Patel Institute of Technology - Karamsad</a> </p>
+                                                                <p class="text_link text_xs" style="color: inherit;font-family: Arial, Helvetica, sans-serif;margin-top: 0px;margin-bottom: 0px;word-break: break-word;font-size: 14px;line-height: 22px;"><a href="htttp://www.spectrum.adit.ac.in" data-color="Secondary" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;text-decoration: underline;color: #959ba0;font-family: Arial, Helvetica, sans-serif;margin-top: 0px;margin-bottom: 0px;word-break: break-word;"><span data-color="Secondary" style="color: #959ba0;text-decoration: none;">Designed & Made with love by Spectrum'19 - Web Team.</span></a></p>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!--[if (gte mso 9)|(IE)]>
+              </td>
+            </tr>
+          </table>
+          <![endif]-->
+                        </div>
+                    </center>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>

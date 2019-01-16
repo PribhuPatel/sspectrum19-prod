@@ -19,8 +19,6 @@ module.exports = {
         let img = null || req.body.img;
         let description = null || req.body.description;
         let event = await getSingleData(Events,{name: name});
-       //console.log(olduser.length);
-       //console.log(olduser);
        if(department === null){
            res.send("Cannot Add Event Without Department");
        } else{
@@ -45,23 +43,17 @@ module.exports = {
 
        await newEvent.save(async (err)=>{
             if(err) {
-              //  console.log(err);
-                res.send(err);
+ res.send(err);
             }
             else{
                 department.events.push(newEvent._id);
                 await department.save();
-               // console.log("Saved");
             res.send(newEvent + "saved");
             }
         });
     }else{
         res.send("Event Already exist");
     }
-}
-//   console.log(req.body.email);
-//   console.log(req.body.password);
-     // res.json({ status: true });
-    },
+}    },
   };
   

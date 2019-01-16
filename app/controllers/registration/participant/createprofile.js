@@ -7,41 +7,13 @@ var {getSingleData,localDate,sendmail} = require('../../../utils/helpers/general
 
 module.exports = {
     createProfile : async (req, res) => {
-        console.log(req.body);
         let partiPhone = req.body.phone;
         let participant = await getSingleData(Participants,{phone:partiPhone});
         let user = await getSingleData(Users, {phone: req.user.phone});
         let college = await getSingleData(Colleges,{$and:[{name: req.body.college.split(",")[0]},{city: req.body.college.split(",")[1]}]});
-        console.log(participant);
-
-        
-// let da = moment().tz("Asia/Kolkata").format();
-// console.log(da);
-// da.
-// var d = new Date(2018, 11, 24, 10, 33, 30, 0);
-// var date = da.split('+')[0];
-// date = date + "+11";
-        
-       //console.log(olduser.length);
-       //console.log(olduser);
-    //    let date = new Date();
-    //    console.log(date);
      let  date = localDate();
-    //    console.log(date);
-    //    let date = new Date();
-       // console.log(date+5.5);
-       // date = date+5.5;
-       
-       // let da1 =date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +(date.getDate()+1); 
-       
-       // console.log();
-    //    date = convertUTCDateToLocalDate(date);
-    //    let da = date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +date.getDate() ;
-       console.log(date);
-    //    da = new Date(da + ' 00:00:00');
-       
+
     if(participant===null){
-        console.log(participant);
         var newParticipant = new Participants({
             firstname: req.body.firstname,
             lastname: req.body.lastname,
@@ -52,40 +24,37 @@ module.exports = {
             college: college._id,
             created_date:date
         });
-        //let a= 10;
        await newParticipant.save(async (err)=>{
             if(err) {
                console.log(err);
-                res.send(err);
+               
+        return res.json({status: false,addParticipant: false, alreadyAdded: false});
             }
             else{
+                await user.registered.participants.push(newParticipant._id);
+                await college.registered.participants.push(newParticipant._id);
+                await college.save();
+                await user.save();
+                console.log(newParticipant.phone +":"+newParticipant.name + " has been created by "+user.phone+":"+user.name + " at "+date);
+                
                 let replacements = {
                     name: newParticipant.firstname + " " + newParticipant.lastname,
                     email: newParticipant.email,
                     mobile: newParticipant.phone,
                     college: college.name
                 }
-                // user["today_payment"] = user["today_payment"] + 30;
-                // console.log(user["today_payment"]);
-                await user.registered.participants.push(newParticipant._id);
-                await college.registered.participants.push(newParticipant._id);
-                await college.save();
-                await user.save();
-                
+                try{
                 let mail = await sendmail('/participant.html',newParticipant.email,"You have Registered for Spectrum\'19",replacements);
-               console.log(mail);
-                // console.log("Saved");
-           return res.json({status: true, addParticipant: true, alreadyAdded:false});
-           
-        //    return res.json({status: true, addParticipant: true,participant_payment: newParticipant.payment});
+                console.log("Event Entry Mail sended to "+ newParticipant.email);
+                } catch(e) {
+                    
+                console.log("Mail send failed to " + newParticipant.email);
+                }
+                return res.json({status: true, addParticipant: true, alreadyAdded:false});
             }
         });
     }else{
         return res.json({status: true,addParticipant: false, alreadyAdded: true});
-    }
-//   console.log(req.body.email);
-//   console.log(req.body.password);
-     // res.json({ status: true });
-    },
+    }},
   };
   

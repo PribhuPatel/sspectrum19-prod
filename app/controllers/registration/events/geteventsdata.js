@@ -18,10 +18,7 @@ module.exports = {
     }
     },
     getEventsWithDepartment: async(req,res)=>{
-       // let name = req.body.name;
-       // let id = req.body.eventid;
-
-        let events = await getManyDataWithPopulate(Events,{},'department');
+     let events = await getManyDataWithPopulate(Events,{},'department');
 
     if(events.length===0){
         res.send("No Event Found");

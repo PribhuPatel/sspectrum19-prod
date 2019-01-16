@@ -16,8 +16,6 @@ router.post('/getcollegedata', require('./getcollegewisedata').getCollegeWiseDat
 
 router.get('/portalstatus', require('./portalstatus').getPortalStatus);
 
-// router.get('/portalstatus/on', require('./portalstatus').portalStatusOn);
-
 router.get('/changeportalstatus', require('./portalstatus').portalStatusChange);
 
 router.get('/cron', require('./cronjob').runCron);

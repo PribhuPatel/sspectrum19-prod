@@ -6,8 +6,7 @@ var {getSingleDataWithPopulate, getSingleData,getManyData, getManyDataWithPopula
 module.exports = {
     getUser: async (req, res) => {
         
-       // let name = req.body.name;
-        let userphone = req.body.phone;
+      let userphone = req.body.phone;
         let id = req.body.id;
 
         let user = await getSingleData(Users,{$or:[{phone: userphone},{_id: id}]},req.body.fields);
@@ -17,40 +16,13 @@ module.exports = {
         res.send(user);
     }
 },
-    // getDepartmentWithEvents: async (req, res) => {
-        
-    //     let name = req.body.name;
-    //     let id = req.body.eventid;
-
-    //     let department = await getSingleDataWithPopulate(Departments,{$or:[{name: name},{_id: id}]},'events');
-    //     if(department===null){
-    //     res.send("No Department Found");
-    // }else{
-    //     res.send(department);
-    // }
-    // },
     getUsers: async(req,res)=>{
-        
-        //let name = req.body.name;
-        //let id = req.body.eventid;
-
-        let users = await getManyData(Users,{},req.body.fields);
+    let users = await getManyData(Users,{},req.body.fields);
     if(users.length === 0){
         res.send("No Users Found");
     }else{
         res.send(users);
     }
-    },
-    // getDepartmentsWithEvents: async(req,res)=>{
-    //     let name = req.body.name;
-    //     let id = req.body.eventid;
-
-    //     let department = await getManyDataWithPopulate(Departments,{},'events');
-    // if(department===null){
-    //     res.send("No Department Found");
-    // }else{
-    //     res.send(department);
-    // }
-    // }
+    }
   };
   

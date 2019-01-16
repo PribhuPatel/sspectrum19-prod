@@ -12,9 +12,7 @@ module.exports = {
         var department_id;
         var coordinator_added = false;
         department = await getSingleData(Departments,{_id:req.body.department_id});; 
-        // console.log(department);
         
-        // if(department != null){
             department_id = req.body.department_id;
             if(req.body.role === 'campaign'){
             olduser = await getSingleData(Users,{phone:userPhone});
@@ -35,18 +33,11 @@ module.exports = {
             olduser = await getSingleData(Admins,{phone:userPhone});
             }
         }
-        //console.log(olduser.length);
-   
-       console.log(olduser);
        
-        // if(req.body.role !== 'admin'){
-
-        // }
-
     if(olduser===null){
         if(req.body.role === 'campaign'){
             var user = new Users({
-                name: req.body.firstname + req.body.lastname,
+                name: req.body.firstname +" "+ req.body.lastname,
                 phone: req.body.phone,
                 password  : req.body.password,
                 role: req.body.role,
@@ -68,7 +59,6 @@ module.exports = {
     }
        await user.save(async (err)=>{
             if(err) {
-              //  console.log(err);
               return res.json({status: true, userAdded: false, error: true, alreadyAdded: fasle,coordinator_added:coordinator_added});
             }
             else{
@@ -80,19 +70,13 @@ module.exports = {
                     department.faculty_coordinator=user._id;
                     await department.save();
                 }
-               // console.log("Saved");
+                console.log(user.name + " "+ user.phone + " is created with role " +user.role + " by "+ req.user.phone );
             return res.json({status: true, userAdded: true, error: false, alreadyAdded: false,coordinator_added:coordinator_added});
             }
         });
     }else{
         return res.json({status: true, userAdded: false, error: false, alreadyAdded: true,coordinator_added:coordinator_added});
     }
-// } else{
-//     return res.json({status: true, userAdded: false, error: true, alreadyAdded: false,coordinator_added:coordinator_added});
-// }
-//   console.log(req.body.email);
-//   console.log(req.body.password);
-     // res.json({ status: true });
-    },
+    }
   };
   

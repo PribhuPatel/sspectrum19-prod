@@ -1,19 +1,20 @@
 const router = require('express').Router();
 
+const {verifyToken} = require('../../middlewares/verifytoken');
 
-router.use('/participant',require('./participant'));
+router.use('/participant',verifyToken,require('./participant'));
 
-router.use('/event', require('./events'));
+router.use('/event',verifyToken, require('./events'));
 
-router.use('/evententry', require('./evententry'));
+router.use('/evententry',verifyToken,require('./evententry'));
 
-router.use('/packageentry', require('./packageentry'));
+router.use('/packageentry',verifyToken, require('./packageentry'));
 
-router.use('/department', require('./department'));
+router.use('/department',verifyToken, require('./department'));
 
-router.use('/college', require('./college'));
+router.use('/college',verifyToken, require('./college'));
 
-router.use('/user', require('./user'));
+router.use('/user',verifyToken, require('./user'));
 
 
 module.exports = router;

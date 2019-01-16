@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 
-router.post('/createevent',require('./createevent').createEvent);
+// router.post('/createevent',require('./createevent').createEvent);
 
 router.post('/getevent',require('./geteventsdata').getEvent);
 

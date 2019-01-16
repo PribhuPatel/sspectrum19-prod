@@ -6,13 +6,7 @@ var {getSingleData} = require('../../../utils/helpers/general_one_helper');
 module.exports = {
     addSchedule: async (req, res) => {
         
-        // let name = req.body.name;
-        // let city = req.body.city;
-        // let cvm = req.body.cvm;
-        console.log(req.body);
         let schedule = await getSingleData(Schedules,{event:req.body.event_id});
-       //console.log(olduser.length);
-       //console.log(olduser);
     if(schedule===null){
         var newSchedule = new Schedules({
             event: req.body.event_id,
@@ -27,7 +21,7 @@ module.exports = {
               return res.json({status: true, scheduleAdded: false, alreadyAdded: false,error:true});
             }
             else{
-               // console.log("Saved");
+                console.log(req.user.phone + " Added Schedule: "+ newSchedule.event);
             return res.json({status: true, scheduleAdded: true, alreadyAdded: false,error:false});
             }
         });
