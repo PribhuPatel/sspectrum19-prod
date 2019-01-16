@@ -13,7 +13,7 @@ database: mongoDB.database,
 autoBackup: true, 
 removeOldBackup: true,
 keepLastDaysBackup: 2,
-autoBackupPath: 'dailybackups/' // i.e. /var/database-backup/
+autoBackupPath: '~spectrum/dailybackups/' // i.e. /var/database-backup/
 };
  
     /* return date object */
@@ -73,7 +73,7 @@ exports.dbAutoBackUp = async function () {
                     }
                 }
                 
-            await exec("sudo zip -r "+newBackupPath+".zip "+ newBackupPath,function(err){
+            await exec("sudo zip -r mongodump-"+newBackupDir+".zip "+ newBackupPath,function(err){
                 (error ? reject(error) : resolve(newBackupPath));
             })
             }
