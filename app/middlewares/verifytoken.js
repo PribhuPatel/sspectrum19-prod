@@ -10,7 +10,7 @@ exports.verifyToken = async (req,res,next) =>{
   //  console.log(req.body);
     //console.log(req.get('auth'));
     // console.log("asdad");
-    try{
+    // try{
         var check = await getSingleData(GlobalVars,{key:'portal_status'},'value');
        
         if(req.get('auth') == undefined || null){
@@ -26,16 +26,16 @@ exports.verifyToken = async (req,res,next) =>{
         }
      //   console.log(tokenData.data);
         
-    }catch(error){
+    // }catch(error){
         // console.log("adsadad");
         /* when token expires 
            either you can end session or refresh the token and 
            send 
         */
-        if(error.name === 'TokenExpiredError'){
-            // return resHandler.errorMessage(res,'token expired',req);
-            return res.json({status:false});
-        }
+        // if(error.name === 'TokenExpiredError'){
+        //     // return resHandler.errorMessage(res,'token expired',req);
+        //     return res.json({status:false});
+        // }
       //  resHandler.errorMessage(res,'not a valid token',req);
-    }
+    // }
 }
