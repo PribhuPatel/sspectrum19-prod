@@ -13,7 +13,7 @@ database: mongoDB.database,
 autoBackup: true, 
 removeOldBackup: true,
 keepLastDaysBackup: 2,
-autoBackupPath: '~spectrum/dailybackups/' // i.e. /var/database-backup/
+autoBackupPath: '/home/spectrum/dailybackups/' // i.e. /var/database-backup/
 };
  
     /* return date object */
@@ -63,17 +63,19 @@ exports.dbAutoBackUp = async function () {
         }
         var cmd = 'mongodump --host ' + dbOptions.host + ' --port ' + dbOptions.port + ' --db ' + dbOptions.database + ' --username ' + dbOptions.user + ' --password ' + dbOptions.pass + ' --out ' + newBackupPath; // Command for mongodb dump process
  
-        await exec(cmd, async function (error, stdout, stderr) {
+        await exec(cmd, async function (error, stdout, stderr) { 
             if (empty(error)) {
                 // check for remove old backup after keeping # of days given in configuration
                 if (dbOptions.removeOldBackup == true) {
                     if (fs.existsSync(oldBackupPath)) {
-                       await exec("rm -rf " + oldBackupPath, function (err) { });
+                       await exec("sudo rm -rf " + oldBackupPath, function (err) { });
+                       await exec("sudo rm -rf " + oldBackupPath+'.zip', function (err) { });
                     }
                 }
             }
-            
-            (error ? reject(error) : resolve(newBackupPath));
+            await exec("sudo zip -r "+newBackupPath+".zip "+ newBackupPath,function(err){
+                (error ? reject(error) : resolve(newBackupPath));
+            })
         });
     })
     // }
