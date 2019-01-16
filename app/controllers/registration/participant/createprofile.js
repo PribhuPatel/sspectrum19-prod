@@ -35,7 +35,7 @@ module.exports = {
                 await college.registered.participants.push(newParticipant._id);
                 await college.save();
                 await user.save();
-                console.log(newParticipant.phone +":"+newParticipant.name + " has been created by "+user.phone+":"+user.name + " at "+date);
+                console.log(newParticipant.phone +":"+newParticipant.firstname + " has been created by "+user.phone+":"+user.name + " at "+date.toUTCString());
                 
                 let replacements = {
                     name: newParticipant.firstname + " " + newParticipant.lastname,
@@ -45,7 +45,7 @@ module.exports = {
                 }
                 try{
                 let mail = await sendmail('/participant.html',newParticipant.email,"You have Registered for Spectrum\'19",replacements);
-                console.log("Event Entry Mail sended to "+ newParticipant.email);
+                console.log("Create participant Mail sended to "+ newParticipant.email);
                 } catch(e) {
                     
                 console.log("Mail send failed to " + newParticipant.email);
