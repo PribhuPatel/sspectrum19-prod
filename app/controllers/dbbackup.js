@@ -63,7 +63,7 @@ dbAutoBackUp = async function () {
         }
         var cmd = 'mongodump --host ' + dbOptions.host + ' --port ' + dbOptions.port + ' --db ' + dbOptions.database + ' --username ' + dbOptions.user + ' --password ' + dbOptions.pass + ' --out ' + newBackupPath; // Command for mongodb dump process
  
-        exec(cmd, function (error, stdout, stderr) {
+        await exec(cmd, function (error, stdout, stderr) {
             if (this.empty(error)) {
                 // check for remove old backup after keeping # of days given in configuration
                 if (dbOptions.removeOldBackup == true) {
