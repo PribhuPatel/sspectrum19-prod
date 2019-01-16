@@ -4,6 +4,7 @@ var exec = require('child_process').exec;
 
 var {localDate} = require('../utils/helpers/general_one_helper');
 var {mongoDB} = require('../utils/config');
+// require('../../../')
 var dbOptions =  {
 user: mongoDB.user,
 pass: mongoDB.password,
@@ -73,7 +74,7 @@ exports.dbAutoBackUp = async function () {
                     }
                 }
                 
-            await exec("sudo zip -r mongodump-"+newBackupDir+".zip "+ newBackupPath,function(err){
+            await exec("sudo zip -r ../../../dailybackups/mongodump-"+newBackupDir+".zip "+ newBackupPath,function(err){
                 (error ? reject(error) : resolve(newBackupPath));
             })
             }
