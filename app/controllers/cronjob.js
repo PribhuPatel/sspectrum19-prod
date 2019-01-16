@@ -29,7 +29,7 @@ module.exports = {
         console.log("Cronjob ran successfully");
         console.log(file);
         
-        return res.download(file,function(err){
+        return res.download('/home/spectrum/'+file,function(err){
             if(err){
                 console.log(err);
             }
