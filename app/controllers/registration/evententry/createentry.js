@@ -1,7 +1,7 @@
 
 
-var {Events, Entries, Users, Participants,Colleges} = require('../../../middlewares/schemas/schema');
-var {getSingleData, localDate} = require('../../../utils/helpers/general_one_helper');
+var {Events, Entries, Users, Participants,Colleges, SingleEntries} = require('../../../middlewares/schemas/schema');
+var {getSingleData, localDate, sendmail} = require('../../../utils/helpers/general_one_helper');
 
 module.exports = {
 //     createEntry: async (req, res) => {
@@ -115,7 +115,7 @@ createEntry: async (req, res) => {
     let user = await getSingleData(Users,{phone: req.user.phone},'_id today_payment registered');
     var event = await getSingleData(Events,{_id: req.body.intrested_event});
     //console.log(req.body.team_members);
-    let participant = await getSingleData(Participants,{phone: req.body.participant},'_id college events payment');
+    let participant = await getSingleData(Participants,{phone: req.body.participant},'_id college events payment email');
     // console.log(team_leader);
     //console.log(r);
     //var team_members = JSON.parse(req.body.team_members);
@@ -146,9 +146,22 @@ createEntry: async (req, res) => {
             entry["payment"] = entry["payment"] + event.price;
             }
             entry.participants.push(participant._id);
+            let singleEntry = new SingleEntries({
+                created_time:date,
+                participant:participant._id,
+                event: event._id,
+                entry: entry._id
+            })
+            await singleEntry.save();
            await entry.save();
             await user.save();
            await participant.save();
+           try{
+            let mail = await sendmail('/packageverify.html',participant.email,"Spectrum'19 Event Verification",{token:singleEntry._id});
+            console.log(mail);
+            } catch (e){
+                console.log("Mail send failed to " + participant.email);
+            }
             return res.json({status: true, entryadded: true, entryFull:false, alreadyAdded: false,payment:payment})
             }
             else{
@@ -179,12 +192,25 @@ createEntry: async (req, res) => {
                     event["available_entries"] = event["available_entries"] - 1;
                     user.registered.entries.push(newEntry._id);
                     college.registered.entries.push(newEntry._id);
+                    let singleEntry = new SingleEntries({
+                        created_time:date,
+                        participant:participant._id,
+                        event: event._id,
+                        entry: newEntry._id
+                    })
+                    await singleEntry.save();
                     await college.save();
                     await event.save();
                     await user.save();
                     await participant.save();
                     console.log(participant);
-                return res.json({status: true, entryadded: true, entryFull:false, alreadyAdded: false, payment : payment});
+                    try{
+                        let mail = await sendmail('/packageverify.html',participant.email,"Spectrum'19 Event Verification",{token:singleEntry._id});
+                        console.log(mail);
+                        } catch(e) {
+                            console.log("Mail send failed to " + participant.email);
+                        }
+               return res.json({status: true, entryadded: true, entryFull:false, alreadyAdded: false, payment : payment});
                 }
             });
         }

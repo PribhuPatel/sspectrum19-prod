@@ -27,8 +27,12 @@ module.exports = {
         // { $match: { events : { "$in" : [events[i]._id]}}  },
         { $group: { _id: null,payment : { $sum : "$today_payment" }} }
     ]).exec()
+    if(today_payment){
         total_revenue = total_revenue + today_payment[0].payment;
-      // let events = await getManyDataWithPopulate(Events,{},'department','name max_participants available_entries','name');
+    } else {
+      total_revenue = total_revenue;
+    }
+        // let events = await getManyDataWithPopulate(Events,{},'department','name max_participants available_entries','name');
         return res.json({status: true, daily_revenue:newDailyRevenue, total_revenue:total_revenue,total_expense:total_expense,today_revenue:today_payment[0].payment,today_expense:today_expense});
 }
   };

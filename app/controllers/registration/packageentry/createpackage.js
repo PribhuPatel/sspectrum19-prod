@@ -1,7 +1,7 @@
 
 
-var {Events, Entries, Users, Participants,Colleges,Packages} = require('../../../middlewares/schemas/schema');
-var {getSingleData, localDate} = require('../../../utils/helpers/general_one_helper');
+var {Events, Entries, Users, Participants,Colleges,Packages, SingleEntries} = require('../../../middlewares/schemas/schema');
+var {getSingleData, localDate, sendmail} = require('../../../utils/helpers/general_one_helper');
 
 module.exports = {
 createPackage: async (req, res) => {
@@ -14,7 +14,7 @@ createPackage: async (req, res) => {
     var event2 = req.body.tech2;
     var event3 = req.body.nontech;
     //console.log(req.body.team_members);
-    let participant = await getSingleData(Participants,{phone: req.body.participant},'_id college events payment package');
+    let participant = await getSingleData(Participants,{phone: req.body.participant},'_id college events payment package email');
 
   let participants = [];
   participants.push(participant._id);
@@ -69,7 +69,7 @@ console.log(oldentry);
             participant:participant._id,
             created_date:date
         })
-        console.log("asasdadasdasaaaaaaaaaaaaaaada");
+        // console.log("asasdadasdasaaaaaaaaaaaaaaada");
         await newPackage.save(async (err)=>{
             if(err){
                 console.log(err);
@@ -78,10 +78,25 @@ console.log(oldentry);
         participant["payment"] = participant["payment"] + 50;
         participant["package"] = newPackage._id;
         user["today_payment"] = user["today_payment"] + 50;
+        
+        let singleEntry = new SingleEntries({
+            created_time:date,
+            participant:participant._id,
+            // event: event._id,
+            // entry: entry._id,
+            package: newPackage._id
+        })
+        await singleEntry.save();
         await user.save();
         await college.save();
         await participant.save();
-        return res.json({status: true, entryadded: true, entryFull:false, alreadyAdded: false,message:"Package added",payment:participant.payment});
+        try{
+        let mail = await sendmail('/packageverify.html',participant.email,"Spectrum'19 Package Verification",{token:singleEntry._id});
+        console.log(mail);
+        } catch(e) {
+            console.log("Mail send failed to " + participant.email);
+        }
+        return res.json({status: true, entryadded: true, entryFull:false, alreadyAdded: false,message:"Package added",payment:50});
     }
         }); 
                     
@@ -110,7 +125,6 @@ var createNewEntry = async (event,intrested_event,participant,participants,user,
             entry.participants.push(participant._id);
             entry["payment"] = entry["payment"] + event.price;
             await entry.save();
-            
         //    await participant.save();
             // return res.json({status: true, entryadded: true, entryFull:false, alreadyAdded: false,payment:payment})
             let returnVar = {
@@ -166,7 +180,7 @@ var createNewEntry = async (event,intrested_event,participant,participants,user,
                     // await user.save();
                     // await participant.save();
                     // console.log(participant);
-                    
+
                     let returnVar = {
                         id: newEntry._id,
                         participant:participant,

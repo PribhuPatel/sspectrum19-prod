@@ -58,18 +58,25 @@ module.exports = {
         // }
         // let participants = await getManyData(Participants,{college:college_id});
         for(let i=0;i<collegesdata.length;i++){
+            let total_revenue =0;
             // let participants = await getManyData(Participants,{college:collegesdata[i]._id});
-            let total_revenue=await Participants.aggregate([
+            let college_total_revenue=await Participants.aggregate([
                 { $match: { college: collegesdata[i]._id}  },
                 { $group: { _id: null,amount: { $sum: "$payment" } } }
             ]).exec();
+            if(total_revenue[0]){
+               total_revenue =  college_total_revenue[0].amount;
             console.log(total_revenue);
+            } else {
+                total_revenue = 0;
+            }
             colleges.push( {
                 id: collegesdata[i]._id, 
                       name:collegesdata[i].name,
                       participants_count:collegesdata[i].registered.participants.length,
-                      revenue: total_revenue[0].amount
+                      revenue: total_revenue
             })
+        
         }
 
         console.log(alldepartments);

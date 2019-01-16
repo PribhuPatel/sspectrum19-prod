@@ -1,8 +1,9 @@
 var express = require('express');
 var router = express.Router();
-var {verifyToken} = require('../middlewares/verifytoken');
-var {Participants} = require('../middlewares/schemas/schema');
-var {getManyDataWithPopulate} = require('../utils/helpers/general_one_helper');
+// var {verifyToken} = require('../middlewares/verifytoken');
+var {Participants, SingleEntries} = require('../middlewares/schemas/schema');
+var {getManyDataWithPopulate, getSingleData} = require('../utils/helpers/general_one_helper');
+
 // var csv = require('csv');
 // const async = require('async');
 // const Json2csvParser = require('json2csv').Parser;
@@ -15,9 +16,9 @@ router.get('/',(req,res)=>{
     res.render("index");
 });
 
-router.get('/user',verifyToken,(req,res)=>{
-    res.render("user",{user:req.user});
-});
+// router.get('/user',verifyToken,(req,res)=>{
+//     res.render("user",{user:req.user});
+// });
 
 router.get('/login',function(req, res, next) {
   res.render('login');
@@ -27,40 +28,59 @@ router.get('/signup', function(req, res, next) {
     res.render('signup');
 });
 
+router.get('/verify/:token',async function(req,res){
+    let token = req.params.token;
+    if(token.match(/^[0-9a-fA-F]{24}$/)){
+    let verify = await getSingleData(SingleEntries,{_id:token},'verify');
+    if(verify===null){
+        return res.send("Token is not Acceptable");
+    } else {
+    if(verify.verify){
+        return res.send("Already Verified");
+    }  else {
+        verify["verify"] = 1;
+        verify.save();
+        return res.send("Thank You for verification");
+    }
+        }
+    } else {
+        return res.send("Enter valid token");
+    }
+})
 
-router.get('/mycsv',async function(req, res, next) {
-    // await downloadContacts(req,res);
-    var source = [];
-    var participants =await getManyDataWithPopulate(Participants,{},'college','college firstname lastname email phone college payment','name');
-    if(participants.length != 0 ){
-    for(var i = 0; i < participants.length; i++) {
-                            console.log(participants)
-                            //console.log(participants[i]);
-                            source.push({
-                                "firstname":participants[i].firstname, 
-                                "lastname":participants[i].lastname, 
-                                "email":participants[i].email, 
-                                "phone":participants[i].phone,
-                                "college": participants[i].college.name,
-                                "payment": participants[i].payment
-                            })
-                        }
-                        console.log(source);
-                        // res.csv(source,true)
-                        return res.json(source)
-                        // callback(null, source);
-                    } else{
-                        source.push({
-                            "firstname":"", 
-                            "lastname":"", 
-                            "email":"", 
-                            "phone":"",
-                            "college": "",
-                            "payment": ""
-                        })
-                    return res.json(source);
-                    }
-});
+// router.get('/mycsv',async function(req, res, next) {
+//     // await downloadContacts(req,res);
+//     var source = [];
+//     var participants =await getManyDataWithPopulate(Participants,{},'college','college firstname lastname email phone college payment','name');
+//     if(participants.length != 0 ){
+//     for(var i = 0; i < participants.length; i++) {
+//                             console.log(participants)
+//                             //console.log(participants[i]);
+//                             source.push({
+//                                 "firstname":participants[i].firstname, 
+//                                 "lastname":participants[i].lastname, 
+//                                 "email":participants[i].email, 
+//                                 "phone":participants[i].phone,
+//                                 "college": participants[i].college.name,
+//                                 "payment": participants[i].payment
+//                             })
+//                         }
+//                         console.log(source);
+//                         // res.csv(source,true)
+//                         return res.json(source)
+//                         // callback(null, source);
+//                     } else{
+//                         source.push({
+//                             "firstname":"", 
+//                             "lastname":"", 
+//                             "email":"", 
+//                             "phone":"",
+//                             "college": "",
+//                             "payment": ""
+//                         })
+//                     return res.json(source);
+//                     }
+// });
 
 module.exports = router;
 
