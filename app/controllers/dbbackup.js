@@ -13,7 +13,7 @@ database: mongoDB.database,
 autoBackup: true, 
 removeOldBackup: true,
 keepLastDaysBackup: 2,
-autoBackupPath: '/home/spectrum/dailybackups/' // i.e. /var/database-backup/
+autoBackupPath: 'dailybackups/' // i.e. /var/database-backup/
 };
  
     /* return date object */
