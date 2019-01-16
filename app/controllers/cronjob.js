@@ -27,6 +27,8 @@ module.exports = {
         await today_revenue.save();
         let file = await dbAutoBackUp();
         console.log("Cronjob ran successfully");
+        console.log(file);
+        
         return res.download(file,function(err){
             if(err){
                 console.log(err);
