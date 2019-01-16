@@ -27,7 +27,7 @@ module.exports = {
         // { $match: { events : { "$in" : [events[i]._id]}}  },
         { $group: { _id: null,payment : { $sum : "$today_payment" }} }
     ]).exec()
-    if(today_payment){
+    if(today_payment[0]){
         total_revenue = total_revenue + today_payment[0].payment;
     } else {
       total_revenue = total_revenue;
