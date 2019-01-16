@@ -4,7 +4,6 @@ var exec = require('child_process').exec;
 
 var {localDate} = require('../utils/helpers/general_one_helper');
 var {mongoDB} = require('../utils/config');
-// require('../../../')
 var dbOptions =  {
 user: mongoDB.user,
 pass: mongoDB.password,
@@ -14,7 +13,7 @@ database: mongoDB.database,
 autoBackup: true, 
 removeOldBackup: true,
 keepLastDaysBackup: 2,
-autoBackupPath: '~spectrum/dailybackups/' // i.e. /var/database-backup/
+autoBackupPath: '../../../dailybackups/' // i.e. /var/database-backup/
 };
  
     /* return date object */
@@ -62,7 +61,7 @@ exports.dbAutoBackUp = async function () {
             oldBackupDir = beforeDate.getFullYear() + '-' + (beforeDate.getMonth() + 1) + '-' + beforeDate.getDate();
             oldBackupPath = dbOptions.autoBackupPath + 'mongodump-' + oldBackupDir; // old backup(after keeping # of days)
         }
-        var cmd = 'mongodump --host ' + dbOptions.host + ' --port ' + dbOptions.port + ' --db ' + dbOptions.database + ' --username ' + dbOptions.user + ' --password ' + dbOptions.pass + ' --out ' + newBackupPath; // Command for mongodb dump process
+        var cmd = 'sudo mongodump --host ' + dbOptions.host + ' --port ' + dbOptions.port + ' --db ' + dbOptions.database + ' --username ' + dbOptions.user + ' --password ' + dbOptions.pass + ' --out ' + newBackupPath; // Command for mongodb dump process
  
         await exec(cmd, async function (error, stdout, stderr) { 
             if (empty(error)) {
@@ -70,11 +69,11 @@ exports.dbAutoBackUp = async function () {
                 if (dbOptions.removeOldBackup == true) {
                     if (fs.existsSync(oldBackupPath)) {
                        await exec("sudo rm -rf " + oldBackupPath, function (err) { });
-                       await exec("sudo rm -r " + oldBackupPath+'.zip', function (err) { });
+                       await exec("sudo rm -rf ../../../mongodump-" + oldBackupDir+'.zip', function (err) { });
                     }
                 }
                 
-            await exec("sudo zip -r ../../../dailybackups/mongodump-"+newBackupDir+".zip "+ newBackupPath,function(err){
+            await exec("sudo zip -r ../../../dailybackups/mongodump-"+newBackupDir+".zip ../../../mongodump-"+ newBackupDir,function(err){
                 (error ? reject(error) : resolve(newBackupPath));
             })
             }
