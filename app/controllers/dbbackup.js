@@ -44,7 +44,7 @@ return false;
          
     // Auto backup script
  
-dbAutoBackUp = async function () {
+exports.dbAutoBackUp = async function () {
     
     return new Promise(async (resolve, reject) =>{
 // check for auto backup is enabled or disabled
