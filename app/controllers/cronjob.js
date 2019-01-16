@@ -1,5 +1,5 @@
-var {Users,Revenue} = require('../../../middlewares/schemas/schema');
-var {getManyData, localDate} = require('../../../utils/helpers/general_one_helper');
+var {Users,Revenue} = require('../middlewares/schemas/schema');
+var {getManyData, localDate} = require('../utils/helpers/general_one_helper');
 var {dbAutoBackUp} = require('./dbbackup');
 
 module.exports = {

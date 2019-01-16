@@ -2,8 +2,8 @@ var fs = require('fs');
 var _ = require('lodash');
 var exec = require('child_process').exec;
 
-var {localDate} = require('../../../utils/helpers/general_one_helper');
-var {mongoDB} = require('../../../utils/config');
+var {localDate} = require('../utils/helpers/general_one_helper');
+var {mongoDB} = require('../utils/config');
 var dbOptions =  {
 user: mongoDB.user,
 pass: mongoDB.password,
