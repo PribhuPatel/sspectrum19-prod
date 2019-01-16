@@ -39,8 +39,8 @@ app.use('/analytics',require('./app/controllers/analytics'));
 app.use('/application',require('./app/controllers/application'));
 app.get('/cron/:password',require('./app/controllers/cronjob').runCron);
 
-// var port = process.env.PORT || 5000;
-var port = 80;
+var port = process.env.PORT || 5000;
+// var port = 80;
   // catch 404 and forward to error handler
   app.use(handle404Error);
   
