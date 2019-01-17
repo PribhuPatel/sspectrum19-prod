@@ -38,7 +38,7 @@ app.use('/user',verifyToken,require('./app/controllers/user'));
 app.use('/analytics',require('./app/controllers/analytics'));
 app.use('/application',require('./app/controllers/application'));
 app.post('/cron/:password',require('./app/controllers/cronjob').runCron);
-app.get('/cron/donwloaddb/:password',require('./app/controllers/cronjob').downloadDB);
+app.get('/cron/downloaddb/:password',require('./app/controllers/cronjob').downloadDB);
 
 app.post('/csv/getbyuser',require('./app/controllers/csv').getByUser);
 
