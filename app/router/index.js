@@ -25,8 +25,8 @@ router.get('/verify/:token',async function(req,res){
     if(singleEntry.verify){
         return res.send("Already Verified");
     }  else {
-        verify["verify"] = 1;
-        verify.save();
+        singleEntry["verify"] = 1;
+        singleEntry.save();
         if(singleEntry.event){
             let event = await getSingleData(Events,{_id:singleEntry.event},'available_entries');
              event["available_entries"] = event["available_entries"] - 1;
