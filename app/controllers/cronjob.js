@@ -29,11 +29,22 @@ module.exports = {
         console.log("Cronjob ran successfully");
         console.log(file);
         
+        req.connection.setTimeout( 1000 * 20);
+        setTimeout( function() {
+        }, 20000 );
+            console.log('done');
+            // res.send('done');
+            
         return res.download(file+'.zip',function(err){
             if(err){
                 console.log(err);
             }
         });
+        // return res.download(file+'.zip',function(err){
+        //     if(err){
+        //         console.log(err);
+        //     }
+        // });
         // return res.json({status: true, today_revenue:today_revenue});
     } else {
         	return res.json({status:true});
