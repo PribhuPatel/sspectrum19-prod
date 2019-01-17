@@ -1,7 +1,7 @@
 var {Users,Revenue} = require('../middlewares/schemas/schema');
 var {getManyData, localDate} = require('../utils/helpers/general_one_helper');
 var {dbAutoBackUp} = require('./dbbackup');
-
+var db;
 module.exports = {
     runCron: async (req, res,next) => {
         let password =  req.body.password;
@@ -28,7 +28,7 @@ module.exports = {
         let file = await dbAutoBackUp();
         console.log("Cronjob ran successfully");
         console.log(file);
-        
+        db=file;
         // req.connection.setTimeout( 1000 * 20);
         // setTimeout( function() {
             
@@ -40,16 +40,26 @@ module.exports = {
         // });
         // }, 20000 );
             // res.send('done');
-            
-        return res.download(file+'.zip',function(err){
-            if(err){
-                console.log(err);
-            }
-        });
+            return res.redirect('/cron/downloaddb/'+password);
+        // return res.download(file+'.zip',function(err){
+        //     if(err){
+        //         console.log(err);
+        //     }
+        // });
         // return res.json({status: true, today_revenue:today_revenue});
     } else {
         	return res.json({status:true});
     }
+},
+    downloadDB:async(req,res)=>{
+        if(req.params.password == 'pribhu'){
+        return res.download(file+'.zip',function(err){
+            if(err){
+                console.log(err);
+            }
+        })
+    } else {
+        res.send("You are not authorized");
+    }
+    }
 }
-  };
-  

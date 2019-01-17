@@ -101,7 +101,7 @@ var createNewEntry = async (event,intrested_event,participant,participants,user,
             participant["payment"] = participant["payment"] + event.price;
                     
             entry.participants.push(participant._id);
-            entry["payment"] = entry["payment"] + event.price;
+            // entry["payment"] = entry["payment"] + event.price;
             await entry.save();
         let returnVar = {
                 id: entry._id,
