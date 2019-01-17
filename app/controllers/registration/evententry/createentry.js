@@ -92,7 +92,8 @@ createEntry: async (req, res) => {
         let replacements = {
             name: participant.firstname + " " + participant.lastname,
             event:event.name,
-            price: event.price
+            price: event.price,
+            token: singleEntry._id
         }
                     try{
                         let mail = await sendmail('/single-event.html',participant.email,"Spectrum'19 Event Verification",replacements);
