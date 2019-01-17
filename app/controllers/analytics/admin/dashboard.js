@@ -1,4 +1,4 @@
-var {Participants, Entries, Events, Colleges, GlobalVars} = require('../../../middlewares/schemas/schema');
+var {Participants, Entries, Events, Colleges, GlobalVars,Users} = require('../../../middlewares/schemas/schema');
 var {getSingleData,getManyData, getManyDataWithPopulate,getCount,getDateWiseCount} = require('../../../utils/helpers/general_one_helper');
 
 module.exports = {
@@ -9,7 +9,7 @@ module.exports = {
     let total_registered = await getCount(Participants,{});
         let total_entries = await getCount(Entries,{});
         let total_events = await getCount(Events,{});
-        let total_revenue  = await runForEach(Participants);
+        let total_revenue  = await runForEach(Users);
         let events = await getManyDataWithPopulate(Events,{},'department','name max_participants available_entries','name');
         let collegesdata= await getManyData(Colleges,{},'name registered');
         for(let i=0;i<collegesdata.length;i++){
@@ -27,14 +27,23 @@ module.exports = {
   };
   
 
-  var runForEach = async (Participants)=>{
-        let payment = 0;
-        let participants = await getManyData(Participants,{});
-    await asyncForEach(participants,async (element)=>{
-            payment = payment + element.payment;
-    })
-    return payment;
-  }
+  // var runForEach = async (Participants)=>{
+  //       let payment = 0;
+  //       let participants = await getManyData(Participants,{});
+  //   await asyncForEach(participants,async (element)=>{
+  //           payment = payment + element.payment;
+  //   })
+  //   return payment;
+  // }
+
+  var runForEach = async (Users)=>{
+    let payment = 0;
+    let participants = await getManyData(Users,{});
+await asyncForEach(participants,async (element)=>{
+        payment = payment + element.today_payment;
+})
+return payment;
+}
 
 
   async function asyncForEach(array, callback) {

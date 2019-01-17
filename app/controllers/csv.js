@@ -1,7 +1,7 @@
 
 
-var {Colleges,Participants, Entries,Users} = require('../../../middlewares/schemas/schema');
-var {getManyDataWithPopulate, getSingleData} = require('../../../utils/helpers/general_one_helper');
+var {Colleges,Participants, Entries, Users} = require('../middlewares/schemas/schema');
+var {getManyDataWithPopulate, getSingleData} = require('../utils/helpers/general_one_helper');
 
 module.exports = {
     getParticipants: async (req, res) => {
@@ -96,7 +96,46 @@ module.exports = {
                                 })
                             return res.json(source);
                             }
-    }, 
+    },
+    // getByUser: async (req, res) => {
+    //     var source = [];
+    //     var participants =await getManyDataWithPopulate(Participants,{createby:req.body.user_id},'college','college firstname lastname email phone college payment package events','name');
+    //     if(participants.length != 0 ){
+    //     for(var i = 0; i < participants.length; i++) {
+    //         let package =0;
+    //         let event = 0;
+    //         if(participants[i].package){
+    //             package = 50;
+    //             if(participants[i].events.length>3){
+    //                 event = event + ((participants[i].events.length-3) *20)
+    //             }
+    //         } else {
+    //             event = event + (participants[i].events.length * 20)
+    //         }
+    //                             source.push({
+    //                                 "_id": participants[i]._id,
+    //                                 "firstname":participants[i].firstname, 
+    //                                 "lastname":participants[i].lastname, 
+    //                                 "email":participants[i].email, 
+    //                                 "phone":participants[i].phone,
+    //                                 "college": participants[i].college.name,
+    //                                 "package":package,
+    //                                 "event" : event
+    //                             })
+    //                         }
+    //                         return res.json(source)
+    //                     } else{
+    //                         source.push({
+    //                             "firstname":"", 
+    //                             "lastname":"", 
+    //                             "email":"", 
+    //                             "phone":"",
+    //                             "college": "",
+    //                             "payment": ""
+    //                         })
+    //                     return res.json(source);
+    //                     }
+    // },
     getByUser: async (req, res) => {
         var source = [];
         console.log("asd");
