@@ -29,23 +29,23 @@ module.exports = {
         console.log("Cronjob ran successfully");
         console.log(file);
         
-        req.connection.setTimeout( 1000 * 20);
-        setTimeout( function() {
+        // req.connection.setTimeout( 1000 * 20);
+        // setTimeout( function() {
             
-            console.log('done');
-        return res.download(file+'.zip',function(err){
-            if(err){
-                console.log(err);
-            }
-        });
-        }, 20000 );
-            // res.send('done');
-            
+        //     console.log('done');
         // return res.download(file+'.zip',function(err){
         //     if(err){
         //         console.log(err);
         //     }
         // });
+        // }, 20000 );
+            // res.send('done');
+            
+        return res.download(file+'.zip',function(err){
+            if(err){
+                console.log(err);
+            }
+        });
         // return res.json({status: true, today_revenue:today_revenue});
     } else {
         	return res.json({status:true});
