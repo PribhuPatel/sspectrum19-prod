@@ -10,4 +10,10 @@ router.post('/bycollege',require('./csvgenerators').getByCollege);
 
 router.post('/getbyuser',require('./csvgenerators').getByUser);
 
+
+router.post('/gettotalbyuser',require('./csvgenerators').getTotalByUser);
+
+
+router.get('/getcountbyevents',require('./csvgenerators').getCountbyEvents);
+
 module.exports = router;

@@ -15,7 +15,7 @@ module.exports = {
           return res.json({status:true,login:false,username: false,password:false,error:false});
         } else{
           if(loginuser.password===req.body.password){
-            let token = await createToken({data: {user:{name:loginuser.name, phone: loginuser.phone, role: loginuser.role}}});
+            let token = await createToken({data: {user:{name:loginuser.name, phone: loginuser.phone, role: loginuser.role, id:loginuser._id}}});
           
             console.log(loginuser.phone +" with name "+loginuser.name + " is logged in at " +localDate());
             return res.json({status:true,login:true ,username:true,password:true,error:false, token: token, name: loginuser.name,role: loginuser.role});

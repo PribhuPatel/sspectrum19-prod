@@ -14,7 +14,7 @@ module.exports = {
           return res.json({status:true,login:false,username: false,password:false,error:false,portal_status:check.value});
         } else{
           if(loginuser.password===req.body.password){
-            let token = await createToken({data: {user:{name:loginuser.name, phone: loginuser.phone, role: loginuser.role}}});
+            let token = await createToken({data: {user:{name:loginuser.name, phone: loginuser.phone, role: loginuser.role, id:loginuser._id}}});
             const tokenData = await verifyToken(token);
           return res.json({status:true,login:true ,username:true,password:true,error:false, token: token, name: loginuser.name,role: loginuser.role,portal_status:check.value});
           } else{

@@ -34,7 +34,8 @@ createEntry: async (req, res) => {
                 created_time:date,
                 participant:participant._id,
                 event: event._id,
-                entry: entry._id
+                entry: entry._id,
+                createby: user._id
             })
             await singleEntry.save();
            await entry.save();
@@ -72,14 +73,15 @@ createEntry: async (req, res) => {
                     participant.events.push(event._id);
                     participant["payment"] = participant["payment"] + event.price;
                     user["today_payment"] = user["today_payment"] + event.price; 
-                    // event["available_entries"] = event["available_entries"] - 1;
+                    event["available_entries"] = event["available_entries"] - 1;
                     user.registered.entries.push(newEntry._id);
                     college.registered.entries.push(newEntry._id);
                     let singleEntry = new SingleEntries({
                         created_time:date,
                         participant:participant._id,
                         event: event._id,
-                        entry: newEntry._id
+                        entry: newEntry._id,
+                        createby: user._id
                     })
                     await singleEntry.save();
                     await college.save();

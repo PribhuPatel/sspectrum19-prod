@@ -56,7 +56,8 @@ let oldentry = await getSingleData(Entries,{$and:[{$or:[{event: event1event._id}
         let singleEntry = new SingleEntries({
             created_time:date,
             participant:participant._id,
-            package: newPackage._id
+            package: newPackage._id,
+            createby: user._id
         })
         await singleEntry.save();
         await user.save();
@@ -139,7 +140,7 @@ var createNewEntry = async (event,intrested_event,participant,participants,user,
                 }
                 else{
                     participant.events.push(event._id);
-                   // event["available_entries"] = event["available_entries"] - 1;
+                   event["available_entries"] = event["available_entries"] - 1;
                     user.registered.entries.push(newEntry._id);
                     college.registered.entries.push(newEntry._id);
                    await event.save();

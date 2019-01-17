@@ -114,6 +114,7 @@ var UserSchema = new Schema({
     // package:{type:Schema.Types.ObjectId,ref:Packages}
   });
 
+
   var GlobalVarSchema= new Schema({
     key: {type: String, required: true,unique:true},
     value:{type: String, required: true}
@@ -162,7 +163,8 @@ var UserSchema = new Schema({
     entry: {type: Schema.Types.ObjectId, ref: 'Entries',default:null},
     package:{type:Schema.Types.ObjectId, ref: 'Packages',default:null},
     verify: {type:Boolean,default:false},
-    created_time:{type: Date, default: localDate() }
+    created_time:{type: Date, default: localDate() },
+    createby:{type: Schema.Types.ObjectId, ref: 'Users', required: true}
   })
 
 var Revenue = mongoose.model('Revenue',RevenueSchema);
