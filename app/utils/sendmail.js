@@ -6,7 +6,7 @@ var config={
         auth:
         {
         user: 'spectrum@adit.ac.in',
-      pass: 'Spec1700@adit19'
+      pass: 'Spec1700@adit2019'
     }
 }
 
