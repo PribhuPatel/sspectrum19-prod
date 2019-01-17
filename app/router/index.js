@@ -25,10 +25,14 @@ router.get('/verify/:token',async function(req,res){
     if(singleEntry.verify){
         return res.send("Already Verified");
     }  else {
+        try{
         if(singleEntry.event  != null){
             let event = await getSingleData(Events,{_id:singleEntry.event});
              event["available_entries"] = event["available_entries"] - 1;
              event.save();
+             singleEntry["verify"] = 1;
+        singleEntry.save();
+        
         } else if(singleEntry.package !=null) {
             let package  = await getSingleData(Packages,{_id:singleEntry.package},'tech1 tech2 nontech');
             console.log(package);
@@ -42,10 +46,14 @@ router.get('/verify/:token',async function(req,res){
              tech1.save();
              tech2.save();
              nontech.save();
-        }
-        singleEntry["verify"] = 1;
+             singleEntry["verify"] = 1;
         singleEntry.save();
+        
+        }
         return res.render("verify");
+    } catch(e){
+        res.send("please try again");
+    }
     }
         }
     } else {
