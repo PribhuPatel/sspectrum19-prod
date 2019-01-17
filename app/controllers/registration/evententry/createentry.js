@@ -1,5 +1,3 @@
-
-
 var {Events, Entries, Users, Participants,Colleges, SingleEntries} = require('../../../middlewares/schemas/schema');
 var {getSingleData, localDate, sendmail} = require('../../../utils/helpers/general_one_helper');
 

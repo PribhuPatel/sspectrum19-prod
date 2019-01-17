@@ -13,7 +13,7 @@ router.use('/add',verifyToken, require('./add'));
 
 router.use('/getdata',verifyToken, require('./getdata'));
 
-router.use('/csv',verifyToken, require('./csv'));
+router.use('/csv',require('./csv'));
 
 
 module.exports = router;

@@ -138,7 +138,7 @@ var createNewEntry = async (event,intrested_event,participant,participants,user,
                 }
                 else{
                     participant.events.push(event._id);
-                    event["available_entries"] = event["available_entries"] - 1;
+                   // event["available_entries"] = event["available_entries"] - 1;
                     user.registered.entries.push(newEntry._id);
                     college.registered.entries.push(newEntry._id);
                    await event.save();
