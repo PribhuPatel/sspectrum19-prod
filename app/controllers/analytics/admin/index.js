@@ -14,6 +14,8 @@ router.post('/getdepartmentdata', require('./getdepartmentdata').getDepartmentDa
 
 router.post('/getcollegedata', require('./getcollegewisedata').getCollegeWiseData);
 
+router.post('/getparticipantdata', require('./getparticipantdata').getParticipantWiseData);
+
 router.get('/portalstatus', require('./portalstatus').getPortalStatus);
 
 router.get('/changeportalstatus', require('./portalstatus').portalStatusChange);

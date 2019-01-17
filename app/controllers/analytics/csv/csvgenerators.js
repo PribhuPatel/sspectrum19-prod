@@ -124,13 +124,15 @@ module.exports = {
                 }
             } else {
                 event = event + (participants[i].events.length * 20)
-            }           if(req.body.phone){
-                            participants[i]["payment"] = package + event;
-                            participants[i].save((err)=>{
-                                if(err){
-                                    console.log(err);
-                                }
-                            });
+            }
+            participants[i]["payment"] = package + event;
+            participants[i].save((err)=>{
+                if(err){
+                    console.log(err);
+                }
+            });        
+               if(req.body.phone){
+                           
                                 source.push({
                                     "_id": participants[i]._id,
                                     "firstname":participants[i].firstname, 
