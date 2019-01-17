@@ -53,7 +53,7 @@ module.exports = {
 },
     downloadDB:async(req,res)=>{
         if(req.params.password == 'pribhu'){
-        return res.download(file+'.zip',function(err){
+        return res.download(db+'.zip',function(err){
             if(err){
                 console.log(err);
             }
