@@ -257,14 +257,22 @@ module.exports = {
     getCountbyEvents:async(req,res)=>{
         let events = await getManyData(Events,{});
         var EntriesCounts = []
+        try{
         for(let i=0;i<events.length;i++){
             let entriescount = await getCount(Entries,{event:events[i]._id});
-            console.log(entriescount);
+            // events[i]["available_entries"] =events[i]["max_participants"] - entriescount
+            // events[i].save() 
+
+            // console.log(entriescount);
             EntriesCounts.push({
                 name:events[i].name,
-                count: entriescount
+                count: entriescount,
+                available_entries: events[i].available_entries
             })
         }
+    } catch(e){
+        console.log(e);
+    }
         return res.json({entriescount:EntriesCounts});
     }
   };
