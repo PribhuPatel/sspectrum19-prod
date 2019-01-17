@@ -52,7 +52,7 @@ module.exports = {
             } else {
                 total_revenue = 0;
             }
-            colleges.push( {
+            colleges.push({
                 id: collegesdata[i]._id, 
                       name:collegesdata[i].name,
                       participants_count:collegesdata[i].registered.participants.length,

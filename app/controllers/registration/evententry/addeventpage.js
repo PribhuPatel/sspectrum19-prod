@@ -1,7 +1,7 @@
 
 
 var {Events, Entries} = require('../../../middlewares/schemas/schema');
-var {getManyData, getManyDataWithPopulateWithLimit} = require('../../../utils/helpers/general_one_helper');
+var {getManyData, getManyDataWithPopulateWithLimit,getManyDataWithPopulate} = require('../../../utils/helpers/general_one_helper');
 
 module.exports = {
   addEventPage: async (req, res) => {
@@ -11,7 +11,7 @@ module.exports = {
     },
     getLeaders: async(req,res)=>{
       let partiPhone = req.body.leader_phone;
-  let leaders  = await  getManyDataWithPopulateWithLimit(Entries,{event:req.body.event_id},5,'team_leader event','team_leader event participants','firstname lastname phone name max_members');
+  let leaders  = await  getManyDataWithPopulate(Entries,{event:req.body.event_id},'team_leader event','team_leader event participants','firstname lastname phone name max_members');
     leaders = leaders.filter(l=> (l.team_leader.phone.toString().includes(partiPhone.toString() ) && l.participants.length<l.event.max_members));
    return res.json({status:true, leaders:leaders});
     }

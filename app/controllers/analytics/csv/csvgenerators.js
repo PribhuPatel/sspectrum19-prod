@@ -40,6 +40,7 @@ module.exports = {
                                     let participant = groups[i].participants[j];
                                     let college = await getSingleData(Colleges,{_id:participant.college},'name');
                                     source.push({
+                                        "entry": groups[i]._id,
                                         "firstname":participant.firstname, 
                                         "lastname":participant.lastname, 
                                         "email":participant.email, 

@@ -109,6 +109,7 @@ var createNewEntry = async (event,intrested_event,participant,participants,user,
                 college: college,
                 result:true
             }
+            // if(err)? resolve():
             resolve(returnVar);
         }
             else{
