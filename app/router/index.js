@@ -34,7 +34,7 @@ router.get('/verify/:token',async function(req,res){
         singleEntry.save();
         
         } else if(singleEntry.package !=null) {
-            let package  = await getSingleData(Packages,{_id:singleEntry.package},'tech1 tech2 nontech');
+            let package  = await getSingleData(Packages,{_id:singleEntry.package});
             console.log(package);
             let tech1 = await getSingleData(Events,{_id:package.tech1});
             let tech2 = await getSingleData(Events,{_id:package.tech2});
@@ -52,7 +52,7 @@ router.get('/verify/:token',async function(req,res){
         }
         return res.render("verify");
     } catch(e){
-        res.send("please try again");
+        res.send("please try again after 10 minutes");
     }
     }
         }
