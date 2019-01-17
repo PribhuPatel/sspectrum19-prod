@@ -1,14 +1,14 @@
 var {Users,Revenue, GlobalVars} = require('../middlewares/schemas/schema');
 var {getManyData, localDate,getSingleData} = require('../utils/helpers/general_one_helper');
 var {dbAutoBackUp} = require('./dbbackup');
-var dbquery = await getSingleData(GlobalVars,{key:'backupdbname'});
-var db = dbquery.value;
+
 module.exports = {
     runCron: async (req, res,next) => {
         let password =  req.body.password;
         if(password === 'pribhu'){
         let users = await getManyData(Users,{},'today_payment payment_history');
-
+        var dbquery = await getSingleData(GlobalVars,{key:'backupdbname'});
+        // var db = dbquery.value;
         var payment = 0;
         for(let i=0;i<users.length;i++){
             payment = payment + users[i].today_payment;
@@ -56,6 +56,8 @@ module.exports = {
 },
     downloadDB:async(req,res)=>{
         if(req.params.password == 'pribhu'){
+            var dbquery = await getSingleData(GlobalVars,{key:'backupdbname'});
+            var db = dbquery.value;
         return res.download(db+'.zip',function(err){
             if(err){
                 console.log(err);
