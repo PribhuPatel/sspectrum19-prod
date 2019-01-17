@@ -83,7 +83,6 @@ module.exports = {
                 if (error) {
                     console.log(error);
                 } else{
-                    transporter.close();
             (error? reject(error) : resolve(response));
                 }
             });
