@@ -37,7 +37,7 @@ app.use('/registration',verifyToken,require('./app/controllers/registration'));
 app.use('/user',verifyToken,require('./app/controllers/user'));
 app.use('/analytics',require('./app/controllers/analytics'));
 app.use('/application',require('./app/controllers/application'));
-app.get('/cron/:password',require('./app/controllers/cronjob').runCron);
+app.post('/cron/:password',require('./app/controllers/cronjob').runCron);
 
 
 app.post('/csv/getbyuser',require('./app/controllers/csv').getByUser);

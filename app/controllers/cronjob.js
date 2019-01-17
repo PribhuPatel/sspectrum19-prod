@@ -4,7 +4,7 @@ var {dbAutoBackUp} = require('./dbbackup');
 
 module.exports = {
     runCron: async (req, res,next) => {
-        let password =  req.params.password;
+        let password =  req.body.password;
         if(password === 'pribhu'){
         let users = await getManyData(Users,{},'today_payment payment_history');
 
