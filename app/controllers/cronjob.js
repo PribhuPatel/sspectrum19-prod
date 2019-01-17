@@ -1,7 +1,8 @@
-var {Users,Revenue} = require('../middlewares/schemas/schema');
-var {getManyData, localDate} = require('../utils/helpers/general_one_helper');
+var {Users,Revenue, GlobalVars} = require('../middlewares/schemas/schema');
+var {getManyData, localDate,getSingleData} = require('../utils/helpers/general_one_helper');
 var {dbAutoBackUp} = require('./dbbackup');
-var db;
+var dbquery = await getSingleData(GlobalVars,{key:'backupdbname'});
+var db = dbquery.value;
 module.exports = {
     runCron: async (req, res,next) => {
         let password =  req.body.password;
@@ -29,6 +30,8 @@ module.exports = {
         console.log("Cronjob ran successfully");
         console.log(file);
         db=file;
+        dbquery["value"] = db;
+        await dbquery.save();
         // req.connection.setTimeout( 1000 * 20);
         // setTimeout( function() {
             
