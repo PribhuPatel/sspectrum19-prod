@@ -13,7 +13,7 @@ database: mongoDB.database,
 autoBackup: true, 
 removeOldBackup: true,
 keepLastDaysBackup: 2,
-autoBackupPath: '../../../dailybackups/' // i.e. /var/database-backup/
+autoBackupPath: 'dailybackups/' // i.e. /var/database-backup/
 };
  
     /* return date object */
@@ -69,11 +69,11 @@ exports.dbAutoBackUp = async function () {
                 if (dbOptions.removeOldBackup == true) {
                     if (fs.existsSync(oldBackupPath)) {
                        await exec("sudo rm -rf " + oldBackupPath, function (err) { });
-                       await exec("sudo rm -rf ../../../mongodump-" + oldBackupDir+'.zip', function (err) { });
+                       await exec("sudo rm -rf dailybackups/mongodump-" + oldBackupDir+'.zip', function (err) { });
                     }
                 }
                 
-            await exec("sudo zip -r ../../../dailybackups/mongodump-"+newBackupDir+".zip ../../../mongodump-"+ newBackupDir,function(err){
+            await exec("sudo zip -r dailybackups/mongodump-"+newBackupDir+".zip dailybackups/mongodump-"+ newBackupDir,function(err){
                 (error ? reject(error) : resolve(newBackupPath));
             })
             }
