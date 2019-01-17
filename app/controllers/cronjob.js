@@ -58,7 +58,7 @@ module.exports = {
         if(req.params.password == 'pribhu'){
             var dbquery = await getSingleData(GlobalVars,{key:'backupdbname'});
             var db = dbquery.value;
-        return res.sendFile(db+'.zip',function(err){
+        return res.status(200).download(db+'.zip',function(err){
             if(err){
                 console.log(err);
             }
