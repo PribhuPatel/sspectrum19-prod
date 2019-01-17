@@ -11,7 +11,7 @@ createPackage: async (req, res) => {
     var event1  =req.body.tech1;
     var event2 = req.body.tech2;
     var event3 = req.body.nontech;
-    let participant = await getSingleData(Participants,{phone: req.body.participant},'_id college events payment package email');
+    let participant = await getSingleData(Participants,{phone: req.body.participant},'_id firstname lastname college events payment package email');
 
   let participants = [];
   participants.push(participant._id);
@@ -63,9 +63,16 @@ let oldentry = await getSingleData(Entries,{$and:[{$or:[{event: event1event._id}
         await college.save();
         await participant.save();
         
+        let replacements = {
+            name: participant.firstname + " " + participant.lastname,
+            tech1:event1event.name,
+            tech2:event2event.name,
+            nontech:event3event.name,
+            token: singleEntry._id
+        }
         console.log(participant.phone +":"+participant.name + " page created by "+user.phone+":"+user.name + " at "+date);
         try{
-        let mail = await sendmail('/packageverify.html',participant.email,"Spectrum'19 Package Verification",{token:singleEntry._id});
+        let mail = await sendmail('/package-mail.html',participant.email,"Spectrum'19 Package Verification",replacements);
         console.log("Event Entry Mail sended to "+ participant.email);
         } catch(e) {
             console.log("Mail send failed to " + participant.email);

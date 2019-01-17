@@ -43,7 +43,7 @@ module.exports = {
 
        await newEvent.save(async (err)=>{
             if(err) {
- res.send(err);
+     res.send(err);
             }
             else{
                 department.events.push(newEvent._id);

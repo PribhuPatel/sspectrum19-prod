@@ -9,7 +9,7 @@ createEntry: async (req, res) => {
     let payment = 0;
     let user = await getSingleData(Users,{phone: req.user.phone},'_id today_payment registered');
     var event = await getSingleData(Events,{_id: req.body.intrested_event});
-    let participant = await getSingleData(Participants,{phone: req.body.participant},'_id college events payment email');
+    let participant = await getSingleData(Participants,{phone: req.body.participant},'_id firstname lastname college events payment email');
     
   let participants = [];
   participants.push(participant._id);
@@ -74,7 +74,7 @@ createEntry: async (req, res) => {
                     participant.events.push(event._id);
                     participant["payment"] = participant["payment"] + event.price;
                     user["today_payment"] = user["today_payment"] + event.price; 
-                    event["available_entries"] = event["available_entries"] - 1;
+                    // event["available_entries"] = event["available_entries"] - 1;
                     user.registered.entries.push(newEntry._id);
                     college.registered.entries.push(newEntry._id);
                     let singleEntry = new SingleEntries({
@@ -88,8 +88,14 @@ createEntry: async (req, res) => {
                     await event.save();
                     await user.save();
                     await participant.save();
+                    
+        let replacements = {
+            name: participant.firstname + " " + participant.lastname,
+            event:event.name,
+            price: event.price
+        }
                     try{
-                        let mail = await sendmail('/packageverify.html',participant.email,"Spectrum'19 Event Verification",{token:singleEntry._id});
+                        let mail = await sendmail('/single-event.html',participant.email,"Spectrum'19 Event Verification",replacements);
                     console.log(participant.phone +":"+participant.name + " has been created by "+user.phone+":"+user.name + " at "+date);
                         } catch(e) {
                             console.log("Mail send failed to " + participant.email);
