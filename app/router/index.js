@@ -43,7 +43,7 @@ router.get('/verify/:token',async function(req,res){
              tech2.save();
              nontech.save();
         }
-        return res.send("Thank You for verification");
+        return res.render("verify");
     }
         }
     } else {
