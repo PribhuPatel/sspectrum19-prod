@@ -41,9 +41,16 @@ createEntry: async (req, res) => {
            await entry.save();
             await user.save();
            await participant.save();
+
+           let replacements = {
+            name: participant.firstname + " " + participant.lastname,
+            event:event.name,
+            price: event.price,
+            token: singleEntry._id
+        }
            console.log(participant.phone +":"+participant.firstname + " entry created by "+user.phone+":"+user.name + " at "+date);
            try{
-            let mail = await sendmail('/single-event.html',participant.email,"Spectrum'19 Event Verification",{token:singleEntry._id});
+            let mail = await sendmail('/single-event.html',participant.email,"Spectrum'19 Event Verification",replacements);
             console.log("Event Entry Mail sended to "+ participant.email);
             } catch (e){
                 console.log("Mail send failed to " + participant.email);
