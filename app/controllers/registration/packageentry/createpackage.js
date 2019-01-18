@@ -98,7 +98,7 @@ var createNewEntry = async (event,intrested_event,participant,participants,user,
             let entry = await getSingleData(Entries,{$and:[{team_leader: leader_id},{event: event._id},{participants : { "$nin" : participants}}]},'participants payment');
             if(entry.participants.length < event.max_members){
             participant.events.push(event._id);
-            participant["payment"] = participant["payment"] + event.price;
+            // participant["payment"] = participant["payment"] + event.price;
                     
             entry.participants.push(participant._id);
             // entry["payment"] = entry["payment"] + event.price;

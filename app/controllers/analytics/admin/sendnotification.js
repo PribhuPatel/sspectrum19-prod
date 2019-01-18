@@ -7,34 +7,56 @@ var receiptIds = [];
 
 module.exports = {
     sendNotification: async (req, res,next) => {
-        var pushTokens  =await getManyDataWithPopulate(NotificationTokens,{},'participant','participant token','firstname lastname payment');
+      // if(req.bode.event ===null){
+        var pushTokens  =await getManyDataWithPopulate(NotificationTokens,{},'participant','participant token','firstname lastname payment events');
+      // console.log(pushTokens)
         var messages = [];
         for(i=0;i<pushTokens.length;i++)
         {
+          if(req.body.event===null){
         messages.push({
             to: pushTokens[i].token,
             sound: 'default',
-            body: "Hello " + pushTokens[i].participant.firstname + " " +pushTokens[i].participant.lastname +", Your Payment is="+pushTokens[i].participant.payment,
-            data: { withSome: 'data' },
-          })
+            // body: "Hello " + pushTokens[i].participant.firstname + " " +pushTokens[i].participant.lastname +", Your Payment is="+pushTokens[i].participant.payment,
+            body: req.body.message,
+            title:req.body.title,
+            data: { withSome: 'body' },
+          })} else {
+            if(pushTokens[i].events.includes(req.body.event)){
+              messages.push({
+                to: pushTokens[i].token,
+                sound: 'default',
+                // body: "Hello " + pushTokens[i].participant.firstname + " " +pushTokens[i].participant.lastname +", Your Payment is="+pushTokens[i].participant.payment,
+                body: req.body.message,
+                title:req.body.title,
+                data: { withSome: 'body' },
+              })
+            }
+          }
         }
+        // console.log(messages);
 
         var chunks = expo.chunkPushNotifications(messages);
+        // console.log(chunks);
+        
         var tickets = [];
-        (async () => {
+       await (async () => {
           for (let chunk of chunks) {
             try {
               let ticketChunk = await expo.sendPushNotificationsAsync(chunk);
+              console.log(ticketChunk);
+              
               tickets.push(ticketChunk);
             } catch (error) {
               console.error(error);
             }
           }
         })();
+        console.log(tickets);
         return res.json({status: true, tickets:tickets})
     },
 
-    getRecepts: (req,res)=>{ 
+    getReciepts: (req,res)=>{ 
         for (let ticket of tickets) {
           if (ticket.id) {
             receiptIds.push(ticket.id);

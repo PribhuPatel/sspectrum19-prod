@@ -17,8 +17,11 @@ router.get('/',(req,res)=>{
 
 router.get('/verify/:token',async function(req,res){
     let token = req.params.token;
-    if(token.match(/^[0-9a-fA-F]{24}$/)){
+    try{
     let singleEntry = await getSingleData(SingleEntries,{_id:token});
+    } catch(e) {
+        return res.send("Enter valid token");
+    }
     console.log(singleEntry);
     if(singleEntry===null){
         return res.send("Token is not Acceptable");
@@ -31,9 +34,6 @@ router.get('/verify/:token',async function(req,res){
         return res.render("verify");
     }
         }
-    } else {
-        return res.send("Enter valid token");
-    }
 })
 
 module.exports = router;

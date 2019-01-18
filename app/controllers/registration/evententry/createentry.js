@@ -5,7 +5,7 @@ module.exports = {
 createEntry: async (req, res) => {
         let date =localDate();
     let payment = 0;
-    let user = await getSingleData(Users,{phone: req.user.phone},'_id today_payment registered');
+    let user = await getSingleData(Users,{phone: req.user.phone},'_id today_payment registered phone name');
     var event = await getSingleData(Events,{_id: req.body.intrested_event});
     let participant = await getSingleData(Participants,{phone: req.body.participant},'_id firstname lastname college events payment email');
     
@@ -22,13 +22,13 @@ createEntry: async (req, res) => {
             let entry = await getSingleData(Entries,{$and:[{team_leader: leader_id},{event: event._id},{participants : { "$nin" : participants}}]},'participants payment');
             if(entry.participants.length < event.max_members){
             participant.events.push(event._id);
-            if(event.type == "mega"){
-                payment = 0;
-            } else {
+            // if(event.type == "mega"){
+                // payment = 0;
+            // } else {
             participant["payment"] = participant["payment"] + event.price;
             user["today_payment"] = user["today_payment"] + event.price;
             entry["payment"] = entry["payment"] + event.price;
-            }
+            // }
             entry.participants.push(participant._id);
             let singleEntry = new SingleEntries({
                 created_time:date,
@@ -41,7 +41,7 @@ createEntry: async (req, res) => {
            await entry.save();
             await user.save();
            await participant.save();
-           console.log(participant.phone +":"+participant.name + " entry created by "+user.phone+":"+user.name + " at "+date);
+           console.log(participant.phone +":"+participant.firstname + " entry created by "+user.phone+":"+user.name + " at "+date);
            try{
             let mail = await sendmail('/single-event.html',participant.email,"Spectrum'19 Event Verification",{token:singleEntry._id});
             console.log("Event Entry Mail sended to "+ participant.email);
@@ -97,7 +97,7 @@ createEntry: async (req, res) => {
         }
                     try{
                         let mail = await sendmail('/single-event.html',participant.email,"Spectrum'19 Event Verification",replacements);
-                    console.log(participant.phone +":"+participant.name + " has been created by "+user.phone+":"+user.name + " at "+date);
+                    console.log(participant.phone +":"+participant.firstname + " event entry has been created by "+user.phone+":"+user.name + " at "+date);
                         } catch(e) {
                             console.log("Mail send failed to " + participant.email);
                         }
