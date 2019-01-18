@@ -17,8 +17,9 @@ router.get('/',(req,res)=>{
 
 router.get('/verify/:token',async function(req,res){
     let token = req.params.token;
+    var singleEntry;
     try{
-    let singleEntry = await getSingleData(SingleEntries,{_id:token});
+    singleEntry = await getSingleData(SingleEntries,{_id:token});
     } catch(e) {
         return res.send("Enter valid token");
     }

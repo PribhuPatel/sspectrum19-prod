@@ -16,7 +16,7 @@ module.exports = {
 
         //     }
         // }
-        if(participant[0].package._id){
+        if(participant[0].package){
             let role1,role2,role3;
             role1=role2=role3 ='Team Member'
             if(participant[0].package.tech1.team_leader == participant[0]._id){
