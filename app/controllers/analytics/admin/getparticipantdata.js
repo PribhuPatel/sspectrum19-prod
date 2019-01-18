@@ -49,17 +49,17 @@ module.exports = {
                 tech1: {
                     name : participant[0].package.tech1.event.name,
                     role : role1,
-                    members: tech1members
+                    members: tech1members.toString()
                 },
                 tech2: {
                     name : participant[0].package.tech2.event.name,
                     role : role2,
-                    members: tech2members
+                    members: tech2members.toString()
                 },
                 nontech: {
                     name : participant[0].package.nontech.event.name,
                     role : role3,
-                    members: nontechmembers
+                    members: nontechmembers.toString()
                 },
                 verify:verify
             }

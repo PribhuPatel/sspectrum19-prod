@@ -7,7 +7,7 @@ createEntry: async (req, res) => {
     let payment = 0;
     let user = await getSingleData(Users,{phone: req.user.phone},'_id today_payment registered phone name');
     var event = await getSingleData(Events,{_id: req.body.intrested_event});
-    let participant = await getSingleData(Participants,{phone: req.body.participant},'_id firstname lastname college events payment email');
+    let participant = await getSingleData(Participants,{phone: req.body.participant},'_id firstname lastname college events payment email phone');
     
   let participants = [];
   participants.push(participant._id);

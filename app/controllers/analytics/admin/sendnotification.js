@@ -22,7 +22,11 @@ module.exports = {
             title:req.body.title,
             data: { withSome: 'body' },
           })} else {
-            if(pushTokens[i].events.includes(req.body.event)){
+            // console.log(pushTokens[i].participant.events.contains(req.body.event));
+            
+            // if(pushTokens[i].participant.events.includes(req.body.event)){
+             let temp =  JSON.stringify(pushTokens[i].participant.events);
+            if(temp.includes(req.body.event)){
               messages.push({
                 to: pushTokens[i].token,
                 sound: 'default',
@@ -44,15 +48,13 @@ module.exports = {
           for (let chunk of chunks) {
             try {
               let ticketChunk = await expo.sendPushNotificationsAsync(chunk);
-              console.log(ticketChunk);
-              
+             
               tickets.push(ticketChunk);
             } catch (error) {
               console.error(error);
             }
           }
         })();
-        console.log(tickets);
         return res.json({status: true, tickets:tickets})
     },
 

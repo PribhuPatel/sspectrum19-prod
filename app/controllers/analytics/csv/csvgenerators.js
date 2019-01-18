@@ -268,8 +268,8 @@ module.exports = {
         try{
         for(let i=0;i<events.length;i++){
             let entriescount = await getCount(Entries,{event:events[i]._id});
-            // events[i]["available_entries"] =events[i]["max_participants"] - entriescount
-            // events[i].save() 
+            events[i]["available_entries"] =events[i]["max_participants"] - entriescount
+            events[i].save() 
 
             // console.log(entriescount);
             EntriesCounts.push({
