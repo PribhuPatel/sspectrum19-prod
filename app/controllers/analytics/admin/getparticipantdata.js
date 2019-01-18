@@ -88,7 +88,7 @@ module.exports = {
             }
             events.push({
                 name:individual_events[i].entry.event.name,
-                members: teammembers,
+                members: teammembers.toString(),
                 role: role,
                 verify: individual_events[i].verify
             })
