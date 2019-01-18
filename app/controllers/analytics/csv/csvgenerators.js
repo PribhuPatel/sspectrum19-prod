@@ -104,9 +104,9 @@ module.exports = {
         if(req.body.phone !=null){
         let user = await getSingleData(Users,{phone:req.body.phone});
         
-        participants =await getManyDataWithPopulate(Participants,{createby:user._id},'college events','college firstname lastname email phone college payment package events','name');
+        participants =await getManyDataWithPopulate(Participants,{createby:user._id},'college events','college firstname lastname email phone college payment package events','name price type');
         } else {
-            participants =await getManyDataWithPopulate(Participants,{},'college events','college firstname lastname email phone college payment package events','name');
+            participants =await getManyDataWithPopulate(Participants,{},'college events','college firstname lastname email phone college payment package events','name price type');
         
         }
         if(participants.length != 0 ){
@@ -120,10 +120,17 @@ module.exports = {
             if(participants[i].package){
                 package = 50;
                 if(participants[i].events.length>3){
-                    event = event + ((participants[i].events.length-3) *20)
+                    
+                for(let k=0;k<participants[i].events.length;k++){
+                    event = event + participants[i].events[k].price
+                }
+                event = event - 60;
                 }
             } else {
-                event = event + (participants[i].events.length * 20)
+                for(let k=0;k<participants[i].events.length;k++){
+                    event = event + participants[i].events[k].price
+                }
+                // event = event + (participants[i].events.length * )
             }
             // participants[i]["payment"] = package + event;
             // participants[i].save((err)=>{

@@ -8,8 +8,8 @@ module.exports = {
     mongoDB : {
         user: 'admin',
         password: 'shreeji1',
-        host : '34.73.92.20',
-        // host:'localhost',
+        // host : '34.73.92.20',
+        host:'localhost',
         port : 27017,
         database : 'spectrum'
     },   
