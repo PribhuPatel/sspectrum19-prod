@@ -16,4 +16,7 @@ router.post('/gettotalbyuser',require('./csvgenerators').getTotalByUser);
 
 router.get('/getcountbyevents',require('./csvgenerators').getCountbyEvents);
 
+
+router.post('/gettodaytotalbyuser',require('./csvgenerators').getCountbysingleEntries);
+
 module.exports = router;

@@ -1,7 +1,7 @@
 
 
-var {Colleges,Participants, Entries,Users,Packages, Events} = require('../../../middlewares/schemas/schema');
-var {getManyDataWithPopulate, getSingleData, getManyData, getCount} = require('../../../utils/helpers/general_one_helper');
+var {Colleges,Participants, Entries,Users,Packages, Events, SingleEntries} = require('../../../middlewares/schemas/schema');
+var {getManyDataWithPopulate, getSingleData, getManyData, getCount,localDate} = require('../../../utils/helpers/general_one_helper');
 
 module.exports = {
     getParticipants: async (req, res) => {
@@ -125,12 +125,12 @@ module.exports = {
             } else {
                 event = event + (participants[i].events.length * 20)
             }
-            participants[i]["payment"] = package + event;
-            participants[i].save((err)=>{
-                if(err){
-                    console.log(err);
-                }
-            });        
+            // participants[i]["payment"] = package + event;
+            // participants[i].save((err)=>{
+            //     if(err){
+            //         console.log(err);
+            //     }
+            // });        
                if(req.body.phone){
                            
                                 source.push({
@@ -268,8 +268,8 @@ module.exports = {
         try{
         for(let i=0;i<events.length;i++){
             let entriescount = await getCount(Entries,{event:events[i]._id});
-            events[i]["available_entries"] =events[i]["max_participants"] - entriescount
-            events[i].save() 
+            // events[i]["available_entries"] =events[i]["max_participants"] - entriescount
+            // events[i].save() 
 
             // console.log(entriescount);
             EntriesCounts.push({
@@ -282,6 +282,24 @@ module.exports = {
         console.log(e);
     }
         return res.json({entriescount:EntriesCounts});
+    },
+    getCountbysingleEntries:async(req,res)=>{
+        let date = localDate();
+        let da = date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +date.getDate() ;
+           let da1 = date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +(date.getDate()+1) ;
+           da= da.concat(' 00:00:00 UTC')
+           da1= da1.concat(' 00:00:00 UTC')
+           da = new Date(da);
+           da1 = new Date(da1);
+        let entries = await getManyDataWithPopulate(SingleEntries,{$and:[{created_time:{ $gte: da,$lt:  da1}},{createby:req.body.user_id},{package:{$eq:null}}]},'event','event','price');
+        let package = await getCount(SingleEntries,{$and:[{created_time:{ $gte: da,$lt:  da1}},{createby:req.body.user_id},{entry:{$eq:null}}]})
+       var total = 0;
+       for(let i=0;i<entries.length;i++){
+           total = total + entries[i].event.price
+       }
+       
+        total = total + (package *50);
+        return res.send({total:total});
     }
   };
   
