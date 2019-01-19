@@ -320,12 +320,19 @@ module.exports = {
             }
         entries =  await dataByParticipant(SingleEntries,{created_time:{ $gte: da,$lt:  da1}});    
         }
+        if(entries.length != 0){
         for(let i=0;i<entries.length;i++){
             participants.push({
                 "name" : entries[i].participant.firstname + " " + entries[i].participant.lastname,
                 "payment" : entries[i].payment
             });
         }
+    } else {
+        participants.push({
+            "name":"",
+            "payment":""
+        })
+    }
         csv = participants;
         // console.log(da);
         // console.log(da1);
