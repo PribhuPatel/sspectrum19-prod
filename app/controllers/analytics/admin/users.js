@@ -32,6 +32,7 @@ module.exports = {
         var campaign_users=[];
         for(i=0;i<campaignUsers.length;i++){
             let user = {
+                id:campaignUsers[i].id,
                 name :campaignUsers[i].name,
                 phone :campaignUsers[i].phone,
                 email :campaignUsers[i].email,
