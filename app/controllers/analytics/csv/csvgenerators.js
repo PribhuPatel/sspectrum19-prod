@@ -2,6 +2,13 @@
 
 var {Colleges,Participants, Entries,Users,Packages, Events, SingleEntries} = require('../../../middlewares/schemas/schema');
 var {getManyDataWithPopulate, getSingleData, getManyData, getCount,localDate} = require('../../../utils/helpers/general_one_helper');
+const mongoose =  require('mongoose');
+const fs = require('fs');
+const json2csv = require('json2csv').parse;
+const ObjectId = mongoose.Types.ObjectId;
+var csv;
+
+var exec = require('child_process').exec;
 
 module.exports = {
     getParticipants: async (req, res) => {
@@ -298,15 +305,101 @@ module.exports = {
            da1= da1.concat(' 00:00:00 UTC')
            da = new Date(da);
            da1 = new Date(da1);
-        let entries = await getManyDataWithPopulate(SingleEntries,{$and:[{created_time:{ $gte: da,$lt:  da1}},{createby:req.body.user_id},{package:{$eq:null}}]},'event','event','price');
-        let package = await getCount(SingleEntries,{$and:[{created_time:{ $gte: da,$lt:  da1}},{createby:req.body.user_id},{entry:{$eq:null}}]})
-       var total = 0;
-       for(let i=0;i<entries.length;i++){
-           total = total + entries[i].event.price
-       }
-       
-        total = total + (package *50);
-        return res.send({total:total});
+        // let entries = await getManyDataWithPopulate(SingleEntries,{$and:[{created_time:{ $gte: da,$lt:  da1}},{createby:req.body.user_id},{package:{$eq:null}}]},'event','event','price');
+        // let package = await getCount(SingleEntries,{$and:[{created_time:{ $gte: da,$lt:  da1}},{createby:req.body.user_id},{entry:{$eq:null}}]})
+        var participants = [];
+        let entries;
+        if(req.params.user_id!='all'){
+        entries =  await dataByParticipant(SingleEntries,{$and:[{created_time:{ $gte: da,$lt:  da1}},{createby:ObjectId(req.params.user_id)}]});
+        } else {
+        entries =  await dataByParticipant(SingleEntries,{created_time:{ $gte: da,$lt:  da1}});    
+        }
+        for(let i=0;i<entries.length;i++){
+            participants.push({
+                "name" : entries[i].participant.firstname + " " + entries[i].participant.lastname,
+                "payment" : entries[i].payment
+            });
+        }
+        csv = participants;
+        // console.log(da);
+        // console.log(da1);
+        
+        // console.log(data);
+        // return res.json({participants:participants});
+    //     var fields = ['lead', 'salutation', 'fname','lname','title','email','mobile','rating','address','city','state','zcode','company','industry','empSize','lsource'];
+    //     var csv = json2csv({ data: data, fields: fields });
+    //     var path='./public/csv/file'+Date.now()+'.csv'; 
+    //      fs.writeFile(path, csv, function(err,data) {
+    //       if (err) {throw err;}
+    //       else{ 
+    //         res.download(path); // This is what you need
+    //       }
+    //   }); 
+        // await exec("sudo rm -rf dailycsvs/-" '.zip', function (err) { });
+        return res.redirect('/analytics/csv/gettodaytotalbyuserdownload/'+req.params.user_id);
+    },
+    getCountbysingleEntriesDownload:async(req,res)=>{
+        // console.log(csv);
+        
+        // var fields = ["name","payment"];
+        var csvdata = json2csv(csv);
+        // console.log(csvdata);
+        var path='dailycsvs/'+req.params.user_id+'.csv'; 
+        // var createStream = fs.createWriteStream(path);
+        // await createStream.end();
+       await csvGenerate(path,csvdata);
+//    await res.download(path,(req,));
+   return res.status(200).download(path,async function(err){
+    if(err){
+        console.log(err);
+    } else {
+        
+    await  fs.unlink(path, (err) => {
+        if (err) throw err;
+    console.log(path+' was deleted');
+     });
+    }
+})
+
+    //   });
+        // res.download();
     }
   };
   
+var dataByParticipant= async (Collection,query,da,da1,user_id)=>{
+    return new Promise(async (resolve, reject) =>{
+        // console.log(user_id);
+        
+      Collection.aggregate([
+      {$match:query},{
+        $group: { 
+        _id: {participant:"$participant"},
+        payment: { $sum: "$payment" }
+    }
+    }
+    , {
+        "$project": {
+            "_id": null,
+            "participant": "$_id.participant",
+            "payment": "$payment"
+        }} ],function(err,result){
+            SingleEntries.populate(result,{path:'participant',select:'firstname lastname'},function(err,results){
+                (err? reject(err) : resolve(results));   
+            })
+        // console.log(result);
+    } )
+})
+}
+
+var csvGenerate= async(path,csvdata)=>{
+    return new Promise(async (resolve, reject) =>{
+    await fs.writeFile(path, csvdata, async function(err,data) {
+        if (err) {throw err;}
+        else{  // This is what you need
+        //   let check =true;
+          resolve()
+  //   return res.status(200).send("File Downlaoded"); 
+      }
+  });
+})
+}
