@@ -18,5 +18,7 @@ router.use('/getdata',verifyToken, require('./getdata'));
 
 router.use('/csv',require('./csv'));
 
+router.use('/campaigning',verifyToken,require('./campaigning'));
+
 
 module.exports = router;
