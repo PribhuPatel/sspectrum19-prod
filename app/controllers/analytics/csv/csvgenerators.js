@@ -309,9 +309,15 @@ module.exports = {
         // let package = await getCount(SingleEntries,{$and:[{created_time:{ $gte: da,$lt:  da1}},{createby:req.body.user_id},{entry:{$eq:null}}]})
         var participants = [];
         let entries;
+        var user;
         if(req.params.user_id!='all'){
+            user = await getSingleData(Users,{_id:req.params.user_id});
+     
         entries =  await dataByParticipant(SingleEntries,{$and:[{created_time:{ $gte: da,$lt:  da1}},{createby:ObjectId(req.params.user_id)}]});
         } else {
+            user = {
+                phone:"all"
+            }
         entries =  await dataByParticipant(SingleEntries,{created_time:{ $gte: da,$lt:  da1}});    
         }
         for(let i=0;i<entries.length;i++){
@@ -336,7 +342,7 @@ module.exports = {
     //       }
     //   }); 
         // await exec("sudo rm -rf dailycsvs/-" '.zip', function (err) { });
-        return res.redirect('/analytics/csv/gettodaytotalbyuserdownload/'+req.params.user_id);
+        return res.redirect('/analytics/csv/gettodaytotalbyuserdownload/'+user.phone.toString());
     },
     getCountbysingleEntriesDownload:async(req,res)=>{
         // console.log(csv);
@@ -344,7 +350,7 @@ module.exports = {
         // var fields = ["name","payment"];
         var csvdata = json2csv(csv);
         // console.log(csvdata);
-        var path='dailycsvs/'+req.params.user_id+'.csv'; 
+        var path='dailycsvs/'+req.params.user_phone+'.csv'; 
         // var createStream = fs.createWriteStream(path);
         // await createStream.end();
        await csvGenerate(path,csvdata);
