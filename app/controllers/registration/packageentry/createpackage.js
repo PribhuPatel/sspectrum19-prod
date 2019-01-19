@@ -57,7 +57,8 @@ let oldentry = await getSingleData(Entries,{$and:[{$or:[{event: event1event._id}
             created_time:date,
             participant:participant._id,
             package: newPackage._id,
-            createby: user._id
+            createby: user._id,
+            payment:50
         })
         await singleEntry.save();
         await user.save();

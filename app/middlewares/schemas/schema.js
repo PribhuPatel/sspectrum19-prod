@@ -164,7 +164,8 @@ var UserSchema = new Schema({
     package:{type:Schema.Types.ObjectId, ref: 'Packages',default:null},
     verify: {type:Boolean,default:false},
     created_time:{type: Date, default: localDate() },
-    createby:{type: Schema.Types.ObjectId, ref: 'Users', required: true}
+    createby:{type: Schema.Types.ObjectId, ref: 'Users', required: true},
+    payment:{type: Number}
   })
 
 var Revenue = mongoose.model('Revenue',RevenueSchema);

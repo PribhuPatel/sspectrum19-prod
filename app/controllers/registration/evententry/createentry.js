@@ -35,7 +35,8 @@ createEntry: async (req, res) => {
                 participant:participant._id,
                 event: event._id,
                 entry: entry._id,
-                createby: user._id
+                createby: user._id,
+                payment:event.price
             })
             await singleEntry.save();
            await entry.save();
@@ -88,7 +89,8 @@ createEntry: async (req, res) => {
                         participant:participant._id,
                         event: event._id,
                         entry: newEntry._id,
-                        createby: user._id
+                        createby: user._id,
+                        payment:event.price
                     })
                     await singleEntry.save();
                     await college.save();
