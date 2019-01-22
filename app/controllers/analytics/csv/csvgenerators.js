@@ -356,8 +356,9 @@ module.exports = {
         
         // var fields = ["name","payment"];
         var csvdata = json2csv(csv);
-        // console.log(csvdata);
-        var path='dailycsvs/'+req.params.user_phone+'.csv'; 
+        // console.log(csvdata); let date = localDate();
+     let da = date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +date.getDate() ;
+        var path='dailycsvs/'+req.params.user_phone.toString()+da.toString()+'.csv'; 
         // var createStream = fs.createWriteStream(path);
         // await createStream.end();
        await csvGenerate(path,csvdata);

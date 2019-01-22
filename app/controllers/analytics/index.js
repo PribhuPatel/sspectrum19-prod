@@ -1,10 +1,10 @@
 const router = require('express').Router();
 const {verifyToken} = require('../../middlewares/verifytoken');
 
-// router.use('/admin',verifyToken, require('./admin'));
+router.use('/admin',verifyToken, require('./admin'));
 
 
-router.use('/admin',verifyToken,require('./admin'));
+// router.use('/admin',require('./admin'));
 
 router.use('/auth', require('./auth'));
 
@@ -20,5 +20,6 @@ router.use('/csv',require('./csv'));
 
 router.use('/campaigning',verifyToken,require('./campaigning'));
 
+router.use('/emailoptions',require('./emailoptions'));
 
 module.exports = router;

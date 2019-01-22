@@ -19,13 +19,15 @@ module.exports = {
         if(participant[0].package){
             let role1,role2,role3;
             role1=role2=role3 ='Team Member'
-            if(participant[0].package.tech1.team_leader == participant[0]._id){
+            console.log(participant[0].package.tech1.team_leader);
+            
+            if(participant[0].package.tech1.team_leader.toString() == participant[0]._id.toString()){
                 role1 = 'Team Leader'
             }
-            if(participant[0].package.tech2.team_leader == participant[0]._id){
+            if(participant[0].package.tech2.team_leader.toString() == participant[0]._id.toString()){
                 role2 = 'Team Leader'
             }
-            if(participant[0].package.nontech.team_leader == participant[0]._id){
+            if(participant[0].package.nontech.team_leader.toString() == participant[0]._id.toString()){
                 role3 = 'Team Leader'
             }
             let tech1members = [];
@@ -79,7 +81,7 @@ module.exports = {
         // individual_events = individual_events[0];
         for(let i=0;i<individual_events.length;i++){
             let role = 'Team Member'
-            if(individual_events[i].entry.team_leader ==participant[0]._id){
+            if(individual_events[i].entry.team_leader.toString() ==participant[0]._id.toString()){
                 role = 'Team Leader'
             }
             let teammembers = [];
@@ -93,12 +95,12 @@ module.exports = {
                 verify: individual_events[i].verify
             })
         }
-        console.log(individual_events);
+        // console.log(individual_events);
         
         // console.log(participant);
-        console.log(fullpackage);
-        console.log(participantDetails);
-        console.log(events);
+        // console.log(fullpackage);
+        // console.log(participantDetails);
+        // console.log(events);
         // console.log(participant[0].package.tech1);
         // console.log(package);
         
