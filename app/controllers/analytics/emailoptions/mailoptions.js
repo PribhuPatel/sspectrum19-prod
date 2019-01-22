@@ -45,7 +45,7 @@ module.exports = {
     console.log("Mail send failed to " + participant[0].email);
     }
   
-    let events = await getManyDataWithPopulate(SingleEntries,{participant:participant[0]._id},'event','name');
+    let events = await getManyDataWithPopulate(SingleEntries,{participant:participant[0]._id},'event','event','name');
     for(let i=0;i<events.length;i++){
         let replacements = {}
         if(events[i].package ==null){
