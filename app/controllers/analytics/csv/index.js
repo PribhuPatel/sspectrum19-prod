@@ -21,4 +21,14 @@ router.get('/gettodaytotalbyuser/:user_id',require('./csvgenerators').getCountby
 
 router.get('/gettodaytotalbyuserdownload/:user_phone',require('./csvgenerators').getCountbysingleEntriesDownload);
 
+router.get('/getallparticipantwithpayment',require('./csvgenerators').getAllParticipantWithPayment);
+
+// router.post('/getusersdatabydate',require('./csvgenerators').getUserDataByDate);
+
+router.get('/getusersdatabydate/:date',require('./csvgenerators').getUserDataByDate);
+
+router.get('/getrevenuereport/',require('./csvgenerators').getRevenueReport);
+
+router.get('/geteventsreport/',require('./csvgenerators').getEventReport);
+
 module.exports = router;

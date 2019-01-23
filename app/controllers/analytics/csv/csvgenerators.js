@@ -1,6 +1,6 @@
 
 
-var {Colleges,Participants, Entries,Users,Packages, Events, SingleEntries} = require('../../../middlewares/schemas/schema');
+var {Colleges,Participants, Entries,Users,Packages, Events, SingleEntries, Revenue} = require('../../../middlewares/schemas/schema');
 var {getManyDataWithPopulate, getSingleData, getManyData, getCount,localDate} = require('../../../utils/helpers/general_one_helper');
 const mongoose =  require('mongoose');
 const fs = require('fs');
@@ -368,7 +368,7 @@ module.exports = {
         // console.log(csvdata); let date = localDate();
         let date = localDate();
      let da = date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +date.getDate() ;
-        var path='dailycsvs/'+req.params.user_phone.toString()+da.toString()+'.csv'; 
+        var path='dailycsvs/'+req.params.user_phone.toString()+'-'+da.toString()+'.csv'; 
         // var createStream = fs.createWriteStream(path);
         // await createStream.end();
        await csvGenerate(path,csvdata);
@@ -378,16 +378,101 @@ module.exports = {
         console.log(err);
     } else {
         
-    await  fs.unlink(path, (err) => {
-        if (err) throw err;
-    console.log(path+' was deleted');
-     });
+    // await  fs.unlink(path, (err) => {
+    //     if (err) throw err;
+    // console.log(path+' was deleted');
+    //  });
     }
 })
 
     //   });
         // res.download();
-    }
+    },
+    getAllParticipantWithPayment:async(req,res)=>{
+        participants =await getManyData(Participants,{},'firstname lastname payment');
+        sources = []
+        for(let i=0;i<participants.length;i++){
+            sources.push({
+                "firstname":participants[i].firstname,
+                "lastname":participants[i].lastname,
+                "payment":participants[i].payment
+            });
+        }
+        var csvdata = json2csv(sources);
+        
+        var path='all.csv';
+        await csvGenerate(path,csvdata);
+        return res.status(200).send("done");
+    },
+    getUserDataByDate:async(req,res)=>{
+        let date = req.params.date;
+        da= date.concat(' 00:00:00 UTC')
+        da = new Date(da);
+           let da1 = da.getFullYear()+ '-'+(da.getMonth()+1)+'-' +(da.getDate()+1) ;
+           da1= da1.concat(' 00:00:00 UTC')
+           da1 = new Date(da1);
+           console.log(da);
+           
+           var usersDetails = [];
+           let users = await getManyData(Users,{},'name phone payment_history');
+       for(let i =0;i<users.length;i++){
+           console.log(users[i].payment_history[0].date.toISOString().split('T')[0]);
+           
+           let index = users[i].payment_history.findIndex(x=>x.date.toISOString().split('T')[0]==date.toString());
+
+           let payment; 
+        if(index==-1){
+                payment = 0;
+            } else {
+               payment = users[i].payment_history[index].payment;
+            }
+
+           let packages = await getCount(SingleEntries,{$and:[{created_time:{ $gte: da,$lt:  da1}},{createby:users[i]._id},{package:{$ne:null}}]});
+            let events = await getCount(SingleEntries,{$and:[{created_time:{ $gte: da,$lt:  da1}},{createby:users[i]._id},{package:{$eq:null}}]});
+           // let package_total = 50 * packages;
+            usersDetails.push({
+                name:users[i].name,
+                phone:users[i].phone,
+                package: packages,
+                events:events,
+                payment: payment
+            })
+       }
+       var path='oldcsvs/'+date.toString()+'.csv'; 
+
+       var csvdata = json2csv(usersDetails);
+      await csvGenerate(path,csvdata);
+          return res.status(200).download(path,async function(err){
+       if(err){
+          console.log(err);
+      } else {
+       
+      } 
+    })
+},
+    getRevenueReport:async (req,res)=>{
+        let revenue = await getManyData(Revenue,{});
+         var revenues =[];
+         for(let i=0;i<revenue.length;i++){
+        revenues.push({
+        "date": revenue[i].date.toISOString().split('T')[0],
+        "revenue":revenue[i].revenue
+        })  
+         }
+        return res.json({status:true,revenue_data:revenues});
+    },
+    getEventReport:async (req,res)=>{
+        let events = await getManyDataWithPopulate(Events,{},'department','name max_participants available_entries','name');
+        var event_details = []
+        for(let i=0;i<events.length;i++){
+            event_details.push({
+                name:events[i].name,
+                department:events[i].department.name,
+                team_registered: events[i].max_participants - events[i].available_entries
+            })
+        }
+    return res.json({status:true,events:event_details});
+        }
   };
   
 var dataByParticipant= async (Collection,query,da,da1,user_id)=>{
