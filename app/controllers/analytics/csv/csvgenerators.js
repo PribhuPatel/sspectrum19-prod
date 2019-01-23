@@ -195,15 +195,24 @@ module.exports = {
     getTotalByUser: async (req, res) => {
         var clashParticipants =[];
         let user1  = await getSingleData(Users,{phone:req.body.user1});
-        let user2 = await getSingleData(Users,{phone:req.body.user2});
-        let participants = await getManyData(Participants,{createby:user1._id});
-        for(i=0;i<participants.length;i++){
-            let partis = [];
-            partis.push(participants[i]._id);
-        let clash_participant = await getManyData(Entries,{$and:[{created_by:user2._id},{participants:{"$in":partis}}]});
-            clashParticipants.push(clash_participant);
-    }
-        return res.json({status:true,clashparti:clashParticipants});
+        let date = localDate();
+        let da = date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +date.getDate() ;
+           let da1 = date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +(date.getDate()+1) ;
+           da= da.concat(' 00:00:00 UTC')
+           da1= da1.concat(' 00:00:00 UTC')
+           da = new Date(da);
+           da1 = new Date(da1);
+        // let user2 = await getSingleData(Users,{phone:req.body.user2});
+        let entries = await getManyData(SingleEntries,{createby:user1._id,created_time:{ $gte: da,$lt:  da1}});
+
+        // let participants = await getManyData(Participants,{createby:user1._id});
+    //     for(i=0;i<participants.length;i++){
+    //         let partis = [];
+    //         partis.push(participants[i]._id);
+    //     let clash_participant = await getManyData(Entries,{$and:[{created_by:user2._id},{participants:{"$in":partis}}]});
+    //         clashParticipants.push(clash_participant);
+    // }
+        return res.json({status:true,entries:entries});
         // var source = [];
         // var participants;
         // console.log("asd");
@@ -357,6 +366,7 @@ module.exports = {
         // var fields = ["name","payment"];
         var csvdata = json2csv(csv);
         // console.log(csvdata); let date = localDate();
+        let date = localDate();
      let da = date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +date.getDate() ;
         var path='dailycsvs/'+req.params.user_phone.toString()+da.toString()+'.csv'; 
         // var createStream = fs.createWriteStream(path);
