@@ -13,7 +13,7 @@ var exec = require('child_process').exec;
 module.exports = {
     getParticipants: async (req, res) => {
         var source = [];
-        var participants =await getManyDataWithPopulate(Participants,{},'college','college firstname lastname email phone college payment','name');
+        var participants =await getManyDataWithPopulate(Participants,{createby:{$ne:'5c4032db44dcf010af3c8cf6'}},'college','college firstname lastname email phone college payment','name');
         if(participants.length != 0 ){
         for(var i = 0; i < participants.length; i++) {
                                 source.push({
@@ -78,7 +78,7 @@ module.exports = {
     },
     getByCollege: async (req,res)=>{
         var source = [];
-        var participants = await getManyDataWithPopulate(Participants,{college : req.body.college_id},'events','firstname lastname email phone','name');
+        var participants = await getManyDataWithPopulate(Participants,{college : req.body.college_id,createby:{$ne:'5c4032db44dcf010af3c8cf6'}},'events','firstname lastname email phone','name');
         if(participants.length != 0 ){
             for(var i = 0; i < participants.length; i++) {
                                     let participant = {
@@ -389,7 +389,7 @@ module.exports = {
         // res.download();
     },
     getAllParticipantWithPayment:async(req,res)=>{
-        participants =await getManyData(Participants,{},'firstname lastname payment');
+        participants =await getManyData(Participants,{createby:{$ne:'5c4032db44dcf010af3c8cf6'}},'firstname lastname payment');
         sources = []
         for(let i=0;i<participants.length;i++){
             sources.push({
@@ -474,27 +474,65 @@ module.exports = {
     return res.json({status:true,events:event_details});
         },
         getDatebysingleEntries:async(req,res)=>{
-            let date = req.params.date;
-        da= date.concat(' 00:00:00 UTC')
+            var date = req.params.date;
+        var da= date.concat(' 00:00:00 UTC')
         da = new Date(da);
-           let da1 = da.getFullYear()+ '-'+(da.getMonth()+1)+'-' +(da.getDate()+1) ;
+           var da1 = da.getFullYear()+ '-'+(da.getMonth()+1)+'-' +(da.getDate()+1) ;
            da1= da1.concat(' 00:00:00 UTC')
            da1 = new Date(da1);
            var participants = [];
-        //    if(date == '2019-01-17' || date == '2019-01-18'){
-        //         let allentries = await 
-        //    } else {
-            // let da = date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +date.getDate() ;
-            //    let da1 = date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +(date.getDate()+1) ;
-            //    da= da.concat(' 00:00:00 UTC')
-            //    da1= da1.concat(' 00:00:00 UTC')
-            //    da = new Date(da);
-            //    da1 = new Date(da1);
-            // let entries = await getManyDataWithPopulate(SingleEntries,{$and:[{created_time:{ $gte: da,$lt:  da1}},{createby:req.body.user_id},{package:{$eq:null}}]},'event','event','price');
-            // let package = await getCount(SingleEntries,{$and:[{created_time:{ $gte: da,$lt:  da1}},{createby:req.body.user_id},{entry:{$eq:null}}]})
-          
-            let entries;
-            var user;
+            var parti = []             
+           let entries;
+           var user;
+         
+           if(date == '2019-01-17' || date == '2019-01-18'){
+            if(req.params.user_id!='all'){
+                user = await getSingleData(Users,{phone:req.params.user_id},'_id phone');
+            //    console.log(user);
+                
+            entries =  await getManyDataWithPopulate(SingleEntries,{$and:[{created_time:{ $gte: da,$lt:  da1}},{createby:user._id}]},'event participant','event participant','firstname lastname price');
+            } else {
+                user = {
+                    phone:"all"
+                }
+            entries =  await getManyDataWithPopulate(SingleEntries,{created_time:{ $gte: da,$lt:  da1}},'event participant','event participant package','firstname lastname price');    
+            
+        }
+        // console.log(entries.length);
+        // console.log(da);
+        // console.log(da1);
+
+            for(let i=0;i<entries.length;i++){
+                // console.log(entries[i].event);
+                   
+                let payment = 0;
+                    if(entries[i].event ==null){
+                        payment = 50;
+                        
+                    } else {
+                        payment = entries[i].event.price;
+                    }
+                    // console.log("sad");
+                    
+                    let index = participants.findIndex(x => x.id.toString()==entries[i].participant._id.toString());
+                    // console.log(index);
+                    
+                    if(index  ==-1){         
+                        participants.push({
+                            id: entries[i].participant._id,
+                            name: entries[i].participant.firstname + " " + entries[i].participant.lastname,
+                            payment: payment
+                        })
+                    } else {
+                        participants[index]["payment"] = participants[index]["payment"] + payment
+                    }
+                }
+                for(let i=0;i<participants.length;i++)
+                delete participants[i]["id"]; 
+            // parti.push
+            // console.log(participants);
+            // return res.send("wqeqe");
+           } else {
             if(req.params.user_id!='all'){
                 user = await getSingleData(Users,{phone:req.params.user_id});
                 // console.log(user);
@@ -506,6 +544,15 @@ module.exports = {
                 }
             entries =  await dataByParticipant(SingleEntries,{created_time:{ $gte: da,$lt:  da1}});    
             }
+            // let da = date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +date.getDate() ;
+            //    let da1 = date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +(date.getDate()+1) ;
+            //    da= da.concat(' 00:00:00 UTC')
+            //    da1= da1.concat(' 00:00:00 UTC')
+            //    da = new Date(da);
+            //    da1 = new Date(da1);
+            // let entries = await getManyDataWithPopulate(SingleEntries,{$and:[{created_time:{ $gte: da,$lt:  da1}},{createby:req.body.user_id},{package:{$eq:null}}]},'event','event','price');
+            // let package = await getCount(SingleEntries,{$and:[{created_time:{ $gte: da,$lt:  da1}},{createby:req.body.user_id},{entry:{$eq:null}}]})
+ 
             if(entries.length != 0){
             for(let i=0;i<entries.length;i++){
                 participants.push({
@@ -519,7 +566,7 @@ module.exports = {
                 "payment":""
             })
         }
-    // }
+    }
             // csv = participants;
             var path='oldparticipantcsvs/'+user.phone+date.toString()+'.csv'; 
 
@@ -550,7 +597,7 @@ module.exports = {
         // }
   }
 }
-var dataByParticipant= async (Collection,query,da,da1,user_id)=>{
+var dataByParticipant= async (Collection,query)=>{
     return new Promise(async (resolve, reject) =>{
         // console.log(user_id);
         
@@ -574,6 +621,7 @@ var dataByParticipant= async (Collection,query,da,da1,user_id)=>{
     } )
 })
 }
+
 
 var csvGenerate= async(path,csvdata)=>{
     return new Promise(async (resolve, reject) =>{

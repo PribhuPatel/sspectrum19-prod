@@ -20,7 +20,7 @@ module.exports = {
             if(departments.includes(department)){
                 for(let j=0;j<alldepartments.length;j++){
                 if(alldepartments[j].name==department){
-                    alldepartments[j].registered_teams  = alldepartments[j].registered_teams + event.total_groups;
+                    alldepartments[j].total_groups = alldepartments[j].total_groups + event.total_groups;
                     alldepartments[j].total_revenue  = alldepartments[j].total_revenue + event.total_revenue;
                     break;
                 }

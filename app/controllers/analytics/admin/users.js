@@ -45,7 +45,9 @@ module.exports = {
 function getProcessedData(){
     return new Promise(async(resolve, reject) =>{
 await  Participants.aggregate(
-    [{ $lookup: {
+    [
+        {$match:{createby:{$ne:'5c4032db44dcf010af3c8cf6'}}},
+    { $lookup: {
         from: "colleges",
         localField: "college",
         foreignField: "_id",
