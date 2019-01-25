@@ -411,12 +411,12 @@ module.exports = {
            let da1 = da.getFullYear()+ '-'+(da.getMonth()+1)+'-' +(da.getDate()+1) ;
            da1= da1.concat(' 00:00:00 UTC')
            da1 = new Date(da1);
-           console.log(da);
+        //    console.log(da);
            
            var usersDetails = [];
            let users = await getManyData(Users,{},'name phone payment_history');
        for(let i =0;i<users.length;i++){
-           console.log(users[i].payment_history[0].date.toISOString().split('T')[0]);
+        //    console.log(users[i].payment_history[0].date.toISOString().split('T')[0]);
            
            let index = users[i].payment_history.findIndex(x=>x.date.toISOString().split('T')[0]==date.toString());
 
@@ -472,9 +472,84 @@ module.exports = {
             })
         }
     return res.json({status:true,events:event_details});
+        },
+        getDatebysingleEntries:async(req,res)=>{
+            let date = req.params.date;
+        da= date.concat(' 00:00:00 UTC')
+        da = new Date(da);
+           let da1 = da.getFullYear()+ '-'+(da.getMonth()+1)+'-' +(da.getDate()+1) ;
+           da1= da1.concat(' 00:00:00 UTC')
+           da1 = new Date(da1);
+           var participants = [];
+        //    if(date == '2019-01-17' || date == '2019-01-18'){
+        //         let allentries = await 
+        //    } else {
+            // let da = date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +date.getDate() ;
+            //    let da1 = date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +(date.getDate()+1) ;
+            //    da= da.concat(' 00:00:00 UTC')
+            //    da1= da1.concat(' 00:00:00 UTC')
+            //    da = new Date(da);
+            //    da1 = new Date(da1);
+            // let entries = await getManyDataWithPopulate(SingleEntries,{$and:[{created_time:{ $gte: da,$lt:  da1}},{createby:req.body.user_id},{package:{$eq:null}}]},'event','event','price');
+            // let package = await getCount(SingleEntries,{$and:[{created_time:{ $gte: da,$lt:  da1}},{createby:req.body.user_id},{entry:{$eq:null}}]})
+          
+            let entries;
+            var user;
+            if(req.params.user_id!='all'){
+                user = await getSingleData(Users,{phone:req.params.user_id});
+                // console.log(user);
+                
+            entries =  await dataByParticipant(SingleEntries,{$and:[{created_time:{ $gte: da,$lt:  da1}},{createby:user._id}]});
+            } else {
+                user = {
+                    phone:"all"
+                }
+            entries =  await dataByParticipant(SingleEntries,{created_time:{ $gte: da,$lt:  da1}});    
+            }
+            if(entries.length != 0){
+            for(let i=0;i<entries.length;i++){
+                participants.push({
+                    "name" : entries[i].participant.firstname + " " + entries[i].participant.lastname,
+                    "payment" : entries[i].payment
+                });
+            }
+        } else {
+            participants.push({
+                "name":"",
+                "payment":""
+            })
         }
-  };
-  
+    // }
+            // csv = participants;
+            var path='oldparticipantcsvs/'+user.phone+date.toString()+'.csv'; 
+
+            var csvdata = json2csv(participants);
+           await csvGenerate(path,csvdata);
+               return res.status(200).download(path,async function(err){
+            if(err){
+               console.log(err);
+           } else {
+            
+           }}) 
+            // console.log(da);
+            // console.log(da1);
+            
+            // console.log(data);
+            // return res.json({participants:participants});
+        //     var fields = ['lead', 'salutation', 'fname','lname','title','email','mobile','rating','address','city','state','zcode','company','industry','empSize','lsource'];
+        //     var csv = json2csv({ data: data, fields: fields });
+        //     var path='./public/csv/file'+Date.now()+'.csv'; 
+        //      fs.writeFile(path, csv, function(err,data) {
+        //       if (err) {throw err;}
+        //       else{ 
+        //         res.download(path); // This is what you need
+        //       }
+        //   }); 
+            // await exec("sudo rm -rf dailycsvs/-" '.zip', function (err) { });
+            // return res.redirect('/analytics/csv/gettodaytotalbyuserdownload/'+user.phone.toString());
+        // }
+  }
+}
 var dataByParticipant= async (Collection,query,da,da1,user_id)=>{
     return new Promise(async (resolve, reject) =>{
         // console.log(user_id);

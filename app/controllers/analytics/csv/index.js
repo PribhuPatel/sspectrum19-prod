@@ -19,6 +19,8 @@ router.get('/getcountbyevents',require('./csvgenerators').getCountbyEvents);
 
 router.get('/gettodaytotalbyuser/:user_id',require('./csvgenerators').getCountbysingleEntries);
 
+router.get('/getusersdatabydate/:user_id/:date',require('./csvgenerators').getDatebysingleEntries);
+
 router.get('/gettodaytotalbyuserdownload/:user_phone',require('./csvgenerators').getCountbysingleEntriesDownload);
 
 router.get('/getallparticipantwithpayment',require('./csvgenerators').getAllParticipantWithPayment);
