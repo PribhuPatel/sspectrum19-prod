@@ -11,7 +11,7 @@ module.exports = {
         host : '34.73.92.20',
         // host:'ds135003.mlab.com',
         // port:35003,
-        host:'localhost',
+        // host:'localhost',
         port : 27017,
         database : 'spectrum'
     },   

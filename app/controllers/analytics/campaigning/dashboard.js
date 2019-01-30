@@ -42,7 +42,7 @@ module.exports = {
     let users = await getManyData(Users, {},'name phone today_payment');
     var usersdata = [];
     for(let i=0;i<users.length;i++){
-        let today_registered = await getCount(Participants,{$and:[{created_time:{ $gte: da,$lt:  da1}},{createby:users[i]._id}]});
+        let today_registered = await getCount(Participants,{$and:[{created_date:{ $gte: da,$lt:  da1}},{createby:users[i]._id}]});
         usersdata.push({
             id:users[i]._id,
             phone: users[i].phone,
