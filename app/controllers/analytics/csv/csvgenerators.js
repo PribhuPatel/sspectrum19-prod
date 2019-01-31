@@ -198,7 +198,7 @@ module.exports = {
         let date = localDate();
         let da = date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +date.getDate() ;
         if(date.getDate()==31){
-                let da1 = date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +(date.getDate()) ;
+                let da1 = date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +(1) ;
 
              } else {
                 let da1 = date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +(date.getDate()+1) ;
@@ -315,7 +315,7 @@ module.exports = {
         let date = localDate();
         let da = date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +date.getDate() ;
         if(date.getDate()==31){
-                let da1 = date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +(date.getDate()) ;
+                let da1 = date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +(1) ;
 
              } else {
                 let da1 = date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +(date.getDate()+1) ;

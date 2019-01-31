@@ -6,15 +6,15 @@ var {getSingleData,getManyDataWithPopulate, getCount,localDate} = require('../..
 module.exports = {
     dashboard: async (req, res,next) => {
         let user = await getSingleData(Users,{phone: req.user.phone});
-        
+
         if(user===null){
             return res.json({status: true,message:"No User Found"});
     }else{
         let date = localDate();
      let da = date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +date.getDate() ;
      if(date.getDate()==31){
-        let da1 = date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +(date.getDate()) ;
-         
+        let da1 = date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +(1) ;
+
      } else {
         let da1 = date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +(date.getDate()+1) ;
      }
@@ -32,4 +32,3 @@ module.exports = {
     }
 }
   };
-  
