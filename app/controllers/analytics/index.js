@@ -18,9 +18,9 @@ router.use('/getdata',verifyToken, require('./getdata'));
 
 router.use('/csv',require('./csv'));
 
-router.use('/campaigning',require('./campaigning'));
+// router.use('/campaigning',require('./campaigning'));
 
-// router.use('/campaigning',verifyToken,require('./campaigning'));
+router.use('/campaigning',verifyToken,require('./campaigning'));
 
 router.use('/emailoptions',require('./emailoptions'));
 
