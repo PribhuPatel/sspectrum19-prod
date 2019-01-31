@@ -8,7 +8,12 @@ module.exports = {
     //   let colleges =[];
     let date = localDate();
     let da = date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +date.getDate() ;
-       let da1 = date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +(date.getDate()+1) ;
+    if(date.getDate()==31){
+            let da1 = date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +(date.getDate()) ;
+
+         } else {
+            let da1 = date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +(date.getDate()+1) ;
+         }
        da= da.concat(' 00:00:00 UTC')
        da1= da1.concat(' 00:00:00 UTC')
        da = new Date(da);
@@ -27,10 +32,10 @@ module.exports = {
         //     });
         // }
         // let check = await getSingleData(GlobalVars,{key:'portal_status'},'value');
-        
+
     //   let daily_revenue = await getManyData(Revenue,{});
       let revenue = await Revenue.aggregate([{
-          $group: { 
+          $group: {
           _id: null,
           revenue: { $sum: "$revenue" }
       }
@@ -57,7 +62,7 @@ module.exports = {
         });
     }
   };
-  
+
 
   // var runForEach = async (Participants)=>{
   //       let payment = 0;
