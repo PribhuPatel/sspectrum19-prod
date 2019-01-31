@@ -197,11 +197,12 @@ module.exports = {
         let user1  = await getSingleData(Users,{phone:req.body.user1});
         let date = localDate();
         let da = date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +date.getDate() ;
+        let da1;
         if(date.getDate()==31){
-                let da1 = date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +(1) ;
+                da1 = date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +(1) ;
 
              } else {
-                let da1 = date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +(date.getDate()+1) ;
+                da1 = date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +(date.getDate()+1) ;
              }
            da= da.concat(' 00:00:00 UTC')
            da1= da1.concat(' 00:00:00 UTC')
@@ -314,11 +315,12 @@ module.exports = {
     getCountbysingleEntries:async(req,res)=>{
         let date = localDate();
         let da = date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +date.getDate() ;
+        let da1;
         if(date.getDate()==31){
-                let da1 = date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +(1) ;
+                da1 = date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +(1) ;
 
              } else {
-                let da1 = date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +(date.getDate()+1) ;
+                da1 = date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +(date.getDate()+1) ;
              }
            da= da.concat(' 00:00:00 UTC')
            da1= da1.concat(' 00:00:00 UTC')

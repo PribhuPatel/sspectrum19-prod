@@ -12,11 +12,12 @@ module.exports = {
     }else{
         let date = localDate();
      let da = date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +date.getDate() ;
+     let da1;
      if(date.getDate()==31){
-        let da1 = date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +(1) ;
+        da1 = date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +(1) ;
 
      } else {
-        let da1 = date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +(date.getDate()+1) ;
+        da1 = date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +(date.getDate()+1) ;
      }
         da= da.concat(' 00:00:00 UTC')
 
