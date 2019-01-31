@@ -199,7 +199,7 @@ module.exports = {
         let da = date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +date.getDate() ;
         let da1;
         if(date.getDate()==31){
-                da1 = date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +(1) ;
+                da1 = date.getFullYear()+ '-'+(date.getMonth()+2)+'-' +(1) ;
 
              } else {
                 da1 = date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +(date.getDate()+1) ;
@@ -317,7 +317,7 @@ module.exports = {
         let da = date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +date.getDate() ;
         let da1;
         if(date.getDate()==31){
-                da1 = date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +(1) ;
+                da1 = date.getFullYear()+ '-'+(date.getMonth()+2)+'-' +(1) ;
 
              } else {
                 da1 = date.getFullYear()+ '-'+(date.getMonth()+1)+'-' +(date.getDate()+1) ;
