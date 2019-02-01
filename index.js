@@ -37,6 +37,11 @@ app.use('/registration',verifyToken,require('./app/controllers/registration'));
 app.use('/user',verifyToken,require('./app/controllers/user'));
 app.use('/analytics',require('./app/controllers/analytics'));
 app.use('/application',require('./app/controllers/application'));
+
+// app.use('/qrapp',require('./app/controllers/qrapp'));
+
+
+
 app.post('/cron/:password',require('./app/controllers/cronjob').runCron);
 app.get('/cron/downloaddb/:password',require('./app/controllers/cronjob').downloadDB);
 

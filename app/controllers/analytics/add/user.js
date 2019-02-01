@@ -59,7 +59,9 @@ module.exports = {
     }
        await user.save(async (err)=>{
             if(err) {
-              return res.json({status: true, userAdded: false, error: true, alreadyAdded: fasle,coordinator_added:coordinator_added});
+                console.log(err);
+                
+              return res.json({status: true, userAdded: false, error: true, alreadyAdded: false,coordinator_added:coordinator_added});
             }
             else{
                 if(req.body.role == 'student_coordinator'){
