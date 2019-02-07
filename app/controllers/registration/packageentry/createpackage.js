@@ -26,7 +26,7 @@ createPackage: async (req, res) => {
 let oldentry = await getSingleData(Entries,{$and:[{$or:[{event: event1event._id},{event: event2event._id},{event: event3event._id}]}, {participants : { "$in" : participants}}]});
 
     if(oldentry === null && participant.package === null){
-    if(event1event.available_entries != 0 && event2event.available_entries != 0 && event3event.available_entries != 0){
+    if((event1event.available_entries != 0  || event1.leader_phone != '') && (event2event.available_entries != 0  || event2.leader_phone != '') && (event3event.available_entries != 0  || event3.leader_phone != '')){
       let event1entry =  await createNewEntry(event1event,event1,participant,participants,user,date,college);
       let event2entry =  await createNewEntry(event2event,event2,event1entry.participant,participants,event1entry.user,date,event1entry.college);
       let event3entry =  await createNewEntry(event3event,event3,event2entry.participant,participants, event2entry.user,date,event2entry.college);

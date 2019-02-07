@@ -33,4 +33,6 @@ router.get('/getrevenuereport/',require('./csvgenerators').getRevenueReport);
 
 router.get('/geteventsreport/',require('./csvgenerators').getEventReport);
 
+router.get('/geteventslist/',require('./csvgenerators').getEventList);
+
 module.exports = router;

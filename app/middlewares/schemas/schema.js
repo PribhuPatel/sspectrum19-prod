@@ -114,6 +114,11 @@ var UserSchema = new Schema({
     // package:{type:Schema.Types.ObjectId,ref:Packages}
   });
 
+  var VolunteerSchema = new Schema({
+    name:{type:String},
+    role:{type:String}
+  })
+
 
   var GlobalVarSchema= new Schema({
     key: {type: String, required: true,unique:true},
@@ -182,7 +187,8 @@ var Admins = mongoose.model('Admins', AdminsSchema);
 var Packages= mongoose.model('Packages', PackageSchema);
 var NotificationTokens= mongoose.model('NotificationTokens', NotificationTokenSchema);
 var SingleEntries= mongoose.model('SingleEntries', SingleEntriesSchema);
+var Volunteers= mongoose.model('Volunteers', VolunteerSchema);
 
 module.exports = {
-    Users,Participants, Events, Departments, Entries, GlobalVars, Tokens, Colleges, Admins, Schedules,Revenue,Packages, NotificationTokens,SingleEntries
+    Users,Participants, Events, Departments, Entries, GlobalVars, Tokens, Colleges, Admins, Schedules,Revenue,Packages, NotificationTokens,SingleEntries, Volunteers
 }

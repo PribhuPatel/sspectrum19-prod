@@ -607,7 +607,31 @@ module.exports = {
             // await exec("sudo rm -rf dailycsvs/-" '.zip', function (err) { });
             // return res.redirect('/analytics/csv/gettodaytotalbyuserdownload/'+user.phone.toString());
         // }
-  }
+  },
+  getEventList:async(req,res)=>{
+        var eventsList =[];        
+    let events = await getManyDataWithPopulate(Events,{},'department','name max_participants min_members max_members','name');
+            for(let i=0;i<events.length;i++){
+                eventsList.push({
+                    name:events[i].name,
+                    department:events[i].department.name,
+                    max_participants:events[i].max_participants,
+                    min_members: events[i].min_members,
+                    max_members:events[i].max_members
+                })
+            }
+            var path='eventslist.csv';
+
+            var csvdata = await json2csv(eventsList);
+           await csvGenerate(path,csvdata);
+           return res.status(200).send("Generated");
+            //    return res.status(200).download(path,async function(err){
+            // if(err){
+            //    console.log(err);
+        //    } else {
+
+        //    }})
+  } 
 }
 var dataByParticipant= async (Collection,query)=>{
     return new Promise(async (resolve, reject) =>{

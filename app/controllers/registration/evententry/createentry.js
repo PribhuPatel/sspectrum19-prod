@@ -16,7 +16,7 @@ createEntry: async (req, res) => {
     var leader_id = null;
     payment = event.price;
     if(oldentry === null){
-    if(event.available_entries != 0){
+    if(event.available_entries != 0 || req.body.leader_phone!=undefined){
         if(req.body.leader_phone){
             leader_id = await getSingleData(Participants,{phone:req.body.leader_phone});
             let entry = await getSingleData(Entries,{$and:[{team_leader: leader_id},{event: event._id},{participants : { "$nin" : participants}}]},'participants payment');

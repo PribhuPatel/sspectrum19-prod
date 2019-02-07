@@ -48,6 +48,9 @@ app.get('/cron/downloaddb/:password',require('./app/controllers/cronjob').downlo
 app.post('/csv/getbyuser',require('./app/controllers/csv').getByUser);
 
 
+// app.get('/generatevolunteerqr',require('./app/controllers/volunteerqr').generateVolunteerQr);
+
+
 // var port = process.env.PORT || 5000;
 var port = 80;
   // catch 404 and forward to error handler

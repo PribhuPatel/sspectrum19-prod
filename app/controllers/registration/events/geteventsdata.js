@@ -27,7 +27,7 @@ module.exports = {
     }
     },
     getEvents: async(req,res)=>{
-        let events = await getManyData(Events,{available_entries: {$ne: 0 }},'name max_members min_members');
+        let events = await getManyData(Events,{},'name max_members min_members');
 
         if(events.length===0){
             res.json({status: false});
