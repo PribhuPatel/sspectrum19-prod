@@ -1,722 +1,730 @@
 module.exports=[
-        {
-            name: "Harshil Bhuva",
-            role: "Team Machinovate"
-        },
-        {
-            name: "Jay Raval",
-            role: "Team Machinovate"
-        },
-        {
-            name: "Patel Vishwas",
-            role: "Team Machinovate"
-        },
-        {
-            name: "Naigam Bhatt",
-            role: "Team Machinovate"
-        },
-        {
-            name: "Brijesh Gajjar",
-            role: "Team Machinovate"
-        },
-        {
-            name: "Darpan Patel",
-            role: "Team Machinovate"
-        },
-        {
-            name: "Sagar Kriplani",
-            role: "Team Machinovate"
-        },
-        {
-            name: "Jay Viradiya",
-            role: "Team Machinovate"
-        },
-        {
-            name: "Harsh Patel",
-            role: "Team Machinovate"
-        },
-        {
-            name: "Pritraj Ravalji",
-            role: "Team Machinovate"
-        },
-        {
-            name: "Faisal Vahora",
-            role: "Team Machinovate"
-        },
-        {
-            name: "Adit Shah",
-            role: "Team Machinovate"
-        },
-        {
-            name: "Sahil Ragnekar",
-            role: "Team Machinovate"
-        },
-        {
-            name: "Shaswat Jadav",
-            role: "Team Machinovate"
-        },
-        {
-            name: "Nidhi Patel",
-            role: "Team Machinovate"
-        },
-        {
-            name: "Aagam Shah",
-            role: "Team Fysteria"
-        },
-        {
-            name: "Akash Padsala",
-            role: "Team Fysteria"
-        },
-        {
-            name: "Pallavi Solat",
-            role: "Team Fysteria"
-        },
-        {
-            name: "Vishwam Amin",
-            role: "Team Fysteria"
-        },
-        {
-            name: "Rhythm Zaveri",
-            role: "Team Fysteria"
-        },
-        {
-            name: "Sherin Thomas",
-            role: "Team Fysteria"
-        },
-        {
-            name: "Bhavyen Mehta",
-            role: "Team Fysteria"
-        },
-        {
-            name: "Bhagyesh Dobariya",
-            role: "Team Fysteria"
-        },
-        {
-            name: "Kashyapa Chauhan",
-            role: "Team Fysteria"
-        },
-        {
-            name: "Hitaishi Mehta",
-            role: "Team Fysteria"
-        },
-        {
-            name: "Saksham Talati",
-            role: "Team Fysteria"
-        },
-        {
-            name: "Shivali Patil",
-            role: "Team Fysteria"
-        },
-        {
-            name: "Bhumi Patel",
-            role: "Team Fysteria"
-        },
-        {
-            name: "Khushroo Gandhi",
-            role: "Team Fysteria"
-        },
-        {
-            name: "Advait Thakkar",
-            role: "Team Technocrats"
-        },
-        {
-            name: "Aaditya Panchal",
-            role: "Team Technocrats"
-        },
-        {
-            name: "Jayesh Zala",
-            role: "Team Technocrats"
-        },
-        {
-            name: "Dhruv Patel",
-            role: "Team Technocrats"
-        },
-        {
-            name: "Rahul Chunda",
-            role: "Team Technocrats"
-        },
-        {
-            name: "Marvin Dabhi",
-            role: "Team Technocrats"
-        },
-        {
-            name: "Jay Patel",
-            role: "Team Technocrats"
-        },
-        {
-            name: "Priyam Bhatt",
-            role: "Team Technocrats"
-        },
-        {
-            name: "Mukti Shah",
-            role: "Team Technocrats"
-        },
-        {
-            name: "Jahnvi Rathod",
-            role: "Team Technocrats"
-        },
-        {
-            name: "Ronak Baldha",
-            role: "Team Technocrats"
-        },
-        {
-            name: "Payal Shah",
-            role: "Team Technocrats"
-        },
-        {
-            name: "Macwan Aleen",
-            role: "Team Technocrats"
-        },
-        {
-            name: "Patel Harsh",
-            role: "Team Technocrats"
-        },
-        {
-            name: "Akil Vohra",
-            role: "Team Technocrats"
-        },
-        {
-            name: "Vishva Bhalodiya",
-            role: "Team Incognito"
-        },
-        {
-            name: "Jalak Gajera",
-            role: "Team Incognito"
-        },
-        {
-            name: "Delavadiya Gaurang D.",
-            role: "Team Incognito"
-        },
-        {
-            name: "Suraj Zinzuwadia",
-            role: "Team Incognito"
-        },
-        {
-            name: "Nikunj Savaliya",
-            role: "Team Incognito"
-        },
-        {
-            name: "Neel Patel",
-            role: "Team Incognito"
-        },
-        {
-            name: "Foram Gajera",
-            role: "Team Incognito"
-        },
-        {
-            name: "Jenil Bhavsar",
-            role: "Team Incognito"
-        },
-        {
-            name: "Sudani Chintan",
-            role: "Team Incognito"
-        },
-        {
-            name: "Koyani Dhara",
-            role: "Team Incognito"
-        },
-        {
-            name: "Kanan Trivedi",
-            role: "Team Incognito"
-        },
-        {
-            name: "Kevin Pandya",
-            role: "Team Incognito"
-        },
-        {
-            name: "Nikhil Verma",
-            role: "Team Incognito"
-        },
-        {
-            name: "Patel Hetavi Atulkumar",
-            role: "Team Incognito"
-        },
-        {
-            name: "Patel Smit J.",
-            role: "Team Eclectika"
-        },
-        {
-            name: "Harshil Usadadiya",
-            role: "Team Eclectika"
-        },
-        {
-            name: "Dipika Prasad",
-            role: "Team Eclectika"
-        },
-        {
-            name: "Parth Vasoya",
-            role: "Team Eclectika"
-        },
-        {
-            name: "Gandhi Keyur",
-            role: "Team Eclectika"
-        },
-        {
-            name: "Akash Patel",
-            role: "Team Eclectika"
-        },
-        {
-            name: "Aayush chopra",
-            role: "Team Eclectika"
-        },
-        {
-            name: "Bhautikkumar Mordiya",
-            role: "Team Eclectika"
-        },
-        {
-            name: "Rahul Prajapai",
-            role: "Team Eclectika"
-        },
-        {
-            name: "Hitarth Joshi",
-            role: "Team Eclectika"
-        },
-        {
-            name: "Ronak Sharma",
-            role: "Team Eclectika"
-        },
-        {
-            name: "Axit Chovatiya",
-            role: "Team Eclectika"
-        },
-        {
-            name: "Bhavin Parmar",
-            role: "Team Eclectika"
-        },
-        {
-            name: "Bhargav Lathigara",
-            role: "Team Eclectika"
-        },
-        {
-            name: "Ayush Patel",
-            role: "Team Electrofiere"
-        },
-        {
-            name: "Darsh Patel",
-            role: "Team Electrofiere"
-        },
-        {
-            name: "Pinkesh Payel",
-            role: "Team Electrofiere"
-        },
-        {
-            name: "Abbas Pittalwala",
-            role: "Team Electrofiere"
-        },
-        {
-            name: "Samarth Bhatt",
-            role: "Team Electrofiere"
-        },
-        {
-            name: "Pujan Dwivedi",
-            role: "Team Electrofiere"
-        },
-        {
-            name: "Shiv Panchal",
-            role: "Team Electrofiere"
-        },
-        {
-            name: "Feni Shah",
-            role: "Team Electrofiere"
-        },
-        {
-            name: "Anshika Sharma",
-            role: "Team Electrofiere"
-        },
-        {
-            name: "Meet Bhatt",
-            role: "Team Electrofiere"
-        },
-        {
-            name: "Kandarp Joshi",
-            role: "Team Electrofiere"
-        },
-        {
-            name: "Stephen jocob",
-            role: "Team Electrofiere"
-        },
-        {
-            name: "Kartha Amrita A.",
-            role: "Team Sthapatya"
-        },
-        {
-            name: "Raj M. Gandhi",
-            role: "Team Sthapatya"
-        },
-        {
-            name: "Rathi Amarjeet S.",
-            role: "Team Sthapatya"
-        },
-        {
-            name: "Arth Chaudhari",
-            role: "Team Sthapatya"
-        },
-        {
-            name: "Shah Harsh K.",
-            role: "Team Sthapatya"
-        },
-        {
-            name: "Gambhava Kirit J.",
-            role: "Team Sthapatya"
-        },
-        {
-            name: "Savan Koyani",
-            role: "Team Sthapatya"
-        },
-        {
-            name: "Shah Nisarg M.",
-            role: "Team Sthapatya"
-        },
-        {
-            name: "Sindha Darshan R.",
-            role: "Team Sthapatya"
-        },
-        {
-            name: "Dharani Raj S.",
-            role: "Team Sthapatya"
-        },
-        {
-            name: "Virola Deep K.",
-            role: "Team Sthapatya"
-        },
-        {
-            name: "Rajput Krushnsinh K.",
-            role: "Team Sthapatya"
-        },
-        {
-            name: "Tank Rajan B.",
-            role: "Team Sthapatya"
-        },
-        {
-            name: "Dhanotia Jigyasha R.",
-            role: "Team Sthapatya"
-        },
-        {
-            name: "SagarJethani",
-            role: "Team Autozinios"
-        },
-        {
-            name: "Hardik Joshi",
-            role: "Team Autozinios"
-        },
-        {
-            name: "Mit Patel",
-            role: "Team Autozinios"
-        },
-        {
-            name: "Tapas patel",
-            role: "Team Autozinios"
-        },
-        {
-            name: "Jay Patel",
-            role: "Team Autozinios"
-        },
-        {
-            name: "Vishesh Shah",
-            role: "Team Autozinios"
-        },
-        {
-            name: "Pratik Solanki",
-            role: "Team Autozinios"
-        },
-        {
-            name: "Smit Prajapati",
-            role: "Team Autozinios"
-        },
-        {
-            name: "Aditya Garach",
-            role: "Team Autozinios"
-        },
-        {
-            name: "Ruman Ramodiya",
-            role: "Team Autozinios"
-        },
-        {
-            name: "Vishw Bhatt",
-            role: "Team Autozinios"
-        },
-        {
-            name: "Vedansh Thakur",
-            role: "Team Autozinios"
-        },
-        {
-            name: "Jignesh Desai",
-            role: "Team Autozinios"
-        },
-        {
-            name: "Kishan Joshi",
-            role: "Team Autozinios"
-        },
-        {
-            name: "Akshay Chhabra",
-            role: "Team Tycoon"
-        },
-        {
-            name: "Mrugesh Patel",
-            role: "Team Tycoon"
-        },
-        {
-            name: "Amanjeet Reshi",
-            role: "Team Tycoon"
-        },
-        {
-            name: "Dharmendrasinh Chauhan",
-            role: "Team Tycoon"
-        },
-        {
-            name: "Divya Chhabariya",
-            role: "Team Tycoon"
-        },
-        {
-            name: "Nisarg Shah",
-            role: "Team Tycoon"
-        },
-        {
-            name: "Manish Prajapati",
-            role: "Team Tycoon"
-        },
-        {
-            name: "Shreeji Pedhadiya",
-            role: "Web Team"
-        },
-        {
-            name: "Priyank M. Bhuva",
-            role: "Web Team"
-        },
-        {
-            name: "Viraj S. Patel",
-            role: "Web Team"
-        },
-        {
-            name: "Achal S. Desai",
-            role: "Web Team"
-        },
-        {
-            name: "Ishan joshi",
-            role: "Design Team"
-        },
-        {
-            name: "Vaibhav kothi",
-            role: "Design Team"
-        },
-        {
-            name: "Meet kachadiya",
-            role: "Design Team"
-        },
-        {
-            name: "Maitreya patel",
-            role: "Logistics Team"
-        },
-        {
-            name: "Karan Patel",
-            role: "Logistics Team"
-        },
-        {
-            name: "Dhaval Parmar",
-            role: "Logistics Team"
-        },
-        {
-            name: "Axat Patel",
-            role: "Documentation Team"
-        },
-        {
-            name: "Sejal Budhwani",
-            role: "Documentation Team"
-        },
-        {
-            name: "Binita Khua",
-            role: "Documentation Team"
-        },
-        {
-            name: "Aditi Desai",
-            role: "Documentation Team"
-        },
-        {
-            name: "Rutvi Dhruv",
-            role: "Documentation Team"
-        },
-        {
-            name: "Kunal Parikh",
-            role: "Multimedia Team"
-        },
-        {
-            name: "Trapasiya Parth Vajubhai",
-            role: "Multimedia Team"
-        },
-        {
-            name: "Deep Boda",
-            role: "Multimedia Team"
-        },
-        {
-            name: "Kirtan Patel",
-            role: "Photography Team"
-        },
-        {
-            name: "Raviraj Bhavsar",
-            role: "Photography Team"
-        },
-        {
-            name: "Smit Patel",
-            role: "Photography Team"
-        },
-        {
-            name: "Rajan Jamadar",
-            role: "Photography Team"
-        },
-        {
-            name: "Aaron Benedict",
-            role: "Photography Team"
-        },
-        {
-            name: "Gopal Lalkiya",
-            role: "Photography Team"
-        },
-        {
-            name: "Jhanvi Parmar",
-            role: "Team Inferno"
-        },
-        {
-            name: "Sabhadiya Parth",
-            role: "Team Inferno"
-        },
-        {
-            name: "Mihir Radadiya",
-            role: "Team Inferno"
-        },
-        {
-            name: "Kishan Gadhvi",
-            role: "Team Inferno"
-        },
-        {
-            name: "Utsav Sharma",
-            role: "Team Inferno"
-        },
-        {
-            name: "Divyang Parmar",
-            role: "Team Inferno"
-        },
-        {
-            name: "Ankit Tiwari",
-            role: "Team Inferno"
-        },
-        {
-            name: "Sohini Ghosh",
-            role: "Team Inferno"
-        },
-        {
-            name: "Shivangi singh",
-            role: "Team Inferno"
-        },
-        {
-            name: "Kaushal Rohit",
-            role: "Team Inferno"
-        },
-        {
-            name: "Harsh M Thakkar",
-            role: "Team Inferno"
-        },
-        {
-            name: "Harnish N Shah",
-            role: "Team Inferno"
-        },
-        {
-            name: "Jatin Mishra",
-            role: "Team Inferno"
-        },
-        {
-            name: "Jaimin Patel",
-            role: "Team Inferno"
-        },
-        {
-            name: "Manjari Pandya",
-            role: "Team Inferno"
-        },
-        {
-            name: "Lajja Patel",
-            role: "Team Inferno"
-        },
-        {
-            name: "Harshil Patel",
-            role: "Team Inferno"
-        },
-        {
-            name: "Surani Azimbhai Karimbhai",
-            role: "Team Inferno"
-        },
-        {
-            name: "Patel Deexitkumar Alkeshbhai",
-            role: "Team Inferno"
-        },
-        {
-            name: "Patel Karan Rajeshbhai",
-            role: "Team Inferno"
-        },
-        {
-            name: "Mansi Dadhaniya",
-            role: "Team Inferno"
-        },
-        {
-            name: "Tanvi Makadia",
-            role: "Team Inferno"
-        },
-        {
-            name: "Meet Kadivar",
-            role: "Team Inferno"
-        },
-        {
-            name: "Abbas limdiwala",
-            role: "Team Inferno"
-        },
-        {
-            name: "Mrug Raj Bhavesh",
-            role: "Organising Team"
-        },
-        {
-            name: "Solanky Bhargav",
-            role: "Organising Team"
-        },
-        {
-            name: "Patel Vatsalkumar Nitinkumar",
-            role: "Organising Team"
-        },
-        {
-            name: "Sharma Aman",
-            role: "Organising Team"
-        },
-        {
-            name: "Kachot Ankit",
-            role: "Organising Team"
-        },
-        {
-            name: "Sakhiya Reshav",
-            role: "Organising Team"
-        },
-        {
-            name: "Sapan Patel",
-            role: "Organising Team"
-        },
-        {
-            name: "Hardik Siddhapura",
-            role: "Organising Team"
-        },
-        {
-            name: "Sujal Chordiya",
-            role: "Organising Team"
-        },
-        {
-            name: "Ninad Joshi",
-            role: "Organising Team"
-        },
-        {
-            name: "Yash Trambadiya",
-            role: "Organising Team"
-        },
-        {
-            name: "Dhrumil Mer",
-            role: "Scheduling Team"
-        },
-        {
-            name: "Ranparia Nil",
-            role: "Scheduling Team"
-        }
-    ]
+    {
+      name: "Harshil Bhuva",
+      team: "Team Machinovate"
+    },
+    {
+      name: "Jay Raval",
+      team: "Team Machinovate"
+    },
+    {
+      name: "Patel Vishwas",
+      team: "Team Machinovate"
+    },
+    {
+      name: "Naigam Bhatt",
+      team: "Team Machinovate"
+    },
+    {
+      name: "Brijesh Gajjar",
+      team: "Team Machinovate"
+    },
+    {
+      name: "Darpan Patel",
+      team: "Team Machinovate"
+    },
+    {
+      name: "Sagar Kriplani",
+      team: "Team Machinovate"
+    },
+    {
+      name: "Jay Viradiya",
+      team: "Team Machinovate"
+    },
+    {
+      name: "Harsh Patel",
+      team: "Team Machinovate"
+    },
+    {
+      name: "Pritraj Ravalji",
+      team: "Team Machinovate"
+    },
+    {
+      name: "Faisal Vahora",
+      team: "Team Machinovate"
+    },
+    {
+      name: "Adit Shah",
+      team: "Team Machinovate"
+    },
+    {
+      name: "Sahil Ragnekar",
+      team: "Team Machinovate"
+    },
+    {
+      name: "Shaswat Jadav",
+      team: "Team Machinovate"
+    },
+    {
+      name: "Nidhi Patel",
+      team: "Team Machinovate"
+    },
+    {
+      name: "Aagam Shah",
+      team: "Team Fysteria"
+    },
+    {
+      name: "Akash Padsala",
+      team: "Team Fysteria"
+    },
+    {
+      name: "Pallavi Solat",
+      team: "Team Fysteria"
+    },
+    {
+      name: "Vishwam Amin",
+      team: "Team Fysteria"
+    },
+    {
+      name: "Rhythm Zaveri",
+      team: "Team Fysteria"
+    },
+    {
+      name: "Sherin Thomas",
+      team: "Team Fysteria"
+    },
+    {
+      name: "Bhavyen Mehta",
+      team: "Team Fysteria"
+    },
+    {
+      name: "Bhagyesh Dobariya",
+      team: "Team Fysteria"
+    },
+    {
+      name: "Kashyapa Chauhan",
+      team: "Team Fysteria"
+    },
+    {
+      name: "Hitaishi Mehta",
+      team: "Team Fysteria"
+    },
+    {
+      name: "Saksham Talati",
+      team: "Team Fysteria"
+    },
+    {
+      name: "Shivali Patil",
+      team: "Team Fysteria"
+    },
+    {
+      name: "Bhumi Patel",
+      team: "Team Fysteria"
+    },
+    {
+      name: "Khushroo Gandhi",
+      team: "Team Fysteria"
+    },
+    {
+      name: "Advait Thakkar",
+      team: "Team Technocrats"
+    },
+    {
+      name: "Aaditya Panchal",
+      team: "Team Technocrats"
+    },
+    {
+      name: "Jayesh Zala",
+      team: "Team Technocrats"
+    },
+    {
+      name: "Dhruv Patel",
+      team: "Team Technocrats"
+    },
+    {
+      name: "Rahul Chunda",
+      team: "Team Technocrats"
+    },
+    {
+      name: "Marvin Dabhi",
+      team: "Team Technocrats"
+    },
+    {
+      name: "Jay Patel",
+      team: "Team Technocrats"
+    },
+    {
+      name: "Priyam Bhatt",
+      team: "Team Technocrats"
+    },
+    {
+      name: "Mukti Shah",
+      team: "Team Technocrats"
+    },
+    {
+      name: "Jahnvi Rathod",
+      team: "Team Technocrats"
+    },
+    {
+      name: "Ronak Baldha",
+      team: "Team Technocrats"
+    },
+    {
+      name: "Payal Shah",
+      team: "Team Technocrats"
+    },
+    {
+      name: "Macwan Aleen",
+      team: "Team Technocrats"
+    },
+    {
+      name: "Patel Harsh",
+      team: "Team Technocrats"
+    },
+    {
+      name: "Akil Vohra",
+      team: "Team Technocrats"
+    },
+    {
+      name: "Vishva Bhalodiya",
+      team: "Team Incognito"
+    },
+    {
+      name: "Jalak Gajera",
+      team: "Team Incognito"
+    },
+    {
+      name: "Delavadiya Gaurang",
+      team: "Team Incognito"
+    },
+    {
+      name: "Suraj Zinzuwadia",
+      team: "Team Incognito"
+    },
+    {
+      name: "Nikunj Savaliya",
+      team: "Team Incognito"
+    },
+    {
+      name: "Neel Patel",
+      team: "Team Incognito"
+    },
+    {
+      name: "Foram Gajera",
+      team: "Team Incognito"
+    },
+    {
+      name: "Jenil Bhavsar",
+      team: "Team Incognito"
+    },
+    {
+      name: "Sudani Chintan",
+      team: "Team Incognito"
+    },
+    {
+      name: "Koyani Dhara",
+      team: "Team Incognito"
+    },
+    {
+      name: "Kanan Trivedi",
+      team: "Team Incognito"
+    },
+    {
+      name: "Kevin Pandya",
+      team: "Team Incognito"
+    },
+    {
+      name: "Nikhil Verma",
+      team: "Team Incognito"
+    },
+    {
+      name: "Patel Hetavi",
+      team: "Team Incognito"
+    },
+    {
+      name: "Patel Smit",
+      team: "Team Eclectika"
+    },
+    {
+      name: "Harshil Usadadiya",
+      team: "Team Eclectika"
+    },
+    {
+      name: "Dipika Prasad",
+      team: "Team Eclectika"
+    },
+    {
+      name: "Parth Vasoya",
+      team: "Team Eclectika"
+    },
+    {
+      name: "Gandhi Keyur",
+      team: "Team Eclectika"
+    },
+    {
+      name: "Akash Patel",
+      team: "Team Eclectika"
+    },
+    {
+      name: "Aayush Chopra",
+      team: "Team Eclectika"
+    },
+    {
+      name: "Bhautik Mordiya",
+      team: "Team Eclectika"
+    },
+    {
+      name: "Rahul Prajapati",
+      team: "Team Eclectika"
+    },
+    {
+      name: "Hitarth Joshi",
+      team: "Team Eclectika"
+    },
+    {
+      name: "Ronak Sharma",
+      team: "Team Eclectika"
+    },
+    {
+      name: "Axit Chovatiya",
+      team: "Team Eclectika"
+    },
+    {
+      name: "Bhavin Parmar",
+      team: "Team Eclectika"
+    },
+    {
+      name: "Bhargav Lathigara",
+      team: "Team Eclectika"
+    },
+    {
+      name: "Ayush Patel",
+      team: "Team Electrofiere"
+    },
+    {
+      name: "Darsh Patel",
+      team: "Team Electrofiere"
+    },
+    {
+      name: "Pinkesh Patel",
+      team: "Team Electrofiere"
+    },
+    {
+      name: "Abbas Pittalwala",
+      team: "Team Electrofiere"
+    },
+    {
+      name: "Samarth Bhatt",
+      team: "Team Electrofiere"
+    },
+    {
+      name: "Pujan Dwivedi",
+      team: "Team Electrofiere"
+    },
+    {
+      name: "Shiv Panchal",
+      team: "Team Electrofiere"
+    },
+    {
+      name: "Feni Shah",
+      team: "Team Electrofiere"
+    },
+    {
+      name: "Anshika Sharma",
+      team: "Team Electrofiere"
+    },
+    {
+      name: "Meet Bhatt",
+      team: "Team Electrofiere"
+    },
+    {
+      name: "Kandarp Joshi",
+      team: "Team Electrofiere"
+    },
+    {
+      name: "Stephen jocob",
+      team: "Team Electrofiere"
+    },
+    {
+      name: "Kartha Amrita",
+      team: "Team Sthapatya"
+    },
+    {
+      name: "Raj Gandhi",
+      team: "Team Sthapatya"
+    },
+    {
+      name: "Rathi Amarjeet",
+      team: "Team Sthapatya"
+    },
+    {
+      name: "Arth Chaudhari",
+      team: "Team Sthapatya"
+    },
+    {
+      name: "Shah Harsh",
+      team: "Team Sthapatya"
+    },
+    {
+      name: "Gambhava Kirit",
+      team: "Team Sthapatya"
+    },
+    {
+      name: "Savan Koyani",
+      team: "Team Sthapatya"
+    },
+    {
+      name: "Shah Nisarg",
+      team: "Team Sthapatya"
+    },
+    {
+      name: "Sindha Darshan",
+      team: "Team Sthapatya"
+    },
+    {
+      name: "Dharani Raj",
+      team: "Team Sthapatya"
+    },
+    {
+      name: "Virola Deep",
+      team: "Team Sthapatya"
+    },
+    {
+      name: "Rajput Krushnsinh",
+      team: "Team Sthapatya"
+    },
+    {
+      name: "Tank Rajan",
+      team: "Team Sthapatya"
+    },
+    {
+      name: "Dhanotia Jigyasha",
+      team: "Team Sthapatya"
+    },
+    {
+      name: "Bathija Divya",
+      team: "Team Sthapatya"
+    },
+    {
+      name: "Sagar Jethani",
+      team: "Team Autozinios"
+    },
+    {
+      name: "Hardik Joshi",
+      team: "Team Autozinios"
+    },
+    {
+      name: "Mit Patel",
+      team: "Team Autozinios"
+    },
+    {
+      name: "Tapas patel",
+      team: "Team Autozinios"
+    },
+    {
+      name: "Jay Patel",
+      team: "Team Autozinios"
+    },
+    {
+      name: "Vishesh Shah",
+      team: "Team Autozinios"
+    },
+    {
+      name: "Pratik Solanki",
+      team: "Team Autozinios"
+    },
+    {
+      name: "Smit Prajapati",
+      team: "Team Autozinios"
+    },
+    {
+      name: "Aditya Garach",
+      team: "Team Autozinios"
+    },
+    {
+      name: "Ruman Ramodiya",
+      team: "Team Autozinios"
+    },
+    {
+      name: "Vishw Bhatt",
+      team: "Team Autozinios"
+    },
+    {
+      name: "Vedansh Thakur",
+      team: "Team Autozinios"
+    },
+    {
+      name: "Jignesh Desai",
+      team: "Team Autozinios"
+    },
+    {
+      name: "Kishan Joshi",
+      team: "Team Autozinios"
+    },
+    {
+      name: "Akshay Chhabra",
+      team: "Team Tycoon"
+    },
+    {
+      name: "Mrugesh Patel",
+      team: "Team Tycoon"
+    },
+    {
+      name: "Amanjeet Reshi",
+      team: "Team Tycoon"
+    },
+    {
+      name: "Dharmendrasinh Chauhan",
+      team: "Team Tycoon"
+    },
+    {
+      name: "Divya Chhabariya",
+      team: "Team Tycoon"
+    },
+    {
+      name: "Nisarg Shah",
+      team: "Team Tycoon"
+    },
+    {
+      name: "Manish Prajapati",
+      team: "Team Tycoon"
+    },
+    {
+      name: "Shreeji Pedhadiya",
+      team: "Web Team"
+    },
+    {
+      name: "Priyank Bhuva",
+      team: "Web Team"
+    },
+    {
+      name: "Viraj Patel",
+      team: "Web Team"
+    },
+    {
+      name: "Achal Desai",
+      team: "Web Team"
+    },
+    {
+      name: "Ishan Joshi",
+      team: "Design Team"
+    },
+    {
+      name: "Vaibhav Kothi",
+      team: "Design Team"
+    },
+    {
+      name: "Meet Kachhadiya",
+      team: "Design Team"
+    },
+    {
+      name: "Maitreya Patel",
+      team: "Logistics Team"
+    },
+    {
+      name: "Karan Patel",
+      team: "Logistics Team"
+    },
+    {
+      name: "Dhaval Parmar",
+      team: "Logistics Team"
+    },
+    {
+      name: "Axat Patel",
+      team: "Documentation Team"
+    },
+    {
+      name: "Sejal Budhwani",
+      team: "Documentation Team"
+    },
+    {
+      name: "Binita Khua",
+      team: "Team Tycoon"
+    },
+    {
+      name: "Aditi Desai",
+      team: "Documentation Team"
+    },
+    {
+      name: "Rutvi Dhruv",
+      team: "Documentation Team"
+    },
+    {
+      name: "Kunal Parikh",
+      team: "Multimedia Team"
+    },
+    {
+      name: "Trapasiya Parth",
+      team: "Multimedia Team"
+    },
+    {
+      name: "Deep Boda",
+      team: "Multimedia Team"
+    },
+    {
+      name: "Kirtan Patel",
+      team: "Photography Team"
+    },
+    {
+      name: "Raviraj Bhavsar",
+      team: "Photography Team"
+    },
+    {
+      name: "Smit Patel",
+      team: "Photography Team"
+    },
+    {
+      name: "Rajan Jamadar",
+      team: "Photography Team"
+    },
+    {
+      name: "Aaron Benedict",
+      team: "Photography Team"
+    },
+    {
+      name: "Gopal Lalkiya",
+      team: "Photography Team"
+    },
+    {
+      name: "Jhanvi Parmar",
+      team: "Team Inferno"
+    },
+    {
+      name: "Sabhadiya Parth",
+      team: "Team Inferno"
+    },
+    {
+      name: "Mihir Radadiya",
+      team: "Team Inferno"
+    },
+    {
+      name: "Kishan Gadhvi",
+      team: "Team Inferno"
+    },
+    {
+      name: "Utsav Sharma",
+      team: "Team Inferno"
+    },
+    {
+      name: "Divyang Parmar",
+      team: "Team Inferno"
+    },
+    {
+      name: "Ankit Tiwari",
+      team: "Team Inferno"
+    },
+    {
+      name: "Sohini Ghosh",
+      team: "Team Inferno"
+    },
+    {
+      name: "Shivangi singh",
+      team: "Team Inferno"
+    },
+    {
+      name: "Kaushal Rohit",
+      team: "Team Inferno"
+    },
+    {
+      name: "Harsh Thakkar",
+      team: "Team Inferno"
+    },
+    {
+      name: "Harnish Shah",
+      team: "Team Inferno"
+    },
+    {
+      name: "Jatin Mishra",
+      team: "Team Inferno"
+    },
+    {
+      name: "Jaimin Patel",
+      team: "Team Inferno"
+    },
+    {
+      name: "Manjari Pandya",
+      team: "Team Inferno"
+    },
+    {
+      name: "Lajja Patel",
+      team: "Team Inferno"
+    },
+    {
+      name: "Harshil Patel",
+      team: "Team Inferno"
+    },
+    {
+      name: "Surani Azim",
+      team: "Team Inferno"
+    },
+    {
+      name: "Patel Deexit",
+      team: "Team Inferno"
+    },
+    {
+      name: "Patel Karan ",
+      team: "Team Inferno"
+    },
+    {
+      name: "Mansi Dadhaniya",
+      team: "Team Inferno"
+    },
+    {
+      name: "Tanvi Makadia",
+      team: "Team Inferno"
+    },
+    {
+      name: "Meet Kadivar",
+      team: "Team Inferno"
+    },
+    {
+      name: "Devendra Parmar",
+      team: "Team Inferno"
+    },
+    {
+      name: "Abbas Limdiwala",
+      team: "Team Inferno"
+    },
+    {
+      name: "Mrug Raj",
+      team: "Organising Team"
+    },
+    {
+      name: "Solanky Bhargav",
+      team: "Organising Team"
+    },
+    {
+      name: "Patel Vatsal",
+      team: "Organising Team"
+    },
+    {
+      name: "Sharma Aman",
+      team: "Organising Team"
+    },
+    {
+      name: "Kachot Ankit",
+      team: "Organising Team"
+    },
+    {
+      name: "Sakhiya Reshav",
+      team: "Organising Team"
+    },
+    {
+      name: "Sapan Patel",
+      team: "Organising Team"
+    },
+    {
+      name: "Hardik Siddhapura",
+      team: "Organising Team"
+    },
+    {
+      name: "Sujal Chordiya",
+      team: "Organising Team"
+    },
+    {
+      name: "Ninad Joshi",
+      team: "Organising Team"
+    },
+    {
+      name: "Yash Trambadiya",
+      team: "Organising Team"
+    },
+    {
+      name: "Dhrumil Mer",
+      team: "Scheduling Team"
+    },
+    {
+      name: "Ranparia Nil",
+      team: "Scheduling Team"
+    }
+   ]

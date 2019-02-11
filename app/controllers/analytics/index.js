@@ -24,4 +24,7 @@ router.use('/campaigning',verifyToken,require('./campaigning'));
 
 router.use('/emailoptions',require('./emailoptions'));
 
+router.use('/changeevent',require('./changeevent'));
+
+
 module.exports = router;

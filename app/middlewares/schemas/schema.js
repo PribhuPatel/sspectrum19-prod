@@ -116,7 +116,7 @@ var UserSchema = new Schema({
 
   var VolunteerSchema = new Schema({
     name:{type:String},
-    role:{type:String}
+    team:{type:String}
   })
 
 
