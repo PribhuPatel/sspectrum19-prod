@@ -118,7 +118,7 @@ let replacements = {
                 }
                 i++;
     if(i<entries.length){
-        setTimeout(nt,2500);
+        setTimeout(nt,5000);
     }
             // }
 // })
