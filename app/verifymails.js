@@ -130,13 +130,13 @@ let replacements = {
 var nt2 =async()=>{
     return new Promise(async(resolve, reject) =>{
         for(let i=0;i<packages.length;i++){
-            console.log(packages[i].package.tech1.name);
+            console.log(packages[i].package);
             
     let replacement = {
         name: packages[i].participant.firstname + " " + packages[i].participant.lastname,
-        tech1: packages[i].package.tech1.name,
-        tech2: packages[i].package.tech2.name,
-        nontech: packages[i].package.nontech.name,
+        tech1: packages[i].package.tech1.event.name,
+        tech2: packages[i].package.tech2.event.name,
+        nontech: packages[i].package.nontech.event.name,
         token: packages[i]._id
     }
     // console.log(participant.phone +":"+participant.firstname + " package created by "+user.phone+":"+user.name + " at "+date);
