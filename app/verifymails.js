@@ -6,10 +6,10 @@ var config={
     service: 'gmail',
         auth:
         {
-        // user: 'spectrum@adit.ac.in',
-        user:'np9532788@gmail.com',
-        pass:'mnbvcxz@987654321'
-    //   pass: 'Spec1700@adit2019'
+        user: 'spectrum@adit.ac.in',
+        // user:'np9532788@gmail.com',
+        // pass:'mnbvcxz@987654321'
+      pass: 'Spec1700@adit2019'
     }
 }
 
@@ -54,10 +54,10 @@ var config2= {mongoDB : {
     user: 'admin',
     password: 'shreeji1',
     // host : '34.73.92.20',
-    host:'ds135003.mlab.com',
-    port:35003,
-    // host:'localhost',
-    // port : 27017,
+    // host:'ds135003.mlab.com',
+    // port:35003,
+    host:'localhost',
+    port : 27017,
     database : 'spectrum'
 }
 }
