@@ -83,7 +83,7 @@ var mongocon = async ()=>{
 var entries;
 var packages;
 
-var i=30;
+var i=35;
 var nt3=async()=>{
     await mongocon();
 console.log(await mongocon());
@@ -112,7 +112,7 @@ let replacements = {
             try{
                 let mail = await sendmail('/utils/helpers/single-event.html',entries[i].participant.email,"Spectrum'19 Event Verification",replacements);
             console.log(entries[i].participant.phone +":"+entries[i].participant.firstname + " event entry has been");
-            resolve("sended")
+            // resolve("sended")
                 } catch(e) {
                     console.log("Mail send failed to " + entries[i].participant.email);
                 }
@@ -142,7 +142,7 @@ var nt2 =async()=>{
     try{
     let mail = await sendmail('/utils/helpers/package-mail.html',packages[i].participant.email,"Spectrum'19 Package Verification",replacement);
     console.log("Package Mail sended to "+ packages[i].participant.email);
-    resolve("sended");
+    // resolve("sended");
     } catch(e) {
         console.log("Mail send failed to " + packages[i].participant.email);
     }
