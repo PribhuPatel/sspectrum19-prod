@@ -102,7 +102,7 @@ console.log(await mongocon());
 var nt =async()=>{
     return new Promise(async(resolve, reject) =>{
         for(let i=0;i<entries.length;i++){
-        console.log(entries[i]);
+        // console.log(entries[i]);
         
 let replacements = {
     name: entries[i].participant.firstname + " " + entries[i].participant.lastname,
@@ -130,6 +130,8 @@ let replacements = {
 var nt2 =async()=>{
     return new Promise(async(resolve, reject) =>{
         for(let i=0;i<packages.length;i++){
+            console.log(packages[i].package.tech1.name);
+            
     let replacement = {
         name: packages[i].participant.firstname + " " + packages[i].participant.lastname,
         tech1: packages[i].package.tech1.name,
