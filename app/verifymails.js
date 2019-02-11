@@ -83,7 +83,7 @@ var mongocon = async ()=>{
 var entries;
 var packages;
 
-var i=35;
+var i=30;
 var nt3=async()=>{
     await mongocon();
 console.log(await mongocon());
@@ -94,8 +94,8 @@ console.log(await mongocon());
 //  console.log(packages[0].package.tech1);
 //  console.log(entries);
     
-    nt();
-    
+    // nt();
+    nt2();
 }
 // var i=0;
 var nt =async()=>{
@@ -146,10 +146,10 @@ var nt2 =async()=>{
     } catch(e) {
         console.log("Mail send failed to " + packages[i].participant.email);
     }
-    // i++;
-    // if(i<packages.length){
-    //     setTimeout(await nt2,2500);
-    // }
+    i++;
+    if(i<packages.length){
+        setTimeout(nt2,5000);
+    }
 // }
 // })
 }
