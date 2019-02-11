@@ -6,10 +6,10 @@ var config={
     service: 'gmail',
         auth:
         {
-        user: 'spectrum@adit.ac.in',
-        // user:'np9532788@gmail.com',
-        // pass:'mnbvcxz@987654321'
-      pass: 'Spec1700@adit2019'
+        // user: 'spectrum@adit.ac.in',
+        user:'np9532788@gmail.com',
+        pass:'mnbvcxz@987654321'
+    //   pass: 'Spec1700@adit2019'
     }
 }
 
@@ -54,10 +54,10 @@ var config2= {mongoDB : {
     user: 'admin',
     password: 'shreeji1',
     // host : '34.73.92.20',
-    // host:'ds135003.mlab.com',
-    // port:35003,
-    host:'localhost',
-    port : 27017,
+    host:'ds135003.mlab.com',
+    port:35003,
+    // host:'localhost',
+    // port : 27017,
     database : 'spectrum'
 }
 }
@@ -82,6 +82,8 @@ var mongocon = async ()=>{
 }
 var entries;
 var packages;
+
+var i=30;
 var nt3=async()=>{
     await mongocon();
 console.log(await mongocon());
@@ -92,16 +94,13 @@ console.log(await mongocon());
 //  console.log(packages[0].package.tech1);
 //  console.log(entries);
     
- await nt();
- await nt2();
-
+    nt();
     
 }
-
 // var i=0;
 var nt =async()=>{
-    return new Promise(async(resolve, reject) =>{
-        for(let i=0;i<entries.length;i++){
+    // return new Promise(async(resolve, reject) =>{
+        // for(let i=0;i<entries.length;i++){
         // console.log(entries[i]);
         
 let replacements = {
@@ -117,19 +116,19 @@ let replacements = {
                 } catch(e) {
                     console.log("Mail send failed to " + entries[i].participant.email);
                 }
-    //             i++;
-    // if(i<entries.length){
-    //     setTimeout(await nt,3000);
-    // }
-            }
-})
+                i++;
+    if(i<entries.length){
+        setTimeout(nt,2500);
+    }
+            // }
+// })
 }
 
 // var packages = await SingleEntries.aggregate($match}SingleEntries,{$and:[{verify:false},{entry:null}]},'participant','participant','firstname lastname email phone');
 // i=0;
 var nt2 =async()=>{
-    return new Promise(async(resolve, reject) =>{
-        for(let i=0;i<packages.length;i++){
+    // return new Promise(async(resolve, reject) =>{
+        // for(let i=0;i<packages.length;i++){
             // console.log(packages[i].package);
             
     let replacement = {
@@ -151,8 +150,8 @@ var nt2 =async()=>{
     // if(i<packages.length){
     //     setTimeout(await nt2,2500);
     // }
-}
-})
+// }
+// })
 }
 
 // var populateEntries = async(Collection, query,fields)=>{
