@@ -130,7 +130,7 @@ let replacements = {
 var nt2 =async()=>{
     return new Promise(async(resolve, reject) =>{
         for(let i=0;i<packages.length;i++){
-            console.log(packages[i].package);
+            // console.log(packages[i].package);
             
     let replacement = {
         name: packages[i].participant.firstname + " " + packages[i].participant.lastname,
