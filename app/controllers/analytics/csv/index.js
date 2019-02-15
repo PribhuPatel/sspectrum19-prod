@@ -35,4 +35,6 @@ router.get('/geteventsreport/',require('./csvgenerators').getEventReport);
 
 router.get('/geteventslist/',require('./csvgenerators').getEventList);
 
+router.get('/unverifiedentries',require('./csvgenerators').nonVerifiedEntries);
+
 module.exports = router;

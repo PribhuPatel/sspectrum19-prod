@@ -631,7 +631,38 @@ module.exports = {
         //    } else {
 
         //    }})
-  } 
+  },
+  nonVerifiedEntries:async(req,res)=>{
+      let unVerifiedEntries= await SingleEntries.aggregate([
+        {
+          $match: {
+            verify: false
+          }
+        }, {
+          $group: {
+            _id: '$participant'
+          }
+        }, {
+          $lookup: {
+            from: 'participants', 
+            localField: '_id', 
+            foreignField: '_id', 
+            as: 'participant'
+          }
+        }
+      ]).exec();
+      var unVerifiedParticipants = [];
+      for(let i=0;i<unVerifiedEntries.length;i++){
+            unVerifiedParticipants.push({
+                "name": unVerifiedEntries[i].participant[0].firstname +' '+ unVerifiedEntries[i].participant[0].lastname,
+                "phone" : unVerifiedEntries[i].participant[0].phone,
+                "email": unVerifiedEntries[i].participant[0].email
+            })
+      }
+      var csvdata = await json2csv(unVerifiedParticipants);
+      await csvGenerate('unverifiedentries.csv',csvdata);
+      return res.send('done');
+  }
 }
 var dataByParticipant= async (Collection,query)=>{
     return new Promise(async (resolve, reject) =>{
