@@ -15,15 +15,17 @@ module.exports = {
         //  } catch (e) {
         //     console.log(e);
         //  }
-         let ins = await insertVolunteer();
+        //  let ins = await insertVolunteer();
         //  ins.catch((err)=>{
         //      console.log(err);
              
         //  })
+        //  let c = await Volunteers.deleteMany({}).skip(182);
+         console.log(c);
          
-         let fullList = await getManyData(Volunteers,{},'_id');
-         for(let i=0;i<fullList.length;i++){
-            let qr = await generateQr('volunteerqr/qr-'+(i+1)+'.png',fullList[i]._id.toString());
+         let fullList = await Volunteers.find({}).skip(182);
+         for(let i=182;i<fullList.length;i++){
+            let qr = await generateQr('volunteer2/qr-'+(i+1)+'.png',fullList[i]._id.toString());
             console.log(qr + (i+1).toString());
             // qr.catch((err)=>{
             //     console.log(err);

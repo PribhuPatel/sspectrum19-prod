@@ -48,7 +48,8 @@ var UserSchema = new Schema({
     created_date: { type: Date  },
     events: [{type: Schema.Types.ObjectId, ref: 'Events'}],
     password: {type:String},
-    package:{type:Schema.Types.ObjectId, ref: 'Packages',default:null}
+    package:{type:Schema.Types.ObjectId, ref: 'Packages',default:null},
+    registered:{type:Boolean,default:null}
   });
 
   var CollegeSchema = new Schema({
@@ -116,7 +117,9 @@ var UserSchema = new Schema({
 
   var VolunteerSchema = new Schema({
     name:{type:String},
-    team:{type:String}
+    team:{type:String},
+    day1:{type:Boolean,default:null},
+    day2:{type:Boolean,default:null}
   })
 
 

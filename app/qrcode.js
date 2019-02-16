@@ -41,11 +41,11 @@ var sendmail=async (filepath,email,subject,replacements,path)=>{
             subject : subject,
             html : htmlToSend,
             attachments:[{   // file on disk as an attachment
-                filename: 'spectrum.png',
+                filename: 'Spectrum19.png',
                 path: '../public/partiqr/'+path // stream this file
             },{   // file on disk as an attachment
-                filename: 'spectrum-schedule.pdf',
-                path: 'schedule.pdf' // stream this file
+                filename: 'Spectrum19-Schedule.pdf',
+                path: 'Schedule.pdf' // stream this file
             }]
         };
         await transporter.sendMail(mailOptions, function (error, response) {
