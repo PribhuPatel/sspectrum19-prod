@@ -1,6 +1,7 @@
 const fs = require('fs');
 const QRCode = require('qrcode');
 const mongoose = require('mongoose');
+var ObjectId = mongoose.Types.ObjectId;
 var nodemailer = require('nodemailer');
 var handlebars = require('handlebars');
 
@@ -62,17 +63,17 @@ var config2= {mongoDB : {
     user: 'admin',
     password: 'shreeji1',
     // host : '34.73.92.20',
-    host:'ds135003.mlab.com',
-    port:35003,
-    // host:'localhost',
-    // port : 27017,
+    // host:'ds135003.mlab.com',
+    // port:35003,
+    host:'localhost',
+    port : 27017,
     database : 'spectrum'
 }
 }
 const url = `mongodb://${config2.mongoDB.user}:${config2.mongoDB.password}@${config2.mongoDB.host}:${config2.mongoDB.port}/${config2.mongoDB.database}`;
 
 var {Participants} = require('./middlewares/schemas/schema');
-var {getSingleData, getManyDataWithPopulate, getManyData} = require('./utils/helpers/general_one_helper');
+var {getSingleData, getManyDataWithPopulate, getManyData, getCount} = require('./utils/helpers/general_one_helper');
 
 var mongocon = async ()=>{
     if (mongoose.connection.readyState === 1) return 1;
@@ -95,7 +96,10 @@ var participants;
 var nt3=async()=>{
     await mongocon();
 console.log(await mongocon());
-    participants = await getManyData(Participants,{},'_id firstname lastname email');
+    participants = await getManyData(Participants,{createby:{$ne:ObjectId("5c4032db44dcf010af3c8cf6")}},'_id firstname lastname email');
+    // let c = await getCount(Participants,{createby:{$ne:ObjectId("5c4032db44dcf010af3c8cf6")}});
+    // console.log(c);
+    
     // nt();
     nt2();
 }
@@ -117,8 +121,8 @@ var nt2 =async()=>{
     }
     console.log(i);
     i++;
-    if(i<3){
-        setTimeout(nt2,5000);
+    if(i<1000){
+        setTimeout(nt2,10000);
     }
 }
 
