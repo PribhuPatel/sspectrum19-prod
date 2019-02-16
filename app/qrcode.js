@@ -91,7 +91,7 @@ var mongocon = async ()=>{
   });
 }
 
-var i=0;
+var i=1000;
 var participants;
 var nt3=async()=>{
     await mongocon();
@@ -121,7 +121,7 @@ var nt2 =async()=>{
     }
     console.log(i);
     i++;
-    if(i<1000){
+    if(i<1700){
         setTimeout(nt2,5000);
     }
 }
