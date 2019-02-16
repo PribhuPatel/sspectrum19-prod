@@ -122,7 +122,7 @@ var nt2 =async()=>{
     console.log(i);
     i++;
     if(i<1000){
-        setTimeout(nt2,10000);
+        setTimeout(nt2,5000);
     }
 }
 
