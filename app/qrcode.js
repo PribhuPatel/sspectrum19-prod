@@ -40,7 +40,7 @@ var sendmail=async (filepath,email,subject,replacements,path)=>{
             to : email,
             subject : subject,
             html : htmlToSend,
-            attachments:[{   // file on disk as an attachment
+            attachments:[{   // file on disk as an attachmen
                 filename: 'Spectrum19.png',
                 path: '../public/partiqr/'+path // stream this file
             },{   // file on disk as an attachment
