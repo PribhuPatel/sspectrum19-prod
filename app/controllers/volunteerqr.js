@@ -15,15 +15,15 @@ module.exports = {
         //  } catch (e) {
         //     console.log(e);
         //  }
-        //  let ins = await insertVolunteer();
+         let ins = await insertVolunteer();
         //  ins.catch((err)=>{
         //      console.log(err);
              
         //  })
         //  let c = await Volunteers.deleteMany({}).skip(182);
-         console.log(c);
+        //  console.log(c);
          
-         let fullList = await Volunteers.find({}).skip(182);
+         let fullList = await Volunteers.find({});
          for(let i=182;i<fullList.length;i++){
             let qr = await generateQr('volunteer2/qr-'+(i+1)+'.png',fullList[i]._id.toString());
             console.log(qr + (i+1).toString());
