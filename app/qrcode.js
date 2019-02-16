@@ -63,10 +63,10 @@ var config2= {mongoDB : {
     user: 'admin',
     password: 'shreeji1',
     // host : '34.73.92.20',
-    host:'ds135003.mlab.com',
-    port:35003,
-    // host:'localhost',
-    // port : 27017,
+    // host:'ds135003.mlab.com',
+    // port:35003,
+    host:'localhost',
+    port : 27017,
     database : 'spectrum'
 }
 }
@@ -121,7 +121,7 @@ var nt2 =async()=>{
     }
     console.log(i);
     i++;
-    if(i<3){
+    if(i<1000){
         setTimeout(nt2,10000);
     }
 }
