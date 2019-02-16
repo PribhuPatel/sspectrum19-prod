@@ -45,7 +45,7 @@ var sendmail=async (filepath,email,subject,replacements,path)=>{
                 path: '../public/partiqr/'+path // stream this file
             },{   // file on disk as an attachment
                 filename: 'Spectrum19-Schedule.pdf',
-                path: 'Schedule.pdf' // stream this file
+                path: '/Spectrum-Schedule.pdf' // stream this file
             }]
         };
         await transporter.sendMail(mailOptions, function (error, response) {
