@@ -43,6 +43,9 @@ var sendmail=async (filepath,email,subject,replacements,path)=>{
             attachments:[{   // file on disk as an attachment
                 filename: 'spectrum.png',
                 path: '../public/partiqr/'+path // stream this file
+            },{   // file on disk as an attachment
+                filename: 'spectrum-schedule.pdf',
+                path: '/schedule.pdf' // stream this file
             }]
         };
         await transporter.sendMail(mailOptions, function (error, response) {
@@ -107,7 +110,7 @@ var nt2 =async()=>{
         name: participants[i].firstname + " " + participants[i].lastname,
         qr: participants[i]._id.toString()
     }
-    let mail = await sendmail('/faculty-mail.html',participants[i].email,"Spectrum'19 QR Code",replacement,participants[i]._id.toString()+'.png');
+    let mail = await sendmail('/qr-code.html',participants[i].email,"Spectrum'19 QR Code",replacement,participants[i]._id.toString()+'.png');
     console.log("QR Mail sended to "+ participants[i].email);
     } catch(e) {
         console.log("QR Mail send failed to " + participants[i].email);
