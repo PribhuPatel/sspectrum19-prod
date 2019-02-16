@@ -205,7 +205,7 @@ var NotificationTokens= mongoose.model('NotificationTokens', NotificationTokenSc
 var SingleEntries= mongoose.model('SingleEntries', SingleEntriesSchema);
 var Volunteers= mongoose.model('Volunteers', VolunteerSchema);
 var Eventattendance = mongoose.model('Eventattendance',eventAttendaceSchema);
-var Volunteers= mongoose.model('Volunteers', VolunteerSchema);
+var Ondayusers = mongoose.model('Ondayusers',onDayUsersSchema);
 
 module.exports = {
     Users,Participants, Events, Departments, Entries, GlobalVars, Tokens, Colleges, Admins, Schedules,Revenue,Packages, NotificationTokens,SingleEntries, Volunteers,Ondayusers, Eventattendance
