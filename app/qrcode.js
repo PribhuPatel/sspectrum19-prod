@@ -46,7 +46,7 @@ var sendmail=async (filepath,email,subject,replacements,path)=>{
                 path: '../public/partiqr/'+path // stream this file
             },{   // file on disk as an attachment
                 filename: 'Spectrum19-Schedule.pdf',
-                path: '/Spectrum-Schedule.pdf' // stream this file
+                path: './Spectrum-Schedule.pdf' // stream this file
             }]
         };
         await transporter.sendMail(mailOptions, function (error, response) {
@@ -63,10 +63,10 @@ var config2= {mongoDB : {
     user: 'admin',
     password: 'shreeji1',
     // host : '34.73.92.20',
-    // host:'ds135003.mlab.com',
-    // port:35003,
-    host:'localhost',
-    port : 27017,
+    host:'ds135003.mlab.com',
+    port:35003,
+    // host:'localhost',
+    // port : 27017,
     database : 'spectrum'
 }
 }
@@ -121,7 +121,7 @@ var nt2 =async()=>{
     }
     console.log(i);
     i++;
-    if(i<1000){
+    if(i<3){
         setTimeout(nt2,10000);
     }
 }
