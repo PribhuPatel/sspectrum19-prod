@@ -39,7 +39,11 @@ var sendmail=async (filepath,email,subject,replacements)=>{
             from: 'spectrum@adit.ac.in',
             to : email,
             subject : subject,
-            html : htmlToSend
+            html : htmlToSend,
+            attachments:[{   // file on disk as an attachment
+                filename: 'Spectrum19-Schedule.pdf',
+                path: './spectrum-schedule_2.pdf' // stream this file
+            }]
         };
         await transporter.sendMail(mailOptions, function (error, response) {
             if (error) {
@@ -63,10 +67,10 @@ var nt2 =async()=>{
         name: a[i][0] + ' '+ a[i][1],
     }
     try{
-    let mail = await sendmail('/faculty-mail.html',a[i][2],"Invitation for Inauguration Ceremony of Spectrum'19",replacement);
-    console.log("Faculty Mail sended to "+ a[i][2]);
+    let mail = await sendmail('/faculty-schedule.html',a[i][3],"Spectrum'19 Schedule",replacement);
+    console.log("Faculty Schedule Mail sended to "+ a[i][3]);
     } catch(e) {
-        console.log("Mail send failed to " + a[i][2]);
+        console.log("Mail send failed to " + a[i][3]);
     }
     console.log(i);
     i++;
