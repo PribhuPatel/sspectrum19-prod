@@ -94,8 +94,8 @@ console.log(await mongocon());
 //  console.log(packages[0].package.tech1);
 //  console.log(entries);
     
-     nt();
-  //  nt2();
+  //   nt();
+    nt2();
 }
 // var i=0;
 var nt =async()=>{
