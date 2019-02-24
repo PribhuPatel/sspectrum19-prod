@@ -78,10 +78,10 @@ var config2= {mongoDB : {
     user: 'admin',
     password: 'shreeji1',
     // host : '34.73.92.20',
-    host:'ds135003.mlab.com',
-    port:35003,
-    // host:'localhost',
-    // port : 27017,
+    // host:'ds135003.mlab.com',
+    // port:35003,
+    host:'localhost',
+    port : 27017,
     database : 'spectrum'
 }
 }
@@ -151,7 +151,7 @@ ctx.textAlign = 'center';
     
 // doc.end()
     i++;
-    if(i<4){
+    if(i<1500){
         setTimeout(nt2,5000);
     }
 }
