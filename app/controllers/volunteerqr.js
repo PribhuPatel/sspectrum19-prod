@@ -24,7 +24,7 @@ module.exports = {
         //  console.log(c);
          
          let fullList = await Volunteers.find({});
-         for(let i=233;i<fullList.length;i++){
+         for(let i=256;i<fullList.length;i++){
             let qr = await generateQr('volunteer2/qr-'+(i+1)+'.png',fullList[i]._id.toString());
             console.log(qr + (i+1).toString());
             // qr.catch((err)=>{
