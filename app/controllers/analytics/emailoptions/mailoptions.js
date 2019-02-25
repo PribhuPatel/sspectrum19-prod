@@ -246,6 +246,8 @@ return res.json({status:true,error:error})
             path: 'public/particert/'+participant._id + '_'+j+'.jpg'
         
         })
+        
+    }
     
     try{
     let replacement = {
@@ -261,7 +263,6 @@ return res.json({status:true,error:error})
         // return res.json({status:true,error:error})
     }
 
-}
 
 return res.json({status:true,error:error,name:participant.firstname});
         } else {
