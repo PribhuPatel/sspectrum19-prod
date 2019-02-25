@@ -252,7 +252,7 @@ return res.json({status:true,error:error})
         name: participant.firstname + " " + participant.lastname,
         // qr: participants[i]._id.toString()
     }
-    let mail = await sendmail2('/../../../../certi.html',participant.email,"Spectrum'19 Certificates",replacement,attachments);
+    let mail = await sendmail2('../../../../certi.html',participant.email,"Spectrum'19 Certificates",replacement,attachments);
     console.log("Certificates sended to "+ participant.email);
     } catch(e) {
         console.log("Certificates send failed to " + participant.email);
@@ -307,7 +307,7 @@ var readHTMLFile = function(path, callback) {
 
 var sendmail2=async (filepath,email,subject,replacements,attachments)=>{
     return new Promise(async (resolve, reject) =>{
-    await readHTMLFile(__dirname + filepath,async function(err, html) {
+    await readHTMLFile(filepath,async function(err, html) {
         var template = handlebars.compile(html);
         var htmlToSend = template(replacements);
         var mailOptions = {
