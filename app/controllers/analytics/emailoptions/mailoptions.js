@@ -252,7 +252,7 @@ return res.json({status:true,error:error})
         name: participant.firstname + " " + participant.lastname,
         // qr: participants[i]._id.toString()
     }
-    let mail = await sendmail2('../../../../certi.html',participant.email,"Spectrum'19 Certificates",replacement,attachments);
+    let mail = await sendmail2('/../../../../certi.html',participant.email,"Spectrum'19 Certificates",replacement,attachments);
     console.log("Certificates sended to "+ participant.email);
     } catch(e) {
         console.log("Certificates send failed to " + participant.email);
