@@ -1,6 +1,37 @@
 var {Participants, Entries, Events, Colleges, GlobalVars,Users,Revenue,SingleEntries,Packages} = require('../../../middlewares/schemas/schema');
 var {getSingleData,getManyData, getManyDataWithPopulate,getCount,getDateWiseCount,localDate,getSingleDataWithPopulate, sendmail} = require('../../../utils/helpers/general_one_helper');
 
+
+const mongoose = require('mongoose');
+var ObjectId = mongoose.Types.ObjectId;
+var nodemailer = require('nodemailer');
+var handlebars = require('handlebars');
+
+var fs = require('fs')
+var path = require('path')
+var Canvas = require('canvas')
+
+function fontFile (name) {
+    return path.join(__dirname, '/', name)
+  }
+  Canvas.registerFont(fontFile('../../../font.ttf'), {family: 'Hanzel Wide Normal'})
+  Canvas.registerFont(fontFile('../../../arial.ttf'), {family: 'Arial'})
+  
+    
+  var config={
+      service: 'gmail',
+          auth:
+          {
+          user: 'spectrum@adit.ac.in',
+          // user:'np9532788@gmail.com',
+          // pass:'mnbvcxz@987654321'
+        pass: 'Spec1700@adit2019'
+      }
+  }
+  
+  var transporter = nodemailer.createTransport(config);
+  
+  
 module.exports = {
     changeEmail: async (req, res,next) => {
     var phone = req.body.phone;
@@ -166,7 +197,76 @@ return res.json({status:true,error:error})
     }
 
     }
+},
+    changeNameAndSendCerti: async(req,res)=>{
+
+        var phone = req.body.phone;
+        let email = req.body.email;
+        let firstname = req.body.firstname;
+        let lastname = req.body.lastname;
+        let replacements;
+      var error=false;
+
+        let participant = await getSingleDataWithPopulate(Participants,{phone: phone},'events','email firstname lastname events','name');
+        participant["email"] = email;
+        participant["firstname"]=firstname;
+        participant["lastname"]=lastname;
+        participant.save((err)=>{
+        if(err){
+            console.log(err);
+            error = true
+        }
+        });
+        if(error ==false){
+            
+    var attachments = [];
+
+
+    for(let j=0;j<participant.events.length;j++){
+
+    let canvas = Canvas.createCanvas(3508, 2480)
+    let ctx = canvas.getContext('2d')
+
+
+    
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+        // img.onload =async function() { 
+           let img = await loadImage();
+            console.log("asd");
+            
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = 'black';
+    ctx.textAlign = 'center';
+        let ctr = ctx;
+        await generateCerti(ctr,canvas,participant.firstname + " " +participant.lastname,participant.events[j].name,participant._id,j);
+        
+    attachments.push({
+            filename:participant.events[j].name +'.jpg',
+            // path: '../../../../public/particert/'+participant._id + '_'+j+'.jpg'
+            path: 'public/particert/'+participant._id + '_'+j+'.jpg'
+        
+        })
+    
+    try{
+    let replacement = {
+        name: participant.firstname + " " + participant.lastname,
+        // qr: participants[i]._id.toString()
+    }
+    let mail = await sendmail2('../../../../certi.html',participant.email,"Spectrum'19 Certificates",replacement,attachments);
+    console.log("Certificates sended to "+ participant.email);
+    return res.json({status:true,error:error,name:participant.firstname});
+    } catch(e) {
+        console.log("Certificates send failed to " + participant.email);
+       console.log(e);
+       
+        return res.json({status:true,error:error})
+    }
+
 }
+        } else {
+            return res.json({status:true,error:error})
+        } 
+    }
     
 }
 
@@ -188,3 +288,77 @@ var participantData = async(Collection, query,fields)=>{
     });
     })
 }
+
+
+
+
+var readHTMLFile = function(path, callback) {
+    fs.readFile(path, {encoding: 'utf-8'}, function (err, html) {
+        if (err) {
+            throw err;
+            callback(err);
+        }
+        else {
+            callback(null, html);
+        }
+    });
+};
+
+var sendmail2=async (filepath,email,subject,replacements,attachments)=>{
+    return new Promise(async (resolve, reject) =>{
+    await readHTMLFile(__dirname + filepath,async function(err, html) {
+        var template = handlebars.compile(html);
+        var htmlToSend = template(replacements);
+        var mailOptions = {
+            from: 'spectrum@adit.ac.in',
+            to : email,
+            subject : subject,
+            html : htmlToSend,
+            attachments:attachments
+        };
+        await transporter.sendMail(mailOptions, function (error, response) {
+            if (error) {
+                console.log(error);
+            } else{
+        (error? reject(error) : resolve(response));
+            }
+        });
+    });
+})
+}
+
+
+
+    
+
+var generateCerti = (ctr,canvas,parti_name,event_name,id,number)=>{
+    return new Promise(async (resolve,reject)=>{
+        
+ctr.font = '80pt Hanzel Wide Normal'
+ctr.fillText(parti_name,2200, 1200)
+
+ctr.font = '60pt Hanzel Wide Normal'
+ctr.fillText(event_name,2110, 1505)
+
+// ObjectId("5c401610c63da006f5e3336e")
+
+ctr.font = '40pt Arial'
+ctr.fillText(id,2260, 65)
+
+// canvas.createJPEGStream().pipe(fs.createWriteStream(path.join(__dirname, 'image1.jpg')))
+canvas.createJPEGStream().pipe(fs.createWriteStream('public/particert/'+id+'_'+number+'.jpg'))
+   resolve()
+
+    })
+}
+
+function loadImage () {
+    return new Promise((resolve, reject) => {
+      let img = new Canvas.Image()
+      img.onload = () => resolve(img)
+      img.onerror = () => reject(new Error('Failed to load image'))
+  
+img.src = 'particerti-min.jpg';
+    //   })
+    })
+  }

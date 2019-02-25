@@ -38,7 +38,7 @@ app.use('/user',verifyToken,require('./app/controllers/user'));
 app.use('/analytics',require('./app/controllers/analytics'));
 app.use('/application',require('./app/controllers/application'));
 
-app.use('/qrapp',require('./app/controllers/qrapp'));
+// app.use('/qrapp',require('./app/controllers/qrapp'));
 
 
 
