@@ -307,7 +307,7 @@ var readHTMLFile = function(path, callback) {
 
 var sendmail2=async (filepath,email,subject,replacements,attachments)=>{
     return new Promise(async (resolve, reject) =>{
-    await readHTMLFile(filepath,async function(err, html) {
+    await readHTMLFile(__dirname + filepath,async function(err, html) {
         var template = handlebars.compile(html);
         var htmlToSend = template(replacements);
         var mailOptions = {
