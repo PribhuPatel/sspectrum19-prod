@@ -254,15 +254,16 @@ return res.json({status:true,error:error})
     }
     let mail = await sendmail2('../../../../certi.html',participant.email,"Spectrum'19 Certificates",replacement,attachments);
     console.log("Certificates sended to "+ participant.email);
-    return res.json({status:true,error:error,name:participant.firstname});
     } catch(e) {
         console.log("Certificates send failed to " + participant.email);
        console.log(e);
        
-        return res.json({status:true,error:error})
+        // return res.json({status:true,error:error})
     }
 
 }
+
+return res.json({status:true,error:error,name:participant.firstname});
         } else {
             return res.json({status:true,error:error})
         } 
