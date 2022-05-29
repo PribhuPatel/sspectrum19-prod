@@ -18,10 +18,9 @@ module.exports = {
      nodemailer:{
         service: 'gmail',
         auth: {
-            user: 'spectrum@adit.ac.in',
-            // user:'markhentony@gmail.com',
-            // pass:'markhentony@12345'
-          pass: 'Spec1700@adit2019'
+
+        user: 'random@adit.ac.in',
+        pass: 'random'
         }
     },
     /* do not change this salrounds value */
